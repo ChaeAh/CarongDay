@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.boardproject.um.service.impl.UmUsrDAO">
+ 
+<!-- 	<select id="CheckPw" parameterType="String" resultType="String">
+		SELECT pw FROM member WHERE userid=#{userId}
+	</select>
+	
+	<insert id="insertMember" parameterType="memberVO">
+		insert into member ( userid, pw, name, email1, isadminyn, delyn) 
+		values (#{userId}, #{pw}, #{name}, #{email1}, 'N', 'N')
+	</insert>
+	
+	<update id="ModifyMember" parameterType="memberVO">
+		update member set name=#{name}, email1=#{email1} where userid=#{userId}
+	</update>
+	
+	<select id="getMember" parameterType="String" resultType="MemberVO">
+		select * from member where userid=#{userId}
+	</select>
+	
+	<delete id="deleteMember" parameterType="String">
+		delete from member where userid=#{userId}
+	</delete>
+	
+	<insert id="naverRgtUsr_001" parameterType="MemberVO">
+		INSERT INTO /*naverRgtUsr_001*/
+		member ( 
+		userid,
+		name,
+		email1,
+		email2,
+		isadminyn,
+		delyn,
+		rgtDtm
+		) VALUES(
+		#{userId}
+		,#{name}
+		,#{email1}
+		,#{email2}
+		,'N'
+		,'N'
+		,DATE_FORMAT(now(), '%Y%m%d%H%i%s')
+		)
+		
+		
+	</insert> -->
+	<insert id="insertUsrAcnt_001" parameterType="usrAcntVO">
+	 INSERT INTO /*umusrDAO.insertUsrAcnt_001*/
+	 IRUSRACNT ( 
+	 USR_ID,
+	 AUTH_NUM
+	 ) VALUES (
+	 	 #{usrId},
+	 	 #{authNum}
+	 )
+	</insert>
+	
+	
+	<insert id="insertLDVSRN_001" parameterType="usrAcntVO">
+	INSERT INTO /*umUsrDAO.insertLDVSRN_001*/
+	IRLDVSRN (
+	BD_MGT_SN
+	, JIBUN_ADR
+	, ROAD_ADR
+	, BD_MGT_NM
+	, SIDO
+	, SIGUNGU
+	, SIGUNGU_SN
+	, ROAD_SN
+	, BD_SN
+	, ROAD_NM
+	, BD_NM
+	, BD_NM1
+	, BD_NM2
+	, H_NM
+	, EXTRA_ADR
+	, POSTCODE
+	) VALUES(
+	#{bdMgtSn}
+	, #{jibunAdr}
+	, #{roadAdr}
+	, #{bdMgtNm}
+	, #{sido}
+	, #{sigungu}
+	, #{sigunguSn}
+	, #{roadSn}
+	, #{bdSn}
+	, #{roadNm}
+	, #{bdNm}
+	, #{bdNm1}
+	, #{bdNm2}
+	, #{hNm}
+	, #{extraAdr}
+	, #{postCode}
+	)
+	
+	</insert>
+</mapper>

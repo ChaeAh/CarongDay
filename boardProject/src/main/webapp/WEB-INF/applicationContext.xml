@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+   http://www.springframework.org/schema/beans     
+   http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+   http://www.springframework.org/schema/context 
+   http://www.springframework.org/schema/context/spring-context-4.0.xsd
+   http://www.springframework.org/schema/mvc
+   http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+
+	<context:component-scan
+		base-package="com.project.boardproject" />
+		
+  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="587" />
+        <property name="username" value="ejrgmla12@gmail.com"/>
+        <property name="password" value="chaeah12!" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
+    </bean>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- DB -->
+	<!-- -->
+	<!--dataSource 객체 설정 -->
+
+<!-- 로컬용(cafe24 서버연결) -->
+<!-- 	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="org.mariadb.jdbc.Driver"></property>
+		<property name="url"
+			value="jdbc:mariadb://mintchoco91.cafe24.com:3306/mintchoco91"></property>
+		<property name="username" value="mintchoco91"></property>
+		<property name="password" value="rldnjs01!@"></property>
+	</bean> -->
+<!--  -->
+
+<!--  서버용
+-->
+<!-- 	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="org.mariadb.jdbc.Driver"></property>
+		<property name="url"
+			value="jdbc:mariadb://localhost:3307/boardproject"></property>
+		<property name="username" value="mintchoco91"></property>
+		<property name="password" value="rldnjs01!@"></property>
+	</bean> -->
+<!-- 	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="org.mariadb.jdbc.Driver"></property>
+		<property name="url"
+			value="jdbc:mariadb://localhost:3306/boardproject"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="0000"></property>
+	</bean>
+	 -->
+	
+	  <!-- 오라클 -->
+
+ 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+    	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+        <property name="username" value="chae" />
+        <property name="password" value="qjfalf12" />
+<!--         <property name="initialSize" value="5" />
+        <property name="maxActive" value="5" /> -->
+        <property name="validationQuery" value="SELECT 1 from dual" />
+    </bean>
+	
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation"
+			value="/WEB-INF/mybatis-config.xml"></property>
+		<property name="mapperLocations"
+			value="/resources/sql/**/*.xml"></property>
+	</bean>
+
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory"
+			ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage"
+			value="com.project.boardproject.**.service.impl.**" />
+		<!-- <property name="annotationClass" value="com.project.boardproject.cm.service.impl.CmDAO" 
+			/> -->
+		<!-- <property name="sqlSessionFactoryBeanName" value="sqlSession" /> -->
+	</bean>
+
+ 
+
+
+
+	<!-- Annotation 활성화 -->	
+	<mvc:annotation-driven></mvc:annotation-driven> 
+</beans>

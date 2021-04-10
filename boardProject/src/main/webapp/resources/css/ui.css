@@ -1,0 +1,1295 @@
+@charset "UTF-8";
+/*-------------------------------------------------------------------
+    버전 : 2021-02-01
+-------------------------------------------------------------------*/
+
+/* 그리드  */
+.row {display: block; position: relative; background: #f6f6f6;}
+.row > * {position: relative; width: 100%;}
+.row > .sTitle {background: #fff; margin: 0;}
+
+.row.trs {display: table; width: 100%;}
+
+/* 그리드  column*/
+.pgL {float: left; width: 30%;}
+.pgR {float: left; width: 70%; padding-left: 10px;}
+
+.pgTrsL {display: table-cell; width: 45%;}
+.pgTrsR {display: table-cell; width: 45%;}
+.pgTrsC {display: table-cell; width: 10%; text-align: center; vertical-align: middle;}
+
+/* 메인 버튼 */
+.formBtn {margin-top: 20px; text-align: right;}
+.formBtn button,
+.mBtn {display: inline-block; padding: 7px 20px 9px; background: #3e5989; border: 2px solid #2d4b84; border-radius: 3px; font-size: 15px; font-weight: bold; line-height: 1; color: #fff; letter-spacing: -1px; vertical-align: middle;}
+.formBtn button:hover,
+.mBtn:hover {background: #007d6c; border: 2px solid #076759; box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.3), 1px 3px 5px rgba(51,51,51,0.3);}
+.mBtn:active {background: #007d6c; border: 2px solid #076759; box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.3), 1px 3px 5px rgba(51,51,51,0.3);}
+
+.formBtn button.btnG,
+.btnG {background: #555; border-color: #444;}
+.formBtn button.btnG:hover,
+.btnG:hover {background: #007d6c; border: 2px solid #076759;}
+
+@media screen and (max-width: 767px) {
+    .formBtn button,
+    .formBtn .mBtn {margin-bottom: 6px;}
+}
+
+/* 메인 버튼 초록색 고정 */
+.formBtn button.btnP,
+.btnP,
+.formBtn button.btnP:hover,
+.btnP:hover {background: #007d6c; border-color: #076759;}
+
+/* 비활성화 버튼 */
+.formBtn button[disabled],
+.formBtn .disabled,
+.mBtn[disabled],
+.mBtn.disabled {background: #a0a7b3; border-color: #9a9fa9; color: #fff; cursor: not-allowed;}
+.formBtn button[disabled]:hover,
+.formBtn .disabled:hover,
+.mBtn[disabled]:hover,
+.mBtn.disabled:hover {box-shadow: none;}
+
+/* 2021-01-26 버튼 새창 아이콘 추가 */
+.formBtn .nw2::after {content: url(../images/iconWin2.png); display: inline-block; padding-left: 5px; transform: translateY(-2px);}
+
+/* 서브 버튼 */
+.sBtn {display: inline-block; position: relative; padding: 6px 10px 8px; background: #fff; border: 1px solid #838383; border-radius: 3px; font-size: 14px; font-weight: bold; color: #535353; line-height: 1; vertical-align: middle; letter-spacing: -1px; box-shadow: inset 0 -2px 0 #e6e6e6; cursor: pointer;}
+.sBtn:hover {background: #e9fffc; border-color: #1c8576; color: #000; text-decoration: none; box-shadow: inset 0 -2px 0 #c1e8e3;}
+
+/* 서브 버튼 비활성화 */
+.sBtn.disabled,
+.sBtn[disabled],
+.sBtn.disabled:hover,
+.sBtn[disabled]:hover {background: #f7f7f7; border-color: #ccc; color: #aaa; box-shadow: inset 0 -2px 0 #e6e6e6; cursor: not-allowed;}
+
+/* 서브버튼 아이콘 */
+.sBtn.iAdd,
+.sBtn.iDelete {padding-left: 24px;}
+
+.sBtn.iAdd::before,
+.sBtn.iDelete::before {content: ''; position: absolute; top: 6px; left: 7px; width: 14px; height: 14px; background: url(../images/iconSubBtnSprite.png) no-repeat; vertical-align: middle;}
+
+.sBtn.iAdd::before {background-position: 0 0;}
+.sBtn.iDelete::before {background-position: 0 -14px;}
+
+.sBtn.btnB {background: #810029; border-color: #810029; color: #fff; box-shadow: none;}
+
+/* 테스트 출력 버튼 */
+.btnTestPrint {float: right; padding: 5px 10px 7px; background: #555; border-color: #444; font-size: 14px;}
+/* 2021-01-27 테스트 출력 버튼 새창 아이콘 추가 */
+.btnTestPrint:after {content: url(../images/iconWin2.png); display: inline-block; padding-left: 5px; transform: translateY(-2px);}
+
+/* 년도 선택 버튼 */
+.btnPrevYear {display: inline-block; float: left; width: 13px; height: 36px; background: url(../images/iconArrPrev.gif) no-repeat center; vertical-align: middle; margin-right: 2px;}
+.btnNextYear {display: inline-block; float: left; width: 13px; height: 36px; background: url(../images/iconArrNext.gif) no-repeat center; vertical-align: middle; margin-left: 2px;}
+
+/* 증명서 미리보기 회전 버튼 */
+.btnRotateLeft,
+.btnRotateLeft:hover {padding-left: 48px; background-image: url(../images/iconRotateLeft.png); background-repeat: no-repeat; background-position: 20px center;}
+.btnRotateRight,
+.btnRotateRight:hover {padding-left: 48px; background-image: url(../images/iconRotateRight.png); background-repeat: no-repeat; background-position: 20px center;}
+.btnExpand,
+.btnExpand:hover {padding-left: 48px; background-image: url(../images/iconExpand.png); background-repeat: no-repeat; background-position: 20px center;}
+
+/* 주요사건개괄 미리보기 버튼 */
+.btnPrev {display: inline-block; position: relative; width: 16px; height: 17px; background: url(../images/iconSearch2.png) no-repeat center; background-size: 16px; vertical-align: middle;}
+
+/* 테이블에 추가되는 미리보기 버튼 */
+.btnDtlPrev {position: absolute; top: 5px; right: 5px;}
+
+/* 키보드 보안 프로그램 설치 버튼 */
+.nxkeyCheck {padding: 15px 0; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;}
+.btnNxKeyCheck {display: inline-block; position: relative; height: 30px; padding: 1px 20px 0 43px; border: 1px solid #838383; border-radius: 3px; font-size: 14px; font-weight: bold; line-height: 26px; letter-spacing: -1px; vertical-align: middle; cursor: pointer;}
+.btnNxKeyCheck::before {content: ''; position: absolute; top: 5px; left: 18px; width: 18px; height: 18px; background: url(../images/iconChkSet2.png) no-repeat 0 0;}
+.nxKeyTagt:checked + .btnNxKeyCheck {background: #555; border-color: #444; color: #fff;}
+.nxKeyTagt:checked + .btnNxKeyCheck::before {background-position: 0 -69px;}
+.nxkeyCheck p {margin-top: 10px; font-size: 14px;}
+
+/* 체크버튼 */
+.btnCheck {display: inline-block; position: relative; height: 30px; padding: 1px 20px 0 43px; border: 1px solid #225fa0; border-radius: 3px; font-size: 14px; font-weight: bold; line-height: 26px; letter-spacing: -1px; vertical-align: middle; cursor: pointer;}
+.btnCheck::before {content: ''; position: absolute; top: 5px; left: 18px; width: 18px; height: 18px; background: url(../images/iconChkSet2.png) no-repeat 0 0;}
+.chkTagt:checked + .btnCheck {background: #386ab5; border-color: #225fa0; color: #fff;}
+.chkTagt:checked + .btnCheck::before {background-position: 0 -69px;}
+
+/* 우선순위 팝업설정 버튼그룹 */
+.btnGroup {position: absolute; top: 5px; right: 5px;}
+.btnGroup button {width: 28px; height: 30px; background: #2557a2; border-radius: 3px; font-size: 14px; color: #fff;}
+
+/* 민원안내 버튼 */
+.sBtnInside {display: inline-block; position: relative; margin-top: -4px; padding: 3px 5px 4px;background: #fff; border: 1px solid #838383; border-radius: 2px; font-size: 13px; color: #535353; line-height: 1; vertical-align: middle; letter-spacing: -1px; white-space: nowrap; cursor: pointer;}
+.sBtnInside.btnB {background: #810029; border-color: #810029; color: #fff;}
+.sBtnInside.nw::after {content: url(../images/iconWin.png); display: inline-block; padding-left: 5px; transform: translateY(-2px);}
+.sBtnInside.nw2::after {content: url(../images/iconWin2.png); display: inline-block; padding-left: 5px; transform: translateY(-2px);}
+
+.sBtnInside.btnBlue {background: #365ea9; border-color: #365ea9; color: #fff;}
+
+/* 더보기 버튼 */
+.btnMore {position: absolute; overflow: hidden; width: 22px; height: 22px; margin: 4px 0 0 8px; padding-left: 20px; border: 1px solid #bababb; border-radius: 2px; font-size: 13px; font-weight: bold; color: #333; white-space: nowrap; transition: .3s all;}
+.btnMore::before {content: ''; position: absolute; top:0; left: 0; width: 20px; height: 20px; background: url(../images/iconPlus.gif) no-repeat center center;}
+.btnMore:hover,
+.btnMore:focus {width: 85px; color: #333; text-decoration: none;}
+#faqInq.btnMore:hover,
+#faqInq.btnMore:focus {width: 91px;}
+.btnMore .btnMoreTxt {display: block; margin-right: 8px; padding: 3px 0; line-height: 1;}
+
+/* 필수입력 항목 텍스트색 변경 */
+.required {color: #2557a2;}
+
+/* 입력폼 */
+.frmInput {display: inline-block; height: 30px; padding-left: 5px; border: 1px solid #aaa; font-size: 15px; color: #333; line-height: 28px; vertical-align: middle;}
+.frmInput:focus {background: #f4f7f8; border: 1px solid #386ab5;}
+.frmInput[disabled] {background: #ececec; color: #333;}
+textarea.frmInput {height: auto; padding: 5px; line-height: 1.8;}
+.iptFull {width: 100%;}
+.iptHalf {width: 50%;}
+
+/* 통계 연도 선택 입력폼 */
+.iptYear {padding: 0; text-align: center;}
+.iptYear ~ select {margin-left: 5px !important;}
+.iptYear ~ span.dash {float: left; height: 36px; line-height: 32px; padding: 0 3px;}
+
+textarea {width: 100%; padding: 5px; line-height: 1.8;}
+textarea.view5 {height: 147px;}
+textarea.view6 {height: 174px;}
+textarea.view7 {height: 201px;}
+textarea.view7 {height: 228px;}
+
+/* 발급자 명의 등록 입력폼 안쪽 성명 라벨 */
+.iptNmLabel {position: absolute; z-index: 1; height: 30px; line-height: 30px; margin-left: 3px;}
+.iptNmLabel + .frmInput {padding-left: 28px;}
+@media screen and (max-width: 767px) {
+    .iptNmLabel + .frmInput {width: 49%;}
+}
+
+/* 달력 입력폼 & 이미지 */
+.frmInput.hasDatepicker {width: 130px; padding-left: 35px !important; background: #fff url(../images/iconCalendar.png) no-repeat left 2px center; cursor: pointer;}
+.frmInput.hasDatepicker:focus {background-color: #f4f7f8;}
+
+/* 검색 입력폼 & 이미지 */
+.frmSch {display: inline-block; position: relative; max-width: 450px; width: 100%; height: 30px; vertical-align: middle;}
+.frmSch.auto {max-width: none; width: auto;}
+.frmSch .frmInput {width: 100%;}
+.frmSch button {position: absolute; top: 0; left: 2px; z-index: 1; width: 26px; height: 30px; background: url(../images/iconSearch2.png) no-repeat center; border: 0;}
+.frmSch button ~ .frmInput {padding-left: 35px;}
+.frmSch button.right {left: auto; right: 2px;}
+
+/* 라디오 버튼 커스텀 */
+.radio1 {display: inline-block;}
+.radio1 input[type=radio] {display: inline-block; position: absolute; overflow: hidden; width: 1px; height: 1px; margin: -1px; padding: 0; opacity: 0;}
+.radio1 input[type=radio] + label {display: inline-block; position: relative; height: 33px; padding: 3px; font-weight: bold; line-height: 25px; cursor: pointer;}
+.radio1 input[type=radio] + label::before {content: ''; display: inline-block; width: 27px; height: 27px; margin: -4px 8px 0 0; background: url(../images/iconRadioSet.png) no-repeat; vertical-align: middle;}
+.radio1 input[type=radio]:checked + label::before {background-position: 0 -32px;}
+.radio1 input[type=radio]:focus + label {outline: dotted thin; outline: -webkit-focus-ring-color auto 5px;}
+
+.radio2 {display: block;}
+.radio2 input[type=radio] {display: inline-block; position: absolute; overflow: hidden; width: 1px; height: 1px; margin: -1px; padding: 0; opacity: 0;}
+.radio2 input[type=radio] + label {display: inline-block; position: relative; padding: 3px; font-weight: bold; line-height: 18px; cursor: pointer;}
+.radio2 input[type=radio] + label::before {content: ''; display: inline-block; width: 18px; height: 18px; margin: -4px 17px 0 0; background: url(../images/iconRadioSet.png); background-size: cover; vertical-align: middle;}
+.radio2 input[type=radio]:checked + label::before {background-position: 0 -21px;}
+.radio2 input[type=radio]:focus + label {outline: dotted thin; outline: -webkit-focus-ring-color auto 5px;}
+
+.radio3 {display: block;}
+.radio3 input[type=radio] {display: inline-block; position: absolute; overflow: hidden; width: 1px; height: 1px; margin: -1px; padding: 0; opacity: 0;}
+.radio3 input[type=radio] + label {display: inline-block; position: relative; height: 24px; padding: 3px; font-size: 16px; font-weight: bold; line-height: 18px; cursor: pointer;}
+.radio3 input[type=radio] + label::before {content: ''; display: inline-block; width: 15px; height: 12px; margin: -4px 10px 0 0; background: url(../images/iconRadioChk.png) no-repeat 0 -12px; vertical-align: middle;}
+.radio3 input[type=radio]:checked + label {color: #386ab5;}
+.radio3:hover input[type=radio] + label::before {background-position: 0 -24px;}
+.radio3 input[type=radio]:checked + label::before {background-position: 0 0;}
+.radio3 input[type=radio]:focus + label {outline: dotted thin; outline: -webkit-focus-ring-color auto 5px;}
+
+.tblForm table tbody th .checkbox2 {color: #333;}
+
+/* 체크 버튼 커스텀 */
+.checkbox1 {display: inline-block;}
+.checkbox1 input[type=checkbox] {display: inline-block; position: absolute; overflow: hidden; width: 1px; height: 1px; margin: -1px; padding: 0; opacity: 0;}
+.checkbox1 input[type=checkbox] + label {display: inline-block; position: relative; height: 31px; padding: 3px 3px 3px 39px; font-weight: bold; line-height: 25px; cursor: pointer;}
+.checkbox1 input[type=checkbox] + label::before {content: ''; position: absolute; top: 3px; left: 3px; width: 25px; height: 25px; background: url(../images/iconChkSet.png);}
+.checkbox1 input[type=checkbox]:checked + label::before {width: 29px; background-position: 0 -30px;}
+.checkbox1 input[type=checkbox]:focus + label {outline: dotted thin; outline: -webkit-focus-ring-color auto 5px;}
+
+.checkbox2 {display: block;}
+.checkbox2 input[type=checkbox] {display: inline-block; position: absolute; overflow: hidden; width: 1px; height: 1px; margin: -1px; padding: 0; opacity: 0;}
+.checkbox2 input[type=checkbox] + label {display: inline-block; position: relative; height: 26px; padding: 3px 3px 3px 38px; font-weight: bold; line-height: 18px; cursor: pointer;}
+.checkbox2 input[type=checkbox] + label::before {content: ''; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; background: url(../images/iconChkSet2.png);}
+.checkbox2 input[type=checkbox]:checked + label::before {width: 19px; background-position: 0 -23px;}
+.checkbox2 input[type=checkbox]:focus + label {outline: dotted thin; outline: -webkit-focus-ring-color auto 5px;}
+.checkbox2.default input[type=checkbox]:checked + label {cursor: not-allowed;}
+.checkbox2.default input[type=checkbox]:checked + label::before {background-position: 0 -46px;}
+
+/* 단일 조건 검색 */
+.boSearchWrap {position: relative; margin-bottom: 15px; padding: 10px 15px; background: #f3f3f3; border: 2px solid #b0bdd0; border-radius: 3px; text-align: center; box-shadow: 0 0 0 rgba(51, 51, 51, 0), 0 5px 0 rgba(51, 51, 51, 0.08); }
+.boSearchWrap .iptGroup {display: inline;}
+.boSearchWrap select {min-width: 100px; height: 30px; margin: 4px 0; padding-left: 5px; border: 1px solid #ccc; font-size: 15px; vertical-align: middle;}
+.boSearchWrap .frmInput {max-width: 280px; width: 40%; margin: 4px 0;}
+.boSearchWrap .issNum {width: 60px; padding: 0; text-align: center;}
+.boSearchWrap .iptGroup .frmSch {max-width: none; width: auto; margin: 4px 0;}
+.boSearchWrap .frmSch .frmInput {margin: 0;}
+.boSearchWrap label {display: inline-block; position: relative; margin: 0 10px 0 0; padding-left: 8px; font-weight: bold; vertical-align: middle;}
+.boSearchWrap label::before {content: ''; position: absolute; top: 0px; left: 0; width: 4px; height: 4px; margin-top: 6px; background: #585858; border-radius: 50%;}
+.boSearchWrap label.clear::before {display: none;}
+.boSearchWrap button[type=submit],
+.boSearchWrap .btnSchSubmit {height: 30px; padding: 0 18px; background: #3e5989; margin: 4px 0; border: 2px solid #2d4b84; border-radius: 3px; font-size: 15px; font-weight: bold; color: #fff;}
+.boSearchWrap button[type=submit]:hover,
+.boSearchWrap .btnSchSubmit:hover {background: #007d6c; border: 2px solid #076759; box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.3), 1px 3px 5px rgba(51,51,51,0.3);}
+/* 반응형 3단계 여백조절 */
+@media screen and (max-width: 767px) {
+    .boSearchWrap {padding: 10px;}
+    .boSearchWrap select {min-width: inherit;}
+    .boSearchWrap .iptGroup {display: table; width: 100%; border-bottom: 1px solid #dbe1ed;}
+    .boSearchWrap .iptGroup > * {display: table-cell;}
+    .boSearchWrap .iptGroup .addon {width: 1%; padding: 0 3px; vertical-align: middle; white-space: nowrap;}
+    .boSearchWrap .iptGroup .addon:first-child {padding-left: 0;}
+    .boSearchWrap .iptGroup .frmInput {max-width: none; width: 100%; min-width: 50px; vertical-align: middle;}
+    .boSearchWrap .iptGroup + button[type=submit],
+    .boSearchWrap .btnSchSubmit {display: block; width: 100%; height: 36px; margin-top: 10px;}
+}
+
+/* 다중 조건 검색 */
+.boMultiSchWrap {display: table; position: relative; width: 100%; margin-bottom: 15px; padding: 10px 15px; background: #f3f3f3; border: 2px solid #b0bdd0; border-radius: 3px; text-align: center; box-shadow: 0 0 0 rgba(51, 51, 51, 0), 0 5px 0 rgba(51, 51, 51, 0.08);}
+.boMultiSchWrap h3 {display: block; position: relative; margin: 0 30px  5px 0; padding: 0 0 5px 10px; border-bottom: 1px solid #ddd; font-size: 17px; font-weight: bold; text-align: left; line-height: 1.2; letter-spacing: -1px; clear: both;}
+.boMultiSchWrap h3::before {content: ''; position: absolute; left: 0; width: 6px; height: 6px; margin-top: 9px; background: #585858; border-radius: 50%;}
+.boMultiSchWrap h3 ~ h3 {padding-top: 30px;}
+.boMultiSchWrap .frmGroup {display: table-cell;}
+.boMultiSchWrap .iptGroup {display: table; float: left; width: 100%; height: 36px; padding: 1px 0;}
+.boMultiSchWrap .size20p {width: 20%;}
+.boMultiSchWrap .size22p {width: 22%;}
+.boMultiSchWrap .size23p {width: 23%;}
+.boMultiSchWrap .size24p {width: 24%;}
+.boMultiSchWrap .size25p {width: 25%;}
+.boMultiSchWrap .size28p {width: 28%;}
+.boMultiSchWrap .size29p {width: 29%;}
+.boMultiSchWrap .size30p {width: 30%;}
+.boMultiSchWrap .size34p {width: 34%;}
+.boMultiSchWrap .size35p {width: 35%;}
+.boMultiSchWrap .size40p {width: 40%;}
+.boMultiSchWrap .size41p {width: 41%;}
+.boMultiSchWrap .size45p {width: 45%;}
+.boMultiSchWrap .size47p {width: 47%;}
+.boMultiSchWrap .size50p {width: 50%;}
+.boMultiSchWrap .size53p {width: 53%;}
+.boMultiSchWrap .size55p {width: 55%;}
+.boMultiSchWrap .size60p {width: 60%;}
+.boMultiSchWrap .size65p {width: 65%;}
+.boMultiSchWrap .size70p {width: 70%;}
+.boMultiSchWrap .size75p {width: 75%;}
+.boMultiSchWrap .size80p {width: 80%;}
+
+.boMultiSchWrap .iptGroup label {display: table-cell; position: relative; height: 100%; padding: 0 8px 0 11px; font-weight: bold; text-align: left; font-size: 15px; line-height: 1.2; letter-spacing: -1px; vertical-align: middle; white-space: nowrap;}
+.boMultiSchWrap .iptGroup label::before {content: ''; position: absolute; left: 0; width: 4px; height: 4px; margin-top: 8px; background: #585858; border-radius: 50%;}
+.boMultiSchWrap .iptGroup label.chkBox::before {display: none;}
+.boMultiSchWrap .iptGroup .frmDiv {display: table; width: 100%; height: 100%; padding-right: 30px; text-align: left; vertical-align: middle;}
+.boMultiSchWrap .iptGroup .frmDiv .frmInput {display: table-cell; float: left; max-width: 300px; width: 100%; margin: 3px 0;}
+.boMultiSchWrap .iptGroup .frmDiv .frmInput.auto {max-width: none; width: auto;}
+.boMultiSchWrap .iptGroup .frmDiv .iptHalf {width: 50%;}
+.boMultiSchWrap .iptGroup .frmDiv .sep,
+.boMultiSchWrap .iptGroup .frmDiv .iptAddon {display: table-cell; width: 1%; padding: 0 3px; vertical-align: middle; white-space: nowrap;}
+.boMultiSchWrap .iptGroup .frmDiv .astAddon {display: table-cell; width: 50%; vertical-align: middle; padding-top: 6px;}
+.boMultiSchWrap .iptGroup .frmDiv .sep:first-child,
+.boMultiSchWrap .iptGroup .frmDiv .iptAddon:first-child {padding-left: 0;}
+.boMultiSchWrap .iptGroup .frmDiv .iptAddon ~ .iptAddon{padding-left: 0;}
+.boMultiSchWrap .iptGroup .frmDiv .inqSelect {width: auto;}
+.boMultiSchWrap .iptGroup .frmDiv .inqInput {max-width: none;}
+.boMultiSchWrap .iptGroup .frmSch button {top: 4px; left: 7px; height: 28px;}
+.boMultiSchWrap .frmBtn {display: table-cell; width: 85px; height: 36px; border-left: 1px solid #ddd; text-align: right; vertical-align: middle;}
+.boMultiSchWrap .frmBtn button {height: 30px; padding: 0 18px 1px; background: #3e5989; border: 2px solid #2d4b84; border-radius: 3px; font-size: 15px; font-weight: bold; color: #fff;}
+.boMultiSchWrap .frmBtn button:hover {background: #007d6c; border: 2px solid #076759; box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.3), 1px 3px 5px rgba(51,51,51,0.3);}
+.boMultiSchWrap .frmDiv label {display: inline-block; height: 36px; padding: 0 8px 0 0; border: 0; font-weight: normal; line-height: 36px;}
+.boMultiSchWrap .frmDiv label input[type=radio] {margin-top: -1px;}
+.boMultiSchWrap .frmDiv label::before {display: none;}
+.boMultiSchWrap .frmDiv label.cell {display: table-cell;}
+.boMultiSchWrap .issNum {padding: 0; text-align: center;}
+
+/* 반응형 3단계 여백조절 */
+@media screen and (max-width: 900px) {
+    .boMultiSchWrap {padding: 10px;}
+    .boMultiSchWrap .frmGroup {display: block; overflow: hidden;}
+    .boMultiSchWrap .iptGroup {width: 100%; height: auto; border-bottom: 1px solid #dbe1ed;}
+
+    .boMultiSchWrap .iptGroup label {width: 30%;}
+    .boMultiSchWrap .iptGroup .frmDiv {padding-right: 0;}
+    .boMultiSchWrap .iptGroup .frmSch {max-width: none;}
+    .boMultiSchWrap .iptGroup .frmDiv .frmInput {max-width: none;}
+    .boMultiSchWrap .iptGroup .frmDiv .iptAddon {display: block; width: 100%;}
+    .boMultiSchWrap .frmDiv label {width: auto;}
+    .boMultiSchWrap .frmBtn {display: block; width: 100%; margin-top: 10px; border: 0;}
+    .boMultiSchWrap .frmBtn button {width: 100%; height: 36px;}
+
+    /* 다중 조건 검색 영역 반응안하는 클래스 추가 */
+    .boMultiSchWrap.nRes .frmGroup {display: table-cell;}
+    .boMultiSchWrap.nRes .iptGroup .frmDiv .iptAddon {display: table-cell; width: 1%;}
+    .boMultiSchWrap.nRes .iptGroup {width: 50%; border: 0;}
+    .boMultiSchWrap.nRes .iptGroup label {width: auto;}
+    .boMultiSchWrap.nRes .iptGroup .frmDiv {padding-right: 30px;}
+    .boMultiSchWrap.nRes .frmBtn {display: table-cell; width: 85px; border-left: 1px solid #ddd;}
+    .boMultiSchWrap.nRes .frmBtn button {width: auto; height: 30px;}
+}
+
+@media screen and (max-width: 480px) {
+    .boMultiSchWrap .iptGroup {margin-bottom: 10px;}
+    .boMultiSchWrap .iptGroup:last-child {margin: 0;}
+    .boMultiSchWrap .iptGroup label {display:inline-block; width: 100%;}
+    .boMultiSchWrap .iptGroup .frmDiv {width: 100%;}
+    .boMultiSchWrap .frmDiv label {width: auto;}
+}
+
+/* 게시판 목록 테이블 */
+.boList {overflow: auto;}
+.boHeader {position: relative; margin: 10px 0 5px;}
+.boHeader::after {content: ''; display: table; clear: both;}
+.boHeader .boRes {float: left; padding: 7px 0; font-size: 16px;}
+.boHeader .boRes strong {color: #f26248;}
+.boHeader .boSortBtn {float: right;}
+.boHeader .boSortBtn a {display: block; float: left; position: relative; padding: 5px 20px; border: 1px solid #9ba7ba; font-size: 14px; line-height: 18px; text-decoration: none;}
+.boHeader .boSortBtn a:hover {font-weight: bold;}
+.boHeader .boSortBtn a + a {border-left: 0;}
+.boHeader .boSortBtn a.on {background: #f1f1f1; font-weight: bold;}
+.boList table {width: 100%; border-collapse: separate; background: #fff; border-top: 1px solid #386ab5; font-size: 15px; line-height: 1.5;}
+.boList + .boList table {border-top: 0;}
+.boHeader + table {border-top-width: 1px; }
+.boList table tbody tr:hover td {background: #fcf6db; color: #000;}
+.boList.nov table tbody tr:hover td {background: inherit; color: inherit;}
+.boList table tbody tr.on td {background: #fcf6db; color: #000; font-weight:bold;}
+.boList table thead th {padding: 8px 0; background: #f1f1f1; border-width: 1px; border-style: solid; border-color: transparent #ced4e0 #9ca7ba #ced4e0; border-top: 0; color: #364d7f; text-align: center; word-break: keep-all;}
+.boList table thead th + th {border-left: 0;}
+.boList table tbody th {height: 40px; padding: 5px 0; background: #f7f7f7; border-width: 1px; border-style: solid; border-color: transparent #ced4e0 #ececec #ececec; border-top: 0; color: #333; text-align: center;}
+.boList table tbody td {height: 40px; padding: 5px; border-width: 1px; border-style: solid; border-color: transparent #ececec #ececec #ececec; border-top: 0; text-align: center;}
+.boList table tbody th + td,
+.boList table tbody td + td {border-left: 0;}
+.boList .tdSubject a {display: block; text-align: left} /* 제목 링크 */
+.boList .tdPgmNm {text-align: left;} /* 프로그램명 */
+.boList .tdPgmUrl {word-break: break-all;} /* 프로그램URL */
+.boList .tdBusn {padding: 0;} /* 권한등록 업무 */
+.boList .tdBusn a {display: block; height: 40px; line-height: 40px;}
+.boList .tdChk {width: 40px;}
+.boList .tdNum {width: 50px;}
+.boList .tdDate {width: 100px;}
+.boList .tdDclr {width: 80px;}
+.boList .tdCaseOwn {width: 80px;}
+.boList .tdCaseNm {width: 250px;}
+.boList .tdOfc {width: 220px;}
+.boList .tdPrcs {width: 140px}
+
+/* 통계페이지 총계&소계 스타일 */
+.boList .totalSj,
+.boList .subtotalSj {background: #fdf8f2; font-weight: bold; color: #f26248; text-align: center;}
+.boList .totalNum,
+.boList .subtotalNum {font-weight: bold; color: #f26248; text-align: right;}
+.boList.nov table tbody tr:hover .totalSj,
+.boList.nov table tbody tr:hover .subtotalSj {background: #fdf8f2; color: #f26248;}
+.boList.nov table tbody tr:hover .totalNum,
+.boList.nov table tbody tr:hover .subtotalNum {color: #f26248;}
+
+.boList table tbody td a:hover {color: #386ab5}
+
+/* 반응형 테이블 */
+.boList .responsTable .label {display: none;}
+.boList .default td,
+.boList .default:hover td,
+.boList .default.on td {background: inherit; font-weight: normal; color: inherit; cursor: default;}
+@media screen and (max-width: 767px) {
+    .boList table thead th.xs-hidden + th {border-left: 1px solid #ced4e0;}
+    .boList table tbody td.xs-hidden + td {border-left: 1px solid #ececec;}
+
+    .boList .responsTable .default td:first-child {display: table-cell}
+
+    .boList .responsTable tbody td.xs-hidden + td {border-color: #cecece;}
+    .boList .responsTable th {display: none;}
+    .boList .responsTable td {display: table; width: 100%; padding: 0; border: 1px solid #cecece; border-top: 0;}
+    .boList .responsTable tr:hover td {background: inherit; color: inherit;}
+    .boList .responsTable tr:hover td.tdChk {background: #f1f1f1;}
+    .boList .responsTable tr td.tdChk:first-child,
+    .boList .responsTable tr td:last-child {border-bottom-color: #386ab5 !important;}
+    .boList .responsTable .tdChk {display: table-cell; width: 35px; background: #f1f1f1;}
+    .boList .responsTable .tdChk ~ td {border-left: 0;}
+    .boList .responsTable .label {display: table-cell; width: 22%; min-width: 100px; padding: 0 5px; background: #f1f1f1; border-right: 1px solid #cecece; font-weight: bold; text-align: left; vertical-align: middle; word-break: keep-all;}
+    .boList .responsTable .label.xs-w30p {width: 30%;}
+    .boList .responsTable .data {display: table-cell; width: 78%; padding: 0 5px; border: 1px solid #fff; text-align: left; vertical-align: middle;}
+}
+
+.faqCategory {display: block; position: relative;}
+.faqSelect {display: none;}
+.faqNav {display: table; position: relative; width: 100%; border-collapse: collapse; table-layout: fixed;}
+.faqNav li {display: table-cell; border: 1px solid #cecece; vertical-align: middle;}
+.faqNav li:hover {background: #f6f6f6;}
+.faqNav li.on,
+.faqNav li.on:hover {background: #585858; border-color: #3c3c3c; color: #fff;}
+.faqNav a {display: block; padding: 8px 5px 9px; font-size: 15px; font-weight: bold; text-align: center; line-height: 1.4; word-break: keep-all;}
+
+.faqNav li.on a {color: #fff;}
+
+@media screen and (max-width: 767px) {
+    .faqSelect {display: block; width: 100%; padding: 8px 15px 9px; border: 1px solid #cecece; background: url(../images/iconArrDown.png) no-repeat 97% center; border-radius: 3px 3px; font-size: 15px; font-weight: bold; text-align: left; line-height: 1.4; cursor: pointer;}
+    .faqSelect.active {border: 1px solid #aaa; border-bottom: 0; border-radius: 3px 3px 0 0;}
+    .faqNav {display: block; position: absolute; z-index: 10; width: 100%; background: #fff; border-radius: 0 0 3px 3px; -webkit-box-shadow: 0 13px 15px 0 rgba(0, 0, 0, 0.3); -moz-box-shadow: 0 13px 15px 0 rgba(0, 0, 0, 0.3); box-shadow: 0 13px 15px 0 rgba(0, 0, 0, 0.3);}
+    .faqNav.active {border: 1px solid #aaa; border-top: 0;}
+    .faqNav li {display: block; width: 100%; border-color: #dedede;; border-left: 0; border-right: 0;}
+    .faqNav li + li {border-top: 0;}
+    .faqNav li:last-child {border: 0;}
+    .faqNav li.on, 
+    .faqNav li.on:hover {background: #e7e9ea; border-color: #dedede;}
+    .faqNav li a {text-align: left; padding-left: 15px; padding-right: 15px; font-weight: normal;}
+    .faqNav li.on a {font-weight: bold; color: #000;}
+}
+
+.faqList {position: relative;}
+.faqList ol {display: block; width: 100%; border-width: 1px; border-style: solid; border-color: #386ab5 #ececec #ececec #ececec;}
+.faqList.adm ol {padding-left: 34px;}
+.faqList .floatBtn {position: absolute; width: 35px; top: 15px; left: 1px; text-align: center;}
+.faqList .floatBtn button {width: 28px; height: 30px; line-height: 28px; margin-bottom: 3px; background: #2557a2; border-radius: 3px; font-size: 14px; color: #fff;}
+.faqList ol > li {border-bottom: 1px solid #cecece; clear: both;}
+.faqList ol > li.nodata {padding: 12px 0 15px; text-align: center; line-height: 1.5; word-break: keep-all;}
+.faqList h3 {display: table; width: 100%; background: #fff;}
+.faqList ol > li:hover h3 {background: #fafafa; color: #386ab5;}
+.faqList ol > li.on h3 {background: #f3f3f3; font-weight: bold; color: #000;}
+.faqList.adm ol > li {border-left: 1px solid #ececec;}
+.faqList.adm ol > li:hover h3 {color: inherit;}
+.faqList .faqChk {display: table-cell; width: 30px; padding: 13px 0; text-align: center; vertical-align: middle;}
+.faqList h3 a {display: table; width: 100%; padding: 12px 10px 15px 0; text-decoration: none;}
+.faqList .faqNo {display: table-cell; width: 60px; font-size: 19px; font-weight: bold; color: #2557a2; text-align: center; vertical-align: middle;}
+.faqList .faqNo small {font-size: 14px; margin-left: 2px;}
+.faqList .faqCate {display: inline-block; margin-bottom: 3px; padding: 4px 5px 5px; background: #ddebff; border-radius: 3px; font-size: 14px; font-weight: bold; color: #000; text-align: left; vertical-align: middle;}
+.faqList a:hover .faqCate {color: initial;}
+.faqList .faqTit {display: block; padding-left: 5px; font-size: 15px; text-align: left; line-height: 1.5;}
+.faqList .faqContent {position: relative; padding: 10px 10px 10px 65px; background: #f3f3f3; border-top: 1px solid #e2e2e2; font-size: 15px; line-height: 1.6;}
+.faqList .faqContent::before {content: 'A'; position: absolute; top: 50%; left: 0; width: 60px; margin-top: -15px; font-size: 19px; font-weight: bold; color: #2557a2; text-align: center;}
+.faqContent a {color: -webkit-link; text-decoration: underline;}
+.faqContent img {max-width: 100%;}
+.faqList .faqInfo {margin-top: 5px; padding-top: 5px; border-top: 1px solid #ececec;}
+.faqList .faqInfo span {position: relative; font-size: 14px; color: #2257a2; letter-spacing: 0;}
+.faqList .faqInfo span + span {margin-left: 5px; padding-left: 10px;}
+.faqList .faqInfo span + span::after {content: ''; position: absolute; top: 50%; left: 0; width: 1px; height: 10px; margin-top: -5px; background: #dbdbdb;}
+
+@media screen and (max-width: 767px) {
+    .faqList .faqNo {width: 50px;}
+    .faqList .faqContent {padding-left: 55px;}
+    .faqList .faqContent::before {width: 50px;}
+}
+
+/* 셀렉트 테이블 */
+.tblSelect td {cursor: pointer;}
+.tblSelect tr:hover td {color: #386ab5;}
+
+/* 입력테이블 */
+.tblForm {position: relative; overflow: auto; clear: both;}
+.tblForm table {width: 100%; border-top: 1px solid #386ab5; border-collapse: collapse; background: #fff; font-size: 15px; line-height: 1.5;}
+.tblForm table thead th {position: relative; height: 40px; background: #f1f1f1; background-clip: padding-box; border: 1px solid #cecece;}
+.tblForm table tbody th {position: relative; height: 40px; padding: 5px 8px ; background: #f1f1f1; background-clip: padding-box; border: 1px solid #cecece; text-align: left; white-space: nowrap;}
+.tblForm table tbody td {position: relative; height: 40px; padding: 5px; border: 1px solid #cecece; line-height: 1.6;}
+.tblForm table thead tr:first-child th,
+.tblForm table tbody tr:first-child th,
+.tblForm table tbody tr:first-child td {border-top: 0;}
+.tblForm .iptGroup {display: table; width: 100%;}
+.tblForm .iptGroup .sep {display: table-cell; width: 1%; min-width: 20px; padding:0 5px; text-align: center; vertical-align: middle; }
+.tblForm .iptGroup .sep:first-child {padding-left: 0;}
+.tblForm .iptGroup .frmSch {display: table-cell; width: 100%;}
+.tblForm .iptGroup > .frmInput {display: table-cell; float: left; width: 100%;}
+.tblForm .iptGroup > select.frmInput {width: auto;}
+.tblForm .radioGroup {display: inline-block; height: 30px; line-height: 30px;}
+.boContent {line-height: 1.6; word-break: break-all;}
+.pContent .boContent {border: 1px solid #cecece; border-top: 1px solid #386ab5; padding: 8px; font-size: 15px;}
+.tblForm .atchfileList {float: left; overflow: auto; max-width: 460px; width: 100%; height: 140px; line-height: 1.8;}
+.tblForm .atchfileList span {display: block;}
+.tblForm .atchfileList input[type=checkbox] {margin-top: -2px;}
+.tblForm .fileList li {margin-bottom: 5px;}
+.tblForm .fileList a {font-weight: bold; text-decoration: underline;}
+.tblForm .fileList a:hover {color: #007d6c; letter-spacing: -1px; text-decoration: none;}
+
+/* 탭 공통 입력 테이블 */
+.tblForm.cm table {border-color: #d09b51;}
+.tblForm.cm table tbody th {background: #f7f0d4 padding-box;}
+
+.tblForm label {display: inline-block; line-height: 1.6; vertical-align: middle;}
+.tblForm label + label {margin-left: 10px;}
+.tblForm label input[type=radio],
+.tblForm label input[type=checkbox] {margin-top: -4px;}
+.tblForm .issNum {padding: 0 5px 2px; font-size: 18px; font-weight: bold; letter-spacing: normal;}
+
+/* 증명서 발급 신청인 정보 조회 입력 */
+.tblForm.ptApplrInq table tbody th {padding-left: 35px;}
+.tblForm.ptApplrInq .iptGroup {max-width: 302px;}
+.tblForm.ptApplrInq .frmInput {max-width: 141px; width: 100%;}
+.tblForm.ptApplrInq .srchGroup {display: table; width: 90%;}
+.tblForm.ptApplrInq .srchGroup select {width: 141px; margin-right: 5px;}
+.tblForm.ptApplrInq .srchGroup .frmSch {display: table-cell;}
+.tblForm.ptApplrInq .frmSch .frmInput {max-width: none;}
+@media screen and (max-width: 767px) {
+    .tblForm.ptApplrInq table tbody th {padding-left: 15px; padding-right: 15px;}
+    .tblForm.ptApplrInq .iptGroup {max-width: none;}
+    .tblForm.ptApplrInq .frmInput {max-width: none;}
+    .tblForm.ptApplrInq .srchGroup {width: 100%;}
+    .tblForm.ptApplrInq .srchGroup .frmSch {display: block; max-width: none; margin-top: 5px;}
+    .tblForm.ptApplrInq .srchGroup select {width: 100%;}
+    .tblForm .iptGroup .frmSch {max-width: 100%;}
+}
+
+/* 게시판뷰컨텐츠 */
+.boViCont {overflow: auto; max-height: 530px; padding: 10px 15px 15px; border-radius: 3px; border: 1px solid #ddd; line-height: 1.7; word-break: break-all;}
+.boContent table,
+.boViCont table {width: 100%; border-collapse: separate; background: #fff; font-size: 15px; line-height: 1.5;}
+.boContent table thead th,
+.boViCont table thead th {padding: 8px; background: #f1f1f1; border-width: 1px; border-style: solid; border-color: #386ab5 #ced4e0 #9ca7ba #ced4e0; color: #364d7f; text-align: center; word-break: keep-all}
+.boContent table thead th + th,
+.boViCont table thead th + th {border-left: 0;}
+.boContent table tbody td,
+.boViCont table tbody td {padding: 8px; border-width: 1px; border-style: solid; border-color: transparent #ececec #ececec #ececec; text-align: center;}
+.boContent table tbody td + td,
+.boViCont table tbody td +td {border-left: 0;}
+
+/* 첨부파일 목록 */
+.bcFile {position: relative; margin: 15px 0 0; padding: 0 5px; border-top: 1px solid #ddd;}
+.bcFile .bcfTit {position: absolute; top: 0; left: 0; padding: 7px 10px; font-size: 16px; font-weight: bold;}
+.bcFile .bcfTit::before {content: ''; position: absolute; top: 19px; left: 4px; width: 3px; height: 3px; background: #808080; border-radius: 50%;}
+.bcFile .bcfLst {padding: 8px 10px 8px 80px;}
+.bcFile .bcfLst a {font-weight: bold; text-decoration: underline;}
+.bcFile .bcfLst a:hover {color: #007d6c; letter-spacing: -1px; text-decoration: none;}
+/* pagination */
+.pagination {overflow: hidden; height: 31px; margin-top: 15px; text-align: center; clear: both;}
+.pagination ul {display: inline-block;}
+.pagination li {float: left;}
+.pagination a,
+.pagination strong,
+.pContainer .pagination a {display: inline-block; width: 27px; height: 27px; font-size: 15px; line-height: 1.6}
+.pagination a:hover {font-weight: bold;}
+.pagination strong {color: #fff; background: #3e5989; border-radius: 50%;}
+.pagination .first,
+.pagination .prev,
+.pagination .next,
+.pagination .last {background: url(../images/iconPagingSprite.png) no-repeat;} 
+.pagination .first {background-position: 0 0;}
+.pagination .prev,
+.pContainer .pagination .prev {width: 59px; margin: 0 15px 0 3px; background-position: -32px 0;}
+.pagination .next,
+.pContainer .pagination .next {width: 59px; margin: 0 3px 0 15px; background-position: -96px 0;}
+.pagination .last {margin-left: 3px; background-position: -160px 0;}
+.pagination .first:hover {background-position: 0 -27px;}
+.pagination .prev:hover,
+.pContainer .pagination .prev:hover {background-position: -32px -27px;}
+.pagination .next:hover,
+.pContainer .pagination .next:hover {background-position: -96px -27px;}
+.pagination .last:hover {background-position: -160px -27px;}
+/* 반응형 3단계 여백조절 */
+@media screen and (max-width: 767px) {
+    .pagination a {width: auto; margin: 0 5px;}
+    .pContainer .pagination a {margin: 0;}
+    .pagination .first,
+    .pagination .prev,
+    .pagination .next,
+    .pagination .last {width: 27px;}
+    .pagination .first {margin: 0; background-position: 0 -54px;}
+    .pagination .prev {background-position: -32px -54px;}
+    .pagination .next {background-position: -64px -54px;}
+    .pagination .last {margin: 0; background-position: -96px -54px;}
+    .pagination .first:hover {background-position: 0 -81px;}
+    .pagination .prev:hover {background-position: -32px -81px;}
+    .pagination .next:hover {background-position: -64px -81px;}
+    .pagination .last:hover {background-position: -96px -81px;}
+}
+
+/* 불릿 리스트 */
+/* 기본은 font-size 15, line-height: 1.7을 기준으로 위치를 선정한다. */
+.bList {position: relative; overflow: hidden;}
+.bList > li {position: relative; padding-left: 15px;}
+.bList > li::before {content: ''; position: absolute; top: 9px; left: 4px; width: 5px; height: 5px; background: #386ab5; border-radius: 50%;}
+
+.bList.bRed > li::before {background: #f35f67;}
+.bList.bOrange > li::before {background: #ee8c00;}
+
+/* 불릿 리스트 font-size 14 기준으로 위치 변경 */
+.bList.t14 > li::before {top: 7px;}
+
+/* 불릿 리스트 font-size 16 기준으로 위치 변경 */
+.bList.t16 > li::before {top: 11px;}
+
+/* 민원안내 불릿 리스트 *//* 기본 불릿리스트보다 크기가 작음 */
+/* font-size 15, line-hegiht 1.5 */
+.buList > li {position: relative; padding-left: 9px; text-align: left;}
+.buList > li::before {content: ''; position: absolute; top: 10px; left: 0; width: 4px; height: 4px; background: #000; border-radius: 50%;}
+.buList.t16 > li::before {top: 12px;}
+
+/* 아이콘 불릿 리스트 */
+.iList {position: relative; overflow: hidden;}
+.iList li {position: relative;}
+
+/* 화살표 불릿 */
+.iList.arRight > li::before {content: ''; display: inline-block; width: 4px; height: 23px; margin-right: 5px; background: url(../images/iconArrRight.gif) no-repeat 0 center; vertical-align: top;}
+
+/* list를 사용하지 않는 단일 불릿 *//* 이전 개인정보처리방침 */
+.bulArRight {display: inline-block; width: 4px; height: 23px; margin-left: 1px; background: url(../images/iconArrRight.gif) no-repeat 0 center; vertical-align: top;}
+
+/* list를 사용하지 않는 단일 불릿 *//* Arrow Circle *//* 위변조확인프로그램 */
+.bulArCRight {position: relative; padding-left: 20px; font-size: 16px; font-weight: bold; color: #595959; line-height: 1.7;}
+.bulArCRight::before {content: ''; position: absolute; top: 7px; left: 0; width: 15px; height: 15px; background: url(../images/iconArrCir.png) no-repeat -15px 0;}
+
+/* 색깔 숫자 불릿 */
+.nList {position: relative; overflow: hidden;}
+.nList i {display: inline-block; width: 17px; height: 17px; border: 1px solid #444; color:#fff; background-color:#444; border-radius: 50%; font-size: 0.6em; font-weight: bold; text-align: center; font-style: normal; line-height: 14px; vertical-align: middle; margin-bottom: 4px;}
+
+.nList.bOrange i {background-color: #e96043; border-color: #e96043;}
+
+/* 민원안내 숫자 불릿 */
+/* 숫자 n. 리스트 */
+.num1dList > li {position: relative; padding-left: 15px;}
+.num1dList > li > i {position: absolute; top: 0; left: 0; font-weight: bold; font-style: normal;}
+
+/* 테두리 숫자 불릿 */
+.numList i {display: inline-block; width: 1.3em; height: 1.3em; padding-top: .02em; padding-right: 2px; line-height: 1; background: #f1f1f1; border: 1px solid #ccc; border-radius: 3em; font-size: .8em; font-weight: bold; font-style: normal; color: #333; text-align: center; letter-spacing: -2px;}
+
+/* 탭버튼 & 탭영역 */
+.tabnav {display: table; width: 100%; margin-bottom: 10px; table-layout: fixed;}
+.tabnav .tab {display: table-cell; padding: 10px 20px; background: #f6f6f6; border: 1px solid #d9d9d9; font-size: 16px; font-size: 21px; font-weight: bold; text-align: center; color: #7087ad;}
+.tabnav .tab.on {background: #fff; border-top: 7px solid #2557a2; border-bottom: 0; color: #2557a2;}
+.tabpanel {display: none; position: relative;}
+.tabpanel.on {display: block; border-top: 0;}
+
+/* txtBox */
+.txtBox {overflow-y: auto; border: 1px solid #ddd; padding: 25px 30px 25px 30px; border-radius: 3px; line-height: 1.7;}
+.txtBox.terms {height: 250px; padding: 25px 13px 25px 30px;}
+.txtBox.proc {padding: 10px 15px 15px;}
+.txtBox dl + dl {margin-top: 20px;}
+.txtBox dt,
+.txtBox dd {font-size: 14px; line-height: 1.7;}
+.txtBox .tit {font-weight: bold; color: #046fe0;}
+
+.txtBox.guide {margin-bottom: 10px; padding: 15px 20px;}
+.guide dt {font-size: 16px; font-weight: bold; color: #595959;}
+.guide dd {margin: 0 0 20px 20px; font-size: 16px;}
+.txtBox.guide img {display: block;}
+@media (max-width: 1000px) {
+    .txtBox.guide img {max-width: 100%;}
+}
+
+/* 페이지 상단 알림박스 */
+.alertBox {position: relative; overflow: hidden; margin-bottom: 20px; padding: 10px 15px 10px; background: #eff9ff; border-top: 1px solid #386ab5; border-bottom: 1px solid #ccddef; font-size: 16px; line-height: 1.6;}
+
+/* 인증서 가져오기내보내기 영역 */
+.alertBox.certiBox {padding: 30px 15px 30px 370px; background: #eff9ff url(../images/bgCerti.png) no-repeat 20px bottom; }
+@media (max-width: 767px) {
+    .alertBox.certiBox {padding: 265px 15px 15px; background-position: center 20px;}
+}
+
+/* 유의사항 & 주의사항 안내박스 */
+.infoBox {position: relative; padding: 10px; background: #fffae6; border: 5px solid #fcf6db; font-size: 15px; line-height: 1.7;}
+.infoBox.bxRed {background: #fef5f4; border-color: #fef2f0;}
+.infoBox.bxGray {background: #f7f7f7; border-color: #f7f7f7;}
+@media (max-width: 757px) {
+    .infoBox {padding: 5px;}
+}
+
+
+/* 결과 박스 */
+.rstBox {max-width: 800px; margin: 50px auto 0; padding: 45px; background: #fff; border: 6px solid #bfbfbf;}
+.rstBox.msg {padding-top: 70px; padding-bottom: 90px;}
+.rstBox.shad {margin: 0 auto; border: 0; box-shadow: -5px 0px 15px rgba(51,51,51,0.1), 5px 0px 15px rgba(51,51,51,0.1);}
+
+.alNotice {position: relative; min-height: 32px; padding: 5px 0 5px 40px;}
+.alNotice::before {content: ''; position: absolute; top: 5px; left: 0; width: 32px; height: 32px; background: url(../images/iconNotice.png) no-repeat 0 0;}
+.alNotice.issAlt::before {background-position: 0 -50px;}
+.alNotice span {font-size: 21px; color: #f26248; font-weight: bold;}
+
+.alert {position: relative; margin: 13px 0; font-size: 14px; color: #333;}
+.alInfo,
+.alWarn {position: relative; padding-left: 23px; font-size: 14px; color: #333; line-height: 1.6;}
+.alInfo::before {content: ''; position: absolute; top: 2px; left: 0; width: 19px; height: 19px; background: url(../images/iconPuncMarkSprite.png) no-repeat 0 0; vertical-align: middle;}
+.alWarn::before {content: ''; position: absolute; top: 2px; left: 0; width: 19px; height: 19px; background: url(../images/iconPuncMarkSprite.png) no-repeat 0 -20px; vertical-align: middle;}
+.alInfo2 {position: relative; font-size: 14px; font-weight: normal; color: #333; line-height: 1.6;}
+.alInfo2::before {content: ''; display: inline-block; width: 59px; height: 19px; margin: -1px 0 0; background: url(../images/iconPuncMarkSprite.png) no-repeat 0 -40px; vertical-align: middle;}
+
+.alInfo.small {padding-left: 16px; line-height: 1.3;}
+.alInfo.small::before {top: 3px; width: 13px; height: 13px; background-position: 0 -81px;}
+.alInfo.small.t13::before {top: 1px;}
+
+.alInfo2.small {padding-left: 16px;}
+.alInfo2.small::before {width: 40px; height: 13px; margin-top: -4px; background-position: 0 -95px;}
+
+.alWarn.small {padding-left: 16px;}
+.alWarn.small::before {top: 9px; width: 40px; height: 13px; margin-top: -4px; background-position: 0 -109px;}
+
+.alSucc {display: inline-block; position: relative; padding-left: 23px; line-height: 1.6; vertical-align: middle;}
+.alSucc::before {content: ''; position: absolute; top: 4px; left: 0; width: 19px; height: 19px; background: url(../images/iconPuncMarkSprite.png) no-repeat 0 -123px; vertical-align: middle;}
+
+.alert.asterisk {padding-left: 3px; color: #333;}
+.alert button {margin-top: -4px;}
+.alert.formLine {float: left; margin: 26px 0 0;}
+
+/* icon */
+.icoAsterisk {display: inline-block; width: 10px; height: 10px; margin-top: -2px; background: url(../images/iconAsterisk.png) no-repeat; vertical-align: middle;}
+.icoLQuo::before {content: ''; display: inline-block; width: 20px; height: 17px; background: url(../images/iconLQuo.png); vertical-align: top;}
+.icoRQuo::before {content: ''; display: inline-block; width: 20px; height: 17px; margin: 2px 0 0 2px; background: url(../images/iconRQuo.png); vertical-align: top;}
+
+/* 웹한자 목록 */
+.whjList {position: relative; height: 190px; background: #ebebeb; border: 1px solid #55759c; padding: 2px;}
+
+/* 민원안내 타입 */
+.guideCont {position: relative; font-size: 16px; line-height: 1.7;}
+.guideCont > li {margin-bottom: 20px; font-weight: bold;}
+.guideCont > li > dl {padding-left: 15px;}
+.guideCont > li > dl > dt {font-weight: bold; color: #333;}
+.guideCont > li > dl > dd {position: relative; margin: 0; padding-left: 20px; font-weight: normal; color: #333;}
+.guideCont > li > dl > dd::before {content: ''; position: absolute; top: 12px; left: 6px; width: 3px; height: 3px; background: #333; border-radius: 20px;}
+
+/* 민원안내 자주하는질문 */
+.guideFaqBox {position: relative;}
+.guideFaqBox > ul {display: block; position: relative; overflow: hidden; width: 100%; border: 1px solid #416bb7; border-radius: 3px;}
+.guideFaqBox > ul > li {position: relative;}
+.guideFaqBox > ul > li + li {border-top: 1px solid #eee;}
+.guideFaqBox > ul > li > a {display: block; position: relative; padding: 12px 65px 12px 40px; font-size: 15px; font-weight: bold; color: #595959; line-height: 21px; letter-spacing: -1px;}
+.guideFaqBox > ul > li > a:hover {color: #000;}
+.guideFaqBox > ul > li > a.on::after {content: ''; position: absolute; top: 16px; right: 30px; width: 27px; height: 14px; background: url(../images/iconAFWTg.png) no-repeat; transform: rotate(180deg);}
+.guideFaqBox > ul > li > a > i {position: absolute; top: 12px; left: 25px; font-style: normal; color: #386ab5;}
+.guideFaqBox .faqContent {position: relative; padding: 10px 25px 10px 46px; background: #f8f8f8; border-top: 1px solid #416bb7; font-size: 15px; line-height: 1.6; box-shadow: inset 0 9px 5px -9px #868686;}
+
+@media (max-width: 767px) {
+    .guideFaqBox > ul > li > a {padding: 12px 25px;}
+    .guideFaqBox > ul > li > a.on::after {top: 11px; width: 12px; right: 15px; background-size: contain;}
+    .guideFaqBox > ul > li > a > i {left: 15px;}
+    .guideFaqBox .faqContent {padding-left: 25px;}
+}
+
+/* 개인정보 처리방침 참조링크 스타일 */
+.refer {border-bottom: 1px dotted #333;}
+.refer[target=_blank]::after {content: url(../images/iconWin3.png); padding-left: 2px; transform: translateY(-1px); margin-right: 2px;}
+.refer:hover,
+.refer:focus {background: #333; color: #fff !important;}
+
+/* 테이블 텍스트박스 */
+.guideTxtBox,
+.guideTxtBox2 {padding: 5px 10px; background: #fffae6; border: 2px solid #fcf6db; font-size: 15px; text-align: left; line-height: 1.6;}
+.guideTxtBox {min-height: 62px;}
+.guideTxtBox2 {background: #fef5f4; border-color: #fef2f0;}
+
+/* 증명서 안내 테이블 첨자 스타일 */
+.ftnote {margin-left: 2px; letter-spacing: 0; font-weight: normal; color: #000;}
+
+/* 증명서 견본 보기 */
+.ptExContainer {display: table; table-layout: fixed; width: 100%; border: 1px solid #ddd; padding: 5px 10px; border-radius: 3px; line-height: 1.7;}
+.ptExContent {display: table-cell; position: relative; padding: 0 5px; vertical-align: top;}
+.ptExImg {margin: 10px 0;}
+.ptExImg img {border-left: 1px solid #ddd;}
+.ptExContent:first-of-type .ptExImg img {border: 0;}
+.ptGuideImg {max-width: 100%;}
+.device-mo .ptExImg img {max-width: 100%;}
+
+/* 서브타이틀 + 옵션(버튼, 셀렉트박스)이 있을때 영역생성 */
+.contentHeader {position: relative; overflow: hidden;}
+.contentHeader .sTitle {float: left;}
+.contentHeader .headerOption {float: left; height: 30px; margin: 6px 0 6px 10px; line-height: 28px;}
+.contentHeader .headerOption .sBtnInside {margin: 0;}
+
+/* 증명서 견본보기 셀렉트박스 */
+.ptExContent .pculKnd {float: left; border-width: 2px; border-color: #386ab5; font-weight: bold;}
+.ptExContent .btnPculKnd {float: left; height: 30px; padding: 0 5px; background: #386ab5; font-size: 14px; font-weight: bold; color: #fff; vertical-align: middle;}
+
+/* 증명서 견본보기 페이징 */
+.ptExPagination {float: left; margin: 5px 0 6px 20px;}
+.ptExPagination button {display: inline-block; width: 17px; height: 17px; vertical-align: middle;}
+.ptExPagination button.prev {background: url(../images/iconArrCir.png) 0 -30px;}
+.ptExPagination button.next {background: url(../images/iconArrCir.png) -17px -30px;}
+.ptExPagination span {display: inline-block; color: #416bb7; letter-spacing: 0; vertical-align: middle;}
+
+/* 증명서 견본보기 모바일 */
+.device-mo .ptExNav {display: none !important;}
+@media screen and (max-width: 767px) {
+    .device-mo .ptExNav {display: table !important; border-collapse: collapse;}
+    .device-mo .ptExNav .tab {padding: 8px 5px; background: #fff; border: 1px solid #cecece; font-size: 15px; font-weight: bold; color: #333;}
+    .device-mo .ptExContainer {display: block; margin: 0; padding: 0; border: 0;}
+    .device-mo .ptExContent {display: none; padding: 0;}
+    .device-mo .ptExNav .tab.on {background: #585858; border-color: #3c3c3c; color: #fff;}
+    .device-mo .guideTxtBox {min-height: auto;}
+    .device-mo .ptExContent.on {display: block;}
+    .device-mo .ptExContent h3 {display: none;}
+    .device-mo .ptExPagination {display: none;}
+    .device-mo .ptExImg {text-align: center;}
+    .device-mo .ptExImg img {border: 0;}
+}
+/* 안내 페이지 테이블 */
+.tblGuide .tHeader {position: relative; overflow: hidden; margin-bottom: 5px;}
+.tblGuide .tHeader h4 {display: inline; padding-left: 20px; font-weight: bold; line-height: 1.7;}
+.tblGuide .tHeader h4::before {content: ''; position: absolute; top: 7px; left: 0; width: 15px; height: 15px; background: url(../images/iconArrCir.png) no-repeat -15px 0;}
+.tblGuide {overflow: auto; margin-bottom: 10px;}
+.tblGuide table {width: 100%; background: #fff; border-top: 1px solid #386ab5; font-size: 15px; line-height: 1.5; border-collapse: separate;}
+.tblGuide thead th {padding: 8px 0; background: #f1f1f1; border-width: 1px; border-style: solid; border-color: transparent #ced4e0 #9ca7ba #ced4e0; border-top: 0; color: #364d7f; text-align: center; word-break: keep-all;}
+.tblGuide thead th + th {border-left: 0;}
+.tblGuide tbody th {padding: 8px; background: #f1f1f1; border: 1px solid #ced4e0; border-top: 0; color: #364d7f; word-break: keep-all;}
+.tblGuide tbody th.th2d {background: #fff; border-left: 0; border-bottom-color: #ececec; color: #555;}
+.tblGuide tbody td {height: 40px; padding: 5px; border-width: 1px; border-style: solid; border-color: transparent #ececec #ececec #ececec; border-top: 0;}
+.tblGuide tbody th + td,
+.tblGuide tbody td + td {border-left: 0;}
+
+/* guideContent */
+.gContent {position: relative; overflow: hidden;}
+.gContent .gContSection + .gContSection {margin-top: 30px;}
+.gContHeader {margin-bottom: 5px;}
+.gContTitle {display: inline; padding: 3px 20px 4px; background-color: #333; border-radius: 20px; font-size: 1em; font-weight: bold; color: #fff;}
+.gContBody {padding: 10px 20px 15px; background: #f9f6ee; border: 1px solid #f1ead7; border-radius: 10px;}
+.gContBody .numList > li + li {margin-top: 20px;}
+.gContBody img {display: block; width: 100%; margin-top: 5px;}
+
+/* 테이블 레이아웃 */
+.disTbl {display: table; margin: 0 auto;}
+.disTbl > * {display: table-cell; position: relative; vertical-align: middle;}
+
+@media screen and (max-width: 920px) {
+    .disTbl.rs-920,
+    .disTbl.rs-920 > * {display: block;}
+}
+
+@media screen and (max-width: 768px) {
+    .disTbl,
+    .disTbl > * {display: block;}
+}
+
+/* 증명서발급 서브타이틀 */
+.sTitlePt {display: block; height: 48px; line-height: 47px; background: #4e4e4e; margin-bottom: 0px; font-size: 20px; color: #fff;}
+.sTitlePt b {font-size: 22px; margin-left: 15px;}
+
+/*위변조 확인 프로그램 페이지 */
+.certKndGuide {position: relative; overflow: hidden; margin-bottom: -5px;}
+.certKndGuide li {float: left; width: 25%; margin-bottom: 5px; font-weight: bold; color: #3058a4;}
+@media screen and (max-width: 768px) {
+    .certKndGuide li {width: 50%;}
+}
+@media screen and (max-width: 480px) {
+    .certKndGuide li {width: 100%;}
+}
+/* 검색 키워드 하이라이트 효과 추가 */
+.highlight {background: #feff77; font-weight: bold;}
+
+/* 통합검색 */
+.unifiedSchRes {position: relative; margin-top: 40px;}
+.unifiedSchRes h3 {padding: 20px 25px; background: #f1f1f1; border: 1px solid #b0bbb0; font-size: 22px; font-weight: bold;}
+.unifiedSchRes > ul#caList {overflow: auto; height: 171px;}
+.unifiedSchRes > ul > li,
+.unifiedSchRes > .moreList > ul > li {padding: 13px 0 10px 25px; border-bottom: 1px solid #e2e2e2;}
+.unifiedSchRes > ul > li:last-child,
+.unifiedSchRes > .moreList > ul > li:last-child {border-bottom: 0;}
+.unifiedSchRes .schTit {display: block; padding: 8px 0; font-weight: bold;}
+.unifiedSchRes .schTit a {text-decoration: underline; text-decoration-color: #65c9ff;}
+.unifiedSchRes .schTit a:hover {text-decoration-color: #65c9ff;}
+.unifiedSchRes .schCont {margin-top: 5px; font-size: 15px; line-height: 1.5;}
+.unifiedSchRes dt {padding: 8px 0; font-weight: bold;}
+.unifiedSchRes dd {margin-top: 5px; font-size: 15px; line-height: 1.5;}
+.unifiedSchRes .more {position: absolute; top: 14px; right: 25px;}
+
+/* 통합검색 검색영역 */
+.unifiedSchWrap {position: relative; margin-bottom: 40px; padding-top: 45px; text-align: center;}
+.unifiedSchWrap .frmInput {width: 550px; height: 54px; padding: 0 20px; border: 4px solid #3e5889; font-size: 20px; font-weight: bold; color: #3e5889;}
+.unifiedSchWrap .frmInput:focus {border: 4px solid #3e5889; background: #fff;}
+.unifiedSchWrap button {height: 54px; padding: 0 20px; background: #3e5989; border: 4px solid #2d4b84; font-size: 20px; font-weight: bold; color: #fff;}
+@media screen and (max-width: 768px) {
+    .unifiedSchWrap {display: table; width: 100%;}
+    .unifiedSchWrap .frmInput {display: table-cell; width: 100%;}
+    .unifiedSchWrap .xs-iptGroup {display: table-cell; width: 1%; padding-left: 5px; vertical-align: middle; white-space: nowrap;}
+}
+
+/* 이전 개인정보 처리방침 네비게이션 */
+.navWrap {position: relative;}
+.bfrProcSelect {display: none;}
+.bfrProcNav {position: relative; overflow: hidden; margin: -2px -2px 5px -2px;}
+.bfrProcNav li {float: left; width: 25%; padding: 2px;}
+.bfrProcNav li button {display: inline-block; width: 100%; height: 28px; background: #f1f1f1; font-size: 15px; font-weight: bold; color: #333; letter-spacing: -1px;}
+.bfrProcNav li button.on {background: #333; color: #fff;}
+.bfrProcBox {display: none; position: relative; clear: both; width: 100%; margin-top: 5px;}
+.txtBox.bfrProc {padding: 0; border: 0;}
+@media screen and (max-width: 767px) {
+	.bfrProcSelect {display: block; width: 100%; margin-bottom: 5px; padding: 8px 15px 9px; border: 1px solid #cecece; background: url(../images/iconArrDown.png) no-repeat 97% center; border-radius: 3px 3px; font-size: 15px; font-weight: bold; text-align: left; line-height: 1.4; cursor: pointer;}
+	.bfrProcSelect.active {border: 1px solid #aaa; border-bottom: 0; border-radius: 3px 3px 0 0;}
+	.bfrProcNav {display: block; position: absolute; z-index: 10; width: 100%; margin: -5px 0 0; background: #fff; border-radius: 0 0 3px 3px; -webkit-box-shadow: 0 13px 15px 0 rgba(0, 0, 0, 0.3); -moz-box-shadow: 0 13px 15px 0 rgba(0, 0, 0, 0.3); box-shadow: 0 13px 15px 0 rgba(0, 0, 0, 0.3);}
+	.bfrProcNav.active {border: 1px solid #aaa; border-top: 0;}
+	.bfrProcNav li {display: block; width: 100%; padding: 0; border-top: 1px solid #dedede;}
+	.bfrProcNav li button {height: auto; padding: 8px 15px; background: #fff; font-weight: normal;}
+	.bfrProcNav li button.on {background: #e7e9ea; border-color: #dedede; font-weight: bold; color: #000;}
+}
+
+/* 강조문구 스타일 */
+.impt {font-size: 22px; color: #0000ff; letter-spacing: -2px;}
+
+/* 이용약관 동의 체크박스 *//* checkbox right */
+.termsBtn {margin-top: 20px; text-align: center;}
+.termsBtn .checkbox1 input[type=checkbox] + label {padding-left: 0; padding-right: 45px; font-size: 21px; letter-spacing: -1px;}
+.termsBtn .checkbox1 input[type=checkbox] + label::before {left:auto; right: 4px;}
+.termsBtn .checkbox1 input[type=checkbox]:checked + label::before {right: 0;}
+
+/* 인터넷 신고 완료 페이지 */
+.cmplTitle {position: relative; margin-bottom: 30px; padding-top: 30px; padding-left: 140px; font-size: 24px; font-weight: bold; line-height: 1.6; letter-spacing: -2px;}
+.cmplTitle.pt {margin-bottom: 50px; padding-top: 30px;}
+.cmplTitle.pt::before {content: ''; position: absolute; top: 0; left: 0; width: 113px; height: 99px; background: url(../images/iconMsgCmpl3.png) no-repeat;}
+.cmplTitle.ar {min-height: 90px; padding-top: 0;}
+.cmplTitle.ar::before {content: ''; position: absolute; top: 0; left: 0; width: 150px; height: 90px; background: url(../images/iconMsgCmpl2.png) no-repeat;}
+.cmplTitle.ar2 {min-height: 90px; margin-bottom: 45px; padding-top: 15px;}
+.cmplTitle.ar2::before {content: ''; position: absolute; top: 25px; left: 35px; width: 66px; height: 95px; background: url(../images/iconMsgWarn2.png);}
+.cmplTitle span {font-size: 32px; color: #386ab5;}
+.cmplBox {display: table; position: relative; width: 100%; margin-bottom: 30px; border-top: 1px solid #c9c9c9;}
+.cmplBox .cmplInfo {display: table-cell; width: 530px;}
+.cmplBox .cmplBtnWrap {display: table-cell; padding-left: 20px; text-align: center; vertical-align: bottom;}
+.cmplBox ul {position: relative;}
+.cmplBox li {position: relative; padding: 10px 0 10px 165px; border-bottom: 1px solid #c9c9c9; font-weight: bold; line-height: 1.5;}
+.cmplBox.block {display: block; position: relative; overflow: hidden; width: 100%;}
+.cmplBox.block .cmplInfo {display: block; width: 100%;}
+.cmplBox.block ul {position: relative; overflow: hidden; width: 100%;}
+.cmplBox.block li {float: left; width: 50%;}
+.cmplBox.block li:nth-of-type(5) {width: 100%;}
+.cmplBox li span {display: inline-block; position: absolute; top: 9px; left: 0; width: 150px; margin-right: 15px; padding: 1px 0 1px 42px; color: #386ab5; border-right: 2px solid #ebf0f7;}
+.cmplBox.ar li {padding-left: 145px;}
+.cmplBox.ar li span {width: 130px;}
+.cmplBox li span::before {content: ''; position: absolute; top: 10px; left: 20px; width: 7px; height: 7px; background: #386ab5; border-radius: 50%;}
+.arPtBtn {width: 158px; height: 136px; border: 2px solid #888888; border-radius: 5px; font-size: 23px; font-weight: bold; color: #555; box-shadow: 5px 5px 0 #d9d9d9;}
+.arPtBtn::before {content: ''; display: block; width: 51px; height: 45px; margin: 0 auto 10px; background: url(../images/ar/iconPt.png);}
+.arPtBtn:hover {border-color: #007d6c; color: #007d6c;}
+.arPtBtn:hover::before {background-position: -51px 0;}
+
+/* 반응형 3단계 여백조절 */
+@media screen and (max-width: 767px) {
+    .rstBox {padding: 35px 15px;}
+    .cmplBox .cmplInfo {display: block; width: 100%;}
+    .cmplBox li span {width: 100px; padding-left: 22px;}
+    .cmplBox li span::before {left: 10px;}
+    .cmplBox .cmplBtnWrap {display: block; margin-top: 30px;}
+}
+
+.msgCmpl {max-width: 420px; width: 100%; margin: 0 auto; font-size: 23px; font-weight: bold; text-align: center; line-height: 1.8; letter-spacing: -1px;}
+.msgCmpl::before {content: url(../images/iconMsgCmpl.png); display: block; margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid #bfbfbf; text-align: center;}
+.msgWarn {max-width: 480px; width: 100%; margin: 0 auto; font-size: 23px; font-weight: bold; text-align: center; line-height: 1.8; letter-spacing: -1px;}
+.msgWarn::before {content: url(../images/iconMsgWarn.png); display: block; margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid #bfbfbf; text-align: center;}
+
+/* 테스트출력 팝업 주의사항 이미지 */
+.titWarn {display: inline-block; width: 104px; height: 25px; background: url(../images/iconTitWarn.png);}
+.titNote {display: inline-block; width: 104px; height: 25px; background: url(../images/iconTitWarn.png) no-repeat 0 -25px;}
+
+/* 관리자 달력 관리 */
+.boSearchWrap .btnCalendar {display: inline-block; float: none; height: 27px; background: url(../images/iconPagingSprite.png); border: 0; vertical-align: middle; font-size: 0;}
+.boSearchWrap .btnPrevYear,
+.boSearchWrap .btnNextYear {width: 27px;}
+.boSearchWrap .btnPrevYear {background-position: 0 0;}
+.boSearchWrap .btnNextYear {background-position: -160px 0;}
+.boSearchWrap .btnPrevYear:hover {background-position: 0 -27px;}
+.boSearchWrap .btnNextYear:hover {background-position:  -160px -27px;}
+.boSearchWrap .btnPrevMonth,
+.boSearchWrap .btnNextMonth {width: 27px;}
+.boSearchWrap .btnPrevMonth {background-position: -32px -54px;}
+.boSearchWrap .btnNextMonth {background-position: -64px -54px;}
+.boSearchWrap .btnPrevMonth:hover {background-position: -32px -81px;}
+.boSearchWrap .btnNextMonth:hover {background-position: -64px -81px;}
+.boCalendar table {width: 100%; border-collapse: collapse; border-top: 1px solid #386ab5; font-size: 14px; table-layout: fixed;}
+.boCalendar table thead th {height: 40px; padding: 5px 0; background: #f1f1f1; border: 1px solid #9ca7ba; border-top: 0; word-break: keep-all;}
+.boCalendar table tbody td {height: 43px; border: 1px solid #cecece; text-align: center; vertical-align: top;}
+.boCalendar table tbody td.blank {background: #f6f6f6;}
+.boCalendar table tbody td a {display: block; height: 90px; border: 2px solid transparent; font-size: 14px; font-weight: bold; color: #555; text-align: left; line-height: 1.4;}
+.boCalendar table tbody td a b {display: inline-block; width: 27px; height: 23px; background: #fff; text-align: center;}
+.boCalendar table tbody td a p {padding: 5px; font-size: 14px; font-weight: normal;}
+.boCalendar table tbody td:first-child a {color: #ff0052;}
+.boCalendar table tbody td:last-child a {color: #0000ff;}
+.boCalendar table tbody td a.holiday {color: #ff0052;}
+.boCalendar table tbody td a.today b {background: #555; color: #fff;}
+.boCalendar table tbody td a:hover {background: #f4fffe; border: 2px solid #00948b; color: #0f8276; text-decoration: none;}
+.boCalendar table tbody td a:hover b {background: #f4fffe;}
+.boCalendar table tbody td a.today:hover b {background: #555;}
+
+/* 열람발급 조회결과 툴팁박스 */
+.resTooltip {display: inline-block; position: relative; margin-left: 10px; padding: 7px 15px; background: #ee8c00; font-weight: bold; color: #000; line-height: normal;}
+.resTooltip::before {content: ''; position: absolute; top: 50%; left: 0; margin: -5px 0 0 -10px; border-width: 5px; border-style: solid; border-color:  transparent #ee8c00 transparent transparent;}
+
+/* 신고 처리 단계 */
+.prcsLvBox {width: 100%; margin: 10px 0 8px;}
+.prcsBg1,
+.prcsBg2,
+.prcsBg3 {width: 70px; font-size: 14px;}
+.prcsBg1 {display: inline-block; padding: 3px; background: #fff; border: 1px solid #f0953d; border-radius: 3px; color: #000; line-height: 1.2;}
+.prcsBg2 {display: inline-block; padding: 3px; background: #fff; border: 1px solid #36b04b; border-radius: 3px; color: #000; line-height: 1.2;}
+.prcsBg3 {display: inline-block; padding: 3px; background: #ddeef4; border: 1px solid #3db1f3; border-radius: 3px; color: #000; line-height: 1.2;}
+@media screen and (max-width: 767px) {
+    .prcsBg1,
+    .prcsBg2,
+    .prcsBg3 {width: auto;}
+}
+
+/* 질의등록 보기항목 리스트 */
+.exitem {display: table; width: 100%; height: 30px; line-height: 27px;}
+.exitem + .exitem {margin-top: 5px;}
+.exitem > * {display: table-cell;}
+.exitem span {width: 1%; padding-right: 5px; white-space: nowrap; vertical-align: middle;}
+.exitem span.stLabel {display: block; width: auto; height: 30px; line-height: 28px; padding: 0 20px; background: #f1f1f1; border: 1px solid #9ba7ba; border-radius: 3px;}
+.exitem label {display: block; height: 30px; line-height: 28px; padding: 0 20px; background: #f1f1f1; border: 1px solid #9ba7ba; border-radius: 3px;}
+.exitem .frmInput {width: 100%; vertical-align: middle;}
+.exitem dl dt,
+.exitem dl dd {height: 30px; line-height: 30px; padding-left: 5px;}
+.exitem dd {text-align: right;}
+
+/* 설문 조사 테이블 */
+.qustListDiv h2 {height: auto; font-size: 20px; font-weight: bold; line-height: 1.3; margin-bottom: 5px;}
+.qustListDiv > p {line-height: 1.3;}
+.qustListDiv table {table-layout: fixed;}
+.qustListDiv table tr {border: 1px solid #cecece;}
+.qustListDiv table .qustNo {display: table-cell; width: 100px; font-size: 23px; text-align: center; vertical-align: middle;}
+.qustListDiv table .qustSubject {display: table; width: 100%; padding: 0; background: transparent; border: 0; border-bottom: 1px dotted #cecece;}
+.qustListDiv table .qustSubject p {display: table-cell; padding: 8px 5px; background: #f9f9f9; vertical-align: middle; font-size: 15px; font-weight: bold; line-height: 1.6; white-space: normal;}
+.qustListDiv table tbody th {height: auto; padding: 0;}
+.qustListDiv table tbody td {display: block; width: 100%; height: auto; line-height: 1.6; padding: 8px 5px; border: 0; border-bottom: 1px dotted #cecece;}
+.qustListDiv table tbody td:last-child {border-bottom: 0;}
+.qustListDiv table tbody td.qustContent {padding: 5px; border: 0; line-height: 1;}
+.qustListDiv table tbody td label {display: block; cursor: pointer;}
+.qustListDiv table tbody td label + label {margin-top: 10px; margin-left: 0;}
+.qustListDiv table tbody td label input[type=radio] {margin-top: -3px;}
+.qustListDiv table + table tr,
+.qustListDiv table + table th {border-top: 0;}
+.qustListDiv dl.qustType02 dt {width: 10%;}
+div.exitem dl {display: table; width: 100%;}
+div.exitem dt {display: table-cell;}
+div.exitem dt span {display: inline-block; width: auto; height: 100%; margin: 0 5px 0 -5px; padding: 0 5px; background: #f1f1f1; border-right: 1px solid #9ba7ba;vertical-align: baseline;}
+div.exitem dd {display: table-cell; text-align: right;}
+
+/* 로딩 이미지 */
+#loading {display: none; position: fixed; top: 50%; left: 50%; z-index:2; width:100px; height: 100px; margin-left: 100px; margin-top: -50px; background:url(../images/ajax-loader.gif) no-repeat center;}
+#loading.pop {margin-left: -50px;}
+@media screen and (max-width: 1217px) {
+    #loading {margin-left: -50px;}
+}
+
+/* 증명서발급 영역 */
+.ptWrap {width: 100%; overflow: auto;}
+#ptWrap {min-width: 910px; width: 100%;}
+
+/* formWrap */
+.formWrap {position: relative; height: 55px; line-height: 53px; margin-bottom: 3px; padding: 0 34px; border: 1px solid #4e4e4e;}
+.formWrap::after {content: ''; display: block; margin: 1px -34px 0; border-top: 3px solid #e2e2e2;}
+.formWrap > p {min-width: 154px;}
+.formWrap .btnAFWTg {display: block; position: absolute; top: 16px; right: 30px; width: 27px; height: 14px; background: url(../images/iconAFWTg.png) no-repeat;}
+.btnAFWTg.on {transform: rotate(180deg);}
+.btnAFWTg.off {display: none;}
+.addFormWrap {position: relative; background: #f6f6f6; border-bottom: 1px solid #4e4e4e;}
+.addFormWrap > div,
+.addFormWrap > p {position: relative; width: max-content; padding-left: 10px; line-height: 49px; border-bottom: 1px dotted #cecece;}
+.addFormWrap > div:last-child, 
+.addFormWrap > p:last-child {border-bottom: 0;}
+.addFormWrap.iss1 > div {width: 690px; margin-left: 188px;}
+.addFormWrap .frmInput {margin-top: -5px;}
+
+.addFormWrap > .checkbox2 input[type=checkbox] + label {padding-right: 5px;}
+.addFormWrap > div > label > span,
+.addFormWrap > p > label > span {display: inline-block; width: 140px; vertical-align: middle;}
+.addFormWrap > div > label > span:nth-child(6),
+.addFormWrap > p > label > span:nth-child(6) {width: 280px; font-weight: normal;}
+.addFormWrap .more {width: auto; margin-right:5px; padding: 1px 5px 2px 4px; background: #ffdb20; border: 1px solid #333; font-size: 14px; font-weight: bold;}
+.addFormWrap .stat {width: auto; padding: 1px 5px 2px 4px; background: #595959; border: 1px solid #555; font-size: 14px; font-weight: bold; color: #fff; line-height: 1;}
+
+.ptTooltip {display: none; position: absolute; top: 33px; right: 8px; z-index: 9999; width: 385px; padding: 10px 9px; background: #fefae5; border: 1px solid #333; font-size: 13px; font-weight: normal; line-height: 1.5; cursor: default;}
+.ptTooltip::before {content: ''; position: absolute; top: -10px; right: 20px; z-index: 9999; border-width: 5px; border-style: solid; border-color: transparent transparent #fefae5 transparent;}
+.ptTooltip::after {content: ''; position: absolute; top: -11px; right: 20px; z-index: 9998; border-width: 5px; border-style: solid; border-color: transparent transparent #333 transparent;}
+
+/* 증명서 발급 대상자 직접입력 테이블 */
+.addFormWrap div.tblAddForm {width: 880px; margin: 0; padding-left: 188px;}
+.tblAddForm tr + tr {border-top: 1px dotted #cecece;}
+.tblAddForm th {position: relative; height: 50px; padding-left: 44px; text-align: left;}
+.tblAddForm th::before {content: ''; position: absolute; top: 24px; left: 21px; width: 3px; height: 3px; background: #386ab5; border-radius: 50%;}
+.tblAddForm .frmInput {width: 150px; margin: 0;}
+.tblAddForm .alSucc {display: inline-block; margin: -5px 0 0 5px; vertical-align: middle;}
+
+/* 증명서 종류 선택에 따른 특정증명서 영역 스타일 변경 */
+/* 가족관계증명서 */
+.pcuCert1 > p,
+.pcuCert1 > div > p {width: 395px; margin-left: 346px;}
+.pcuCert1 .checkbox2 input[type=checkbox] + label {display: inline-block; position: relative; height: auto; padding: 3px 3px 3px 3px; font-weight: bold; line-height: 18px; cursor: pointer;}
+.pcuCert1 .checkbox2 input[type=checkbox] + label::before {content: ''; display: inline-block; position: relative; top: 0; left: 0; width: 18px; height: 18px; margin-right: 17px; background: url(../images/iconChkSet2.png); vertical-align: middle;}
+.pcuCert1 .checkbox2 input[type=checkbox]:checked + label::before {width: 19px; background-position: 0 -23px;}
+.pcuCert1 > p.default {width: 100%; margin-left: 0; padding-left: 356px; background: #e2e2e2; border-bottom: 0;}
+.pcuCert1 > div > p {position: relative; width: max-content; height: 50px; padding-left: 10px; line-height: 49px; border-bottom: 1px dotted #cecece;}
+.pcuCert1 > div:last-child > p {border-bottom: 0;}
+.pcuCert1 > div > p > label > span {display: inline-block; width: 140px;}
+.pcuCert1 > div > p > span.stat {padding: 1px 5px 2px 4px; background: #2557a2; border: 1px solid #2d4b84; font-size: 14px; font-weight: bold; color: #fff;}
+
+/* 기본증명서 */
+.pcuCert2 {position: relative; overflow: hidden; padding-left: 40px;}
+.pcuCert2 > p {float: left; width: 25%; padding-left: 0; border-bottom: 0;}
+.pcuCert2 > p > label > span {width: auto;}
+.pcuCert2 .radio2 input[type=radio] + label::before {margin-right: 8px;}
+
+/* 혼인관계증명서 */
+.pcuCert3 {padding: 10px 36px 5px 356px;}
+.pcuCert3 div {display: table; width: 100%; padding-bottom: 10px;}
+.pcuCert3 div + div {padding-top: 10px; border-top: 1px solid #000;}
+.pcuCert3 div > p {display: table-cell; width: 59px; text-align: center; background: #fff; border-left: 1px solid #d0ddf1; line-height: 1.4; vertical-align: middle;}
+.pcuCert3 table {margin-left: 1px; line-height: 1.5;}
+.pcuCert3 table th {width: 15%; padding: 4px 0; background: #fff; border-right: 1px solid #386ab5; font-weight: bold; color: #386ab5;}
+.pcuCert3 table td {width: 85%; padding: 4px 8px;}
+.pcuCert3 table tr + tr {border-top: 1px dashed #cdcdcd;}
+
+/* 영문증명서 대상자 성명 입력폼 */
+.eNmForm {padding: 0 65px;}
+.eNmForm > p > b {display: inline-block; position: relative; width: 70px; padding-left: 15px;}
+.eNmForm > p > b::before {content: ''; position: absolute; top: 50%; left: 0; width: 6px; height: 6px; margin-top: -3px; background: #2557a2; border-radius: 50%;}
+
+/* 신청사유 영역 */
+.rsnFgWrap {display: flex; position: relative; margin-bottom: 3px; padding: 9px 34px; border: 1px solid #4e4e4e; flex-wrap: wrap;}
+.rsnFgWrap::after {content: ''; position: absolute; left: 34px; bottom: -4px; width: 100%; margin: 0 -34px;  border-top: 3px solid #e2e2e2; border-radius: 3px;}
+.rsnFgWrap > p {padding-right: 18px;}
+
+.trgtApct > .frmInput {margin-top: -5px;}
+
+/* 증명서 발급 서브타이틀 버튼 */
+.btnPtPopup {display: inline-block; position: relative;  padding: 0 15px 0 25px; height: 30px; border: 1px solid #faca00; background: #4e4e4e; border-radius: 20px; font-size: 14px; font-weight: bold; color: #fff; line-height: 28px; vertical-align: middle; letter-spacing: -1px; box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.3), 1px 3px 5px rgba(51,51,51,0.3); cursor: pointer;}
+.btnPtPopup::after {content: url(../images/iconWin2.png); display: inline-block; padding-left: 5px; transform: translateY(-2px);}
+.btnPtPopup:hover {background-color: #faca00; border-color:#faca00; color: #000;}
+
+/* 설문응답 사용자정보 입력 폼 */
+.frmSrvyPrsInfo {position: relative; overflow: hidden; width: 100%; border: 1px solid #cecece; border-top: 1px solid #386ab5; font-size: 15px;}
+.frmSrvyPrsInfo .frmGroup {display: table; float: left; width: 50%;}
+.frmSrvyPrsInfo .frmGroup label {display: table-cell; width: 25%; min-width: 101px; line-height: 1; padding: 12px 8px 13px; background: #f1f1f1; border-right: 1px solid #cecece;; font-weight: bold; white-space: nowrap;}
+.frmSrvyPrsInfo .frmGroup .iptGroup {display: table;  width: 100%; padding: 5px; background: #fff;}
+.frmSrvyPrsInfo .frmGroup .iptGroup .frmInput {display: table-cell; width: 100%; max-width: 200px;}
+.frmSrvyPrsInfo .frmGroup .iptGroup select.frmInput {width: auto;}
+.frmSrvyPrsInfo .frmGroup .iptGroup .iptAddon {display: table-cell; width: 1%; padding: 0 3px; vertical-align: middle; white-space: nowrap;}
+@media screen and (max-width: 730px) {
+    .frmSrvyPrsInfo .frmGroup {width: 100% !important;}
+    .frmSrvyPrsInfo .frmGroup + .frmGroup {border-top: 1px solid #cecece;}
+}
+
+/* 인터넷신고서 영역 */
+.reWrap {width: 100%; overflow-x: auto; overflow-y: hidden;}
+#reWrap {width: 910px; margin: 0 auto;}
+
+/* 출생신고서 안내문 툴팁 */
+.arTtipGroup {display: inline-block;}
+.btnArTtip {display: inline-block; width: 19px; height: 19px; margin-top: -4px; background: url(../images/iconPuncMarkSprite.png) no-repeat 0 0; vertical-align: middle;}
+.arTtipInfo {display: none;; position: absolute; z-index: 9999; margin: -27px 0 0 28px; padding: 10px 9px; background: #fefae5; border: 1px solid #333;  font-family: '맑은 고딕', 'Malgun Gothic'; font-size: 13px; font-weight: normal; line-height: 1.5}
+.arTtipInfo::before {content: ''; position: absolute; z-index: 9999; top: 16px; left: 0; margin: -5px 0 0 -10px; border-width: 5px; border-style: solid; border-color: transparent #fefae5 transparent transparent;}
+.arTtipInfo::after {content: ''; position: absolute; z-index: 9998; top: 16px; left: 0; margin: -6px 0 0 -12px; border-width: 6px; border-style: solid; border-color: transparent #333 transparent transparent;}
+.btnArTtipClose {position: absolute; top: 0; right: 0; width: 41px; height: 18px; background: url(../images/btnArTtipClose.gif) no-repeat;}
+
+.arTtipInfo .bList {position: relative; overflow: hidden;}
+.arTtipInfo .bList > li {position: relative; padding-left: 8px;}
+.arTtipInfo .bList > li::before {content: ''; position: absolute; top: 6px; left: 0; width: 4px; height: 4px; background: #000; border-radius: 50%;}
+
+.arTtipInfo .tblGuide {margin-bottom: 0;}
+.arTtipInfo .tblGuide table {border-top: 0; border-collapse: collapse;}
+.arTtipInfo .tblGuide table th {height: 28px; padding: 0; background: #386ab5; border-color: #fff; color: #fff; text-align: center;}
+.arTtipInfo .tblGuide table th.sub {background: #f0f5f9; border-color: #e1e1e1; color: #4c4c4c;}
+.arTtipInfo .tblGuide table td {height: 28px; padding: 0 5px;}
+
+/* 무인증명서발급기 위치 */
+.mapSearch {display: block; position: relative; overflow: hidden; padding-bottom: 7px;}
+.pContent .mapSearch {height: 560px;}
+.mapList {display: block; position: absolute; top: 0; left: 0; width: 270px; background: #fff;}
+.mapList.hide {left: -270px;}
+.mapList .btnListToggle {position: absolute; top: 257px; right: -23px; z-index: 9; width: 23px; height: 54px; margin-top: -27px; background: #fff; border: 1px solid #3058a4; border-left-color: #fff; border-top-right-radius: 3px; border-bottom-right-radius: 3px; box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.3), 1px 3px 5px rgba(51,51,51,0.3);}
+.mapList .btnListToggle::before {content: url(../images/iconAgLeft_B.png);}
+.mapList.hide .btnListToggle {right: -23px;}
+.mapList.hide .btnListToggle::before {content: url(../images/iconAgRight_B.png);}
+.mapList > ul {height: 516px; overflow: auto; background: #f6f6f6; border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5;}
+.mapInfo {padding-right: 3px; background: #fff;}
+.mapList .nodata {position: absolute; top:50%; left: 0; width: 100%; margin-top: -46px; padding-top: 90px; background: url(../images/iconNodata.png) no-repeat center 5px; color: #999; text-align: center; transform: translateY(-50%);}
+.mapInfo:hover,
+.mapInfo:focus {background: #f5f5f5;}
+.mapInfo.active {background: #fcf6db;}
+.mapInfo div {height: 103px; padding: 6px 0 12px;border-bottom: 1px solid #e5e5e5;}
+.mapInfo .title {display: block; overflow: hidden; width: 100%; height: 27px; line-height: 27px; margin-bottom: 2px; padding-left: 19px; background: url(../images/iconMarker.png) no-repeat 2px center; background-size: 12px 15px; font-weight: bold; color: #3058a4; white-space: nowrap; text-overflow: ellipsis;}
+.mapInfo address.strNm {overflow: hidden; padding-left: 19px; font-size: 13px; color: #333; line-height: 1.4; white-space: nowrap; text-overflow: ellipsis;}
+.mapInfo address.lndNo {overflow: hidden; padding-left: 19px; font-size: 13px; color: #8b8b8b; line-height: 1.4; white-space: nowrap; text-overflow: ellipsis;}
+.mapInfo .tel {margin-top: 5px; padding-left: 19px; font-size: 14px; font-weight: bold; color: #555;}
+.mapList .pagination {margin: 10px 20px 10px 0;}
+.mapWrap {display: block; position: relative; float: right; width: calc(100% - 270px); height: 515px; border: 1px solid #3058a4;}
+.pContent .mapWrap {height: 550px;}
+.marker {display: inline-block; position: relative; padding: 7px 15px; background: #ee8c00; font-size: 14px; font-weight: bold; color: #fff; line-height: normal; white-space: nowrap;}
+.marker::before {content: ''; position: absolute; bottom: 0; left: 50%; margin: 0 -5px -10px 0; border-width: 5px; border-style: solid; border-color: #ee8c00 transparent transparent transparent;}
+.mapList.hide + .mapWrap {float: none; width: 100%; margin: 0;}
+.mapWrap + .formBtn {clear: both; float: right; margin-top: 14px;}
+.mapSearch .pagination .prev {width: 27px; background: url(../images/iconPagingSprite.png) no-repeat -32px -54px;}
+.mapSearch .pagination .next {width: 27px; background: url(../images/iconPagingSprite.png) no-repeat -64px -54px;}
+.mapSearch .pagination .prev:hover {background: url(../images/iconPagingSprite.png) no-repeat -32px -81px;}
+.mapSearch .pagination .next:hover {background: url(../images/iconPagingSprite.png) no-repeat -64px -81px;}
+@media screen and (max-width: 900px) {
+    .mapList {position: absolute; z-index: 9;}
+    .mapWrap {width: 100%; margin: 0;}
+}
+
+/* 인명용한자코드목록 */
+.chnCdWrap {position: relative; overflow: hidden; margin: 0 -2.5px; background: #f6f6f6;}
+.chnCdDiv {float: left; width: 10%; margin-bottom: 5px; padding: 0 2.5px;}
+.chnCdDiv dl {border: 1px solid #cecece; background: #fff;}
+.chnCdDiv dt {padding: 10px 0; font-size: 54px; font-weight: bold; text-align: center;}
+.chnCdDiv dd {height: 24px; line-height: 24px; text-align: center;}
+.chnCdDiv .no {display: block; float: left; width: 30%; border-top: 1px solid #cecece;}
+.chnCdDiv .useYn {display: block; float: left; width: 70%; border-top: 1px solid #cecece; border-left: 1px solid #cecece;}
+.chnCdDiv .chnCd {display: block; clear: both; width: 100%; background: #eaf2fa; border-top: 1px solid #cecece;}
+@media screen and (max-width: 900px) {
+    .chnCdDiv {width: 25%;}
+}
+
+/* 증명서 미리보기 이미지 영역 */
+.imageDiv {min-height: 400px; border: 1px solid #ccc; background: #f7f7f7;}
+
+/* 출생확인기관선택 */
+.birCourtUl {display: block; width: 910px; margin: 0 auto; overflow: hidden;}
+.birCourtUl li {float: left; width: 450px; height: 303px;}
+.birCourtUl li.dclHsptl {background: url(../images/ar/dclTypeHsptl.png) no-repeat;}
+.birCourtUl li.dclCrt {float: right; background: url(../images/ar/dclTypeCrt.png) no-repeat 0 0;}
+.birCourtUl li.dclCrt:hover {background: url(../images/ar/dclTypeCrt.png) no-repeat 0 -303px;}
+.birCourtUl li.dclCrt a {display: block; width: 100%; height: 100%;}
+
+/* imsm 이미지 반응형 */
+.imgIsms {display: inline; padding: 0 15px;}
+.imgIsms:nth-of-type(1) {border-right: 1px solid #ddd;}
+
+@media screen and (max-width: 700px) {
+    .imgIsms:nth-of-type(1) {padding-right: 20px; border: 0;}
+}
+
+/* 달력 커스터마이징 */
+.hasDatepicker[disabled] + .ui-datepicker-trigger,
+.hasDatepicker.btnDisabled + .ui-datepicker-trigger,
+.hasDatepicker.datepicker_dis + .ui-datepicker-trigger {background-color: #eaedf1; border-color: #999; cursor: not-allowed; opacity: .4;}
+.ui-datepicker-trigger {display: inline-block; position: relative; min-width: 21px; height: 21px; margin-left: 4px; background: url(../../images/iconCalender.png) no-repeat; font-size: 0; vertical-align: middle; cursor: pointer;}
+.ui-datepicker {margin-top: 2px; padding: 0; font-size: 15px;}
+.ui-widget.ui-widget-content {border: 2px solid #d16b6a; box-shadow: 10px 10px 30px -10px #000;}
+.ui-corner-all {border-radius: 0;}
+.ui-datepicker .ui-datepicker-header {padding: 5px 0; background: #d16b6a; border-color: #d16b6a; color: #fff;}
+.ui-datepicker .ui-datepicker-title {font-size: 14px;}
+.ui-datepicker .ui-datepicker-title select {vertical-align: text-bottom;}
+.ui-datepicker table {border: 3px solid #fff; font-size: 15px;}
+.ui-datepicker th {padding:7px; background: #555; color: #fff;}
+.ui-datepicker td {padding: 4px;}
+.ui-datepicker td.ui-datepicker-week-end:first-child a,
+.ui-datepicker td.ui-datepicker-week-end:last-child a {font-weight: bold; color: #d16b6a;}
+.ui-datepicker td.ui-datepicker-week-end:first-child a.ui-state-active,
+.ui-datepicker td.ui-datepicker-week-end:last-child a.ui-state-active {color: #fff;}
+.ui-datepicker td span, .ui-datepicker td a {text-align: center;}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {background: transparent; border: 1px solid #fff;}
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {color: inherit;}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {background: #d16b6a; border-color: #d16b6a; font-weight: bold; color: #fff;}
+.ui-state-hover,.ui-widget-content .ui-state-hover,.ui-widget-header .ui-state-hover,.ui-state-focus,.ui-widget-content .ui-state-focus,.ui-widget-header .ui-state-focus,.ui-button:hover,.ui-button:focus{border:1px solid #d16b6a; }
+.ui-state-hover a,.ui-state-hover a:hover,.ui-state-hover a:link,.ui-state-hover a:visited,.ui-state-focus a,.ui-state-focus a:hover,.ui-state-focus a:link,.ui-state-focus a:visited,a.ui-button:hover,a.ui-button:focus{color:#2b2b2b;text-decoration:none}
+.ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {width: auto; height: 26px; margin-top: -1px; font-size: 15px; vertical-align: middle; background-color: #fff; border-color: #d16b6a;}
+.ui-icon {width: 17px; height: 17px;}
+.ui-datepicker select.ui-datepicker-month {margin-left: 10px;}
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {width: 35px; height: 26px; top: 5px; cursor: pointer;}
+.ui-datepicker .ui-datepicker-prev {left: 10px;}
+.ui-datepicker .ui-datepicker-next {right: 10px;}
+.ui-datepicker .ui-datepicker-prev span {background: url(../images/iconCalBtnSet.png) no-repeat 0 0;}
+.ui-datepicker .ui-datepicker-next span {background: url(../images/iconCalBtnSet.png) no-repeat -17px 0;}
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover {top: 5px; background: transparent}
+.ui-datepicker .ui-datepicker-prev-hover span {background-position: 0 -17px;}
+.ui-datepicker .ui-datepicker-next-hover span {background-position: -17px -17px;}
+.ui-datepicker .ui-datepicker-buttonpane {margin: 0; padding: 7px 0; background: #f1f1f1; text-align: center;}
+.ui-datepicker .ui-datepicker-buttonpane button {display: inline-block; position: relative; float: none; width: 50px; height: 24px; margin: 0; padding: 0; border: 0; background: #333 url(../images/btnArTtipClose.gif) no-repeat center; font-size: 0;}
+.ui-datepicker .ui-datepicker-buttonpane button.ui-state-hover {border: 0;}
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {display: none;}
+.ui-datepicker td.holiday span,
+.ui-datepicker td.holiday a {color: #d16b6a; font-weight: bold;}
+.ui-datepicker td.holiday span.ui-state-active,
+.ui-datepicker td.holiday a.ui-state-active {color: #fff;}
+
+/* 20210201 신고 약관동의 팝업버튼 추가 */
+.agmtAlt::before {top: 14px !important; background-position: 0 -50px !important;}
+.arAgmtWrap {display: inline-block; vertical-align: middle;}
+.btnArChkP {margin-top: -2px; padding: 4px 7px 5px; background: #333; border-radius: 2px; font-size: 13px; font-weight: bold; color: #fff; line-height: 1; vertical-align: middle; letter-spacing: -1px; cursor: pointer;}
+.btnArChkP::after {content: url(../images/iconWin2.png); display: inline-block; padding-left: 3px;}
+.arAgmtWrap .btnArChkP {display: block;}
+@media screen and (max-width: 1217px) {
+    .arAgmtWrap {display: inline-block; vertical-align: top; margin-top: 0;}
+    .arAgmtWrap .btnArChkP {display: inline-block;}
+}
+
+/* anySign 솔루션 공인인증서 입력 인증서 만료 안내 툴팁 z-index 추가 */
+.xwup_common .xwup-expire-alert {z-index: 1;}
