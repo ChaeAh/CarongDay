@@ -252,7 +252,7 @@ function memberDelete(){
 							</li>
 							<!-- E2.li -->
 								<script type="text/javascript">
-								<!-- 1단계로 올리기 위한 강제 스크립트 실행 -->
+								//1단계로 올리기 위한 강제 스크립트 실행
 								if(firstMenuChk){
 									var trgtId = "top1m01";
 									$("#"+trgtId).click(function(){
