@@ -45,7 +45,7 @@ function fn_Delete() {
 			data : {chbox : checkArr },
 			success : function(data) {
 				if(data ==1) {
-				alert("댓글 삭제완료!");
+				alert("댓글삭제완료!");
 				  location.href = "boardList.do";
 				}
 			},
