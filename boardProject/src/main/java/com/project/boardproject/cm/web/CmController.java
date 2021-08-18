@@ -34,12 +34,6 @@ import com.project.boardproject.cm.service.CmService;
 import com.project.boardproject.cm.web.Pagination;
 import com.project.boardproject.um.service.UsrAcntVO;
 
-/*
- * 파일명 : customController.java
- * 용도    : 사용자 관련 컨트롤러
- * 작성자 : mintchoco91
- * 변경일 : 2019/09/14
- */
 
 @Controller
 public class CmController {
@@ -63,101 +57,6 @@ public class CmController {
 		return "board/boardListPage";
 	}
 
-	
-	/* // 내용 : 게시판 조회
-	 
-	 @RequestMapping(value = "boardInq") public String boardInq(Model model,
-	 BoardVO boardVO, @RequestParam(defaultValue = "1") int curPage) { // 리스트로 구현
-	 List<BoardVO> boardVOArr = new ArrayList<BoardVO>(); // 전체리스트 개수 int listCnt
-	 = cmservice.boardInqCnt(boardVO);
-	 
-	 System.out.println("########key : "+boardVO.getSrchKeyword());
-	 
-	 Pagination pagination = new Pagination(listCnt, curPage);
-	 
-	 boardVO.setStartIndex(pagination.getStartIndex());
-	 boardVO.setPageSize(pagination.getPageSize());
-	 
-	 boardVOArr = cmservice.boardInq(boardVO);
-	 
-	 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd"); Date time =
-	 new Date();
-	 
-	 String dateNow = dateFormat.format(time);
-	 
-	 String fullRgtDtm = ""; String todayRgtDtm = ""; String convRgtDtm = "";
-	 
-	 for (int i = 0; i < boardVOArr.size(); i++) { fullRgtDtm =
-	 boardVOArr.get(i).getRgtDtm(); todayRgtDtm = fullRgtDtm.substring(0, 8);
-	 
-	 if (todayRgtDtm.equals(dateNow)) { convRgtDtm = fullRgtDtm.substring(8, 10) +
-	 ":" + fullRgtDtm.substring(10, 12); } else { convRgtDtm =
-	 fullRgtDtm.substring(2, 4) + "." + fullRgtDtm.substring(4, 6) + "." +
-	 fullRgtDtm.substring(6, 8); }
-	 
-	 boardVOArr.get(i).setRgtDtm(convRgtDtm); }
-	 
-	 model.addAttribute("boardVOArr", boardVOArr);
-	 model.addAttribute("pagination", pagination);
-	 
-	 return "board/boardList"; }*/
-	/* 
-	 * // 내용 : 게시판 글쓰기페이지 로드
-	 * 
-	 * @RequestMapping(value = "boardWritePage") public String
-	 * boardWritePage(@ModelAttribute("boardVO") BoardVO boardVO, Model model)
-	 * throws Exception { return "board/boardRegister"; }
-	 * 
-	 * // 내용 : 게시판 글쓰기 등록
-	 * 
-	 * @RequestMapping(value = "boardWrite") public String boardWrite(Model model,
-	 * BoardVO boardVO) throws Exception { cmservice.boardWrite(boardVO); return
-	 * "redirect:boardInq.do"; }
-	 * 
-	 * // Post AJAX
-	 * 
-	 * @RequestMapping(value = "boardDelete", method = RequestMethod.POST)
-	 * public @ResponseBody String boardDelete(HttpServletRequest request, String[]
-	 * idxArray, Model model) throws Exception {
-	 * 
-	 * String result = "error";
-	 * 
-	 * result = cmservice.boardDelete(idxArray); return result; }
-	 * 
-	 * // 내용 : 게시판 상세조회
-	 * 
-	 * @RequestMapping(value = "boardDetail") public String boardDetail(Model model,
-	 * BoardVO boardVO) throws Exception {
-	 * 
-	 * BoardVO resultBoardVO = new BoardVO(); resultBoardVO =
-	 * cmservice.boardDetail(boardVO);
-	 * 
-	 * String fullRgtDtm = resultBoardVO.getRgtDtm(); String convRgtDtm =
-	 * fullRgtDtm.substring(0, 4) + "." + fullRgtDtm.substring(4, 6) + "." +
-	 * fullRgtDtm.substring(6, 8) + ". " + fullRgtDtm.substring(8, 10) + ":" +
-	 * fullRgtDtm.substring(10, 12);
-	 * 
-	 * resultBoardVO.setRgtDtm(convRgtDtm);
-	 * 
-	 * model.addAttribute("boardVO", resultBoardVO);
-	 * 
-	 * return "board/boardDetail"; }
-	 * 
-	 * // 내용 : 게시판 수정페이지 로드
-	 * 
-	 * @RequestMapping(value = "boardModifyPage") public String
-	 * boardModifyPage(Model model, BoardVO boardVO) throws Exception {
-	 * model.addAttribute("boardVO", boardVO); return "board/boardRegister"; }
-	 * 
-	 * // 내용 : 게시판 내용 수정
-	 * 
-	 * @RequestMapping(value = "boardModify") public String boardModify(Model model,
-	 * BoardVO boardVO) throws Exception { cmservice.boardModify(boardVO); return
-	 * "redirect:boardInq.do"; }
-	 */
-
-	/***** 공통 게시판 끝 ************************************************************/
-
 	@RequestMapping(value="cm/kakaoMap.do")
 	public String kakoMap() throws Exception {
 		return "cm/kakaoMap";
@@ -169,16 +68,9 @@ public class CmController {
 		int listCnt = cmservice.boardgetBoardCnt(boardVO);
 			Pagination pagination = new Pagination(listCnt, curPage);
 
-//		System.out.println("curPage :: " + curPage);
-//		System.out.println("boardList 리스트 갯수" + listCnt);
-
 		boardVO.setPageSize(pagination.getPageSize());
 		boardVO.setStartIndex(pagination.getStartIndex());
 
-//		System.out.println("페이징========================");
-//		System.out.println(pagination.getStartIndex());
-//		System.out.println(pagination.getPageSize());
-//		System.out.println("페이징========================");
 		List<BoardVO> boardList = new ArrayList<>();
 
 		boardList = cmservice.boardGetList(boardVO);
@@ -196,8 +88,7 @@ public class CmController {
 	@RequestMapping(value = "boardListInqAjax.do")
 	public Map<String, Object> boardList2(@ModelAttribute("BoardVO") BoardVO boardVO, Model model,
 			@RequestParam(defaultValue = "1") int curPage) throws Exception {
-		/*,
-			@RequestParam(defaultValue = "1") int curPage*/
+
 		logger.info("boardListInqAjax START!!!");
 		logger.debug("curPage ::" + curPage) ;
 
@@ -232,7 +123,6 @@ public class CmController {
 	public String boardExcelDown(@ModelAttribute("BoardVO") BoardVO boardVO, Model model,@RequestParam(defaultValue = "1") int curPage) throws Exception {
 		logger.info("boardExcelDown START!!!");
 		int listCnt = cmservice.boardgetBoardCnt(boardVO);
-		logger.debug(listCnt  + "게시물의 수");
 		Pagination pagination = new Pagination(listCnt, curPage);
 		boardVO.setStartIndex(pagination.getStartIndex());
 		boardVO.setPageSize(pagination.getPageSize());
@@ -363,7 +253,6 @@ public class CmController {
 
 	@RequestMapping(value = "boardScrPwChk")
 	public String boardScrPwChk(BoardVO boardVO, Model model) throws Exception {
-		System.out.println("여기 안들어오냐");
 		model.addAttribute("vo", boardVO);
 		return "board/boardScrPwChk";
 	}
