@@ -1,6 +1,26 @@
 package com.project.boardproject.um.service;
 
-public class UsrAcntVO {
+import java.io.Serializable;
+
+/***
+ * @ClassName : UsrAcntVO.java
+ * @Description : 사용자 계정 관련 VO
+ * @Modification Information
+ * @
+ * @  수정일       수정자       수정내용
+ * @ ---------   ---------   ------------------------------------------------------------------------
+* @ 2021.07.14   김채아      최초생성
+* @ 2021.07.21   김채아      우편관리 변수 생성
+*   
+ * @author 김채아
+ * @since 2021.08.18
+ * @version 1.0
+ * 
+ */
+
+public class UsrAcntVO implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	private String usrId;
 	private String usrPw;

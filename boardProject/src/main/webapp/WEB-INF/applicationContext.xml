@@ -17,7 +17,18 @@
 		
 		<!--mailSender  -->
   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-
+	    <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="587" />
+        <property name="username" value="ejrgmla12@gmail.com"/>
+        <property name="password" value="duddnjs12!" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
     </bean>
 
 	<bean id="viewResolver"
@@ -66,7 +77,8 @@
  	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
     	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-
+		 <property name="username" value="chae" />
+        <property name="password" value="qjfalf12" />
 <!--         <property name="initialSize" value="5" />
         <property name="maxActive" value="5" /> -->
         <property name="validationQuery" value="SELECT 1 from dual" />

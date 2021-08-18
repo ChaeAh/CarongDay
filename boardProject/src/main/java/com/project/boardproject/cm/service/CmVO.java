@@ -2,16 +2,24 @@ package com.project.boardproject.cm.service;
 
 import java.io.Serializable;
 
-/*
- * 파일명 : CmVO.java
- * 용도    : 
- * 작성자 : chae
- * 변경일 : 2021/03/09
+/***
+ * @ClassName : CmVO.java
+ * @Description : 공통 관련 VO
+ * @Modification Information
+ * @
+ * @  수정일       수정자       수정내용
+ * @ ---------   ---------   ------------------------------------------------------------------------
+* @ 2021.08.XX   김채아      최초생성
+*   
+ * @author 김채아
+ * @since 2021.08.18
+ * @version 1.0
+ * 
  */
 
 public class CmVO implements Serializable{
-	private static final long serialVersionUID = 1L; 
 	
+	private static final long serialVersionUID = 1L; 
 	
 	private String gnrCd;				//일반코드
 	private String cdId;				//코드ID

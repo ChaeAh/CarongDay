@@ -4,11 +4,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
- * 파일명 : CmVO.java
- * 용도    : 
- * 작성자 : mintchoco91
- * 변경일 : 2019/07/26
+/***
+ * @ClassName : BoardVO.java
+ * @Description : 게시글 관련 VO
+ * @Modification Information
+ * @
+ * @  수정일       수정자       수정내용
+ * @ ---------   ---------   ------------------------------------------------------------------------
+* @ 2021.07.XX   김채아      최초생성
+*   
+ * @author 김채아
+ * @since 2021.08.18
+ * @version 1.0
+ * 
  */
 
 public class BoardVO implements Serializable{

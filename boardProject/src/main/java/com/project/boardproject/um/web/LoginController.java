@@ -30,6 +30,21 @@ import com.project.boardproject.um.service.UsrAcntVO;
 import com.project.boardproject.um.service.impl.UmUsrServiceImpl;
 import com.project.boardproject.um.service.UsrAcntVO;
 
+/***
+ * @ClassName : LoginController.java
+ * @Description :  로그인 Controller
+ * @Modification Information
+ * @
+ * @  수정일       수정자       수정내용
+ * @ ---------   ---------   ------------------------------------------------------------------------
+* @ 2021.07.XX   김채아      최초생성
+*   
+ * @author 김채아
+ * @since 2021.08.18
+ * @version 1.0
+ * 
+ */
+
 @Controller
 public class LoginController {
 
@@ -37,6 +52,7 @@ public class LoginController {
 	private UmUsrService umusrService;
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	
 	
 	@ResponseBody 
 	@RequestMapping("loginCheck")
