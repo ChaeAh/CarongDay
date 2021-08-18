@@ -78,7 +78,9 @@ public class CmServiceimpl implements CmService {
 	@Override
 	public void boardInsert(BoardVO boardVO) {
 		System.out.println(boardVO.toString());
-			cmDAO.boardInsert_001(boardVO);
+		int idx = cmDAO.selectBoardIdx_001(boardVO);
+		boardVO.setIdx(idx);
+		cmDAO.boardInsert_001(boardVO);
 			
 	}
 	

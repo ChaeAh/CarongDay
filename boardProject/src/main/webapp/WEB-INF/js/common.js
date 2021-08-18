@@ -96,15 +96,7 @@ function isNum(objValue)
             }
         }
     }
-    /* 20120807 이전 프로젝트 소스 확인시 isNum만 호출하는 경우가 없어서
-	   validate에서 alert 창을 호출하게끔 변경하였음
-	   
-    var alertMsg  = "숫자만 입력하실 수 있습니다.\t\t\n\n";
-    	alertMsg += "입력범위 : 0 ~ 9, .\n";
-    	alertMsg += "입력예시 : 0.11, 2003, 12345.67890, etc.";
-    
-	if(!bool) alert(alertMsg);
-    */
+   
 	return bool;
 }
 
@@ -137,7 +129,6 @@ function isKorean(objValue)
     /*
     var alertMsg  = "한글만 입력하실 수 있습니다.\t\t\n\n";
     	alertMsg += "입력범위 : ㄱ ~ ㅎ, 가 ~ 힣\n";
-    	alertMsg += "입력예시 : 대법원, 전자가족관계, etc.";
 
 	if(!bool) alert(alertMsg);
      */    
@@ -642,66 +633,7 @@ function isURL(objValue)
 
 }
 
-/***
- * 입력값이 특정 문자(chars)인지 체크한다
- * 
- * isContainsCharsOnly("1"  , "1") = true
- * isContainsCharsOnly("123", "1") = false
- * 
- * @param objValue, chars
- * @return  true / false
- * @exception 
- */
-
-/* function isContainsCharsOnly(objValue, chars){
-    if(objValue != null) 	{
-    	objValue = trim(objValue);
-    	}
-    for (var inx=0; inx<objValue.length; inx++) {
-        if (chars.indexOf(objValue.charAt(inx)) == -1)		return false;
-    }
-    return true;
-}
-
-*/
-
-/***
- * 입력값이 한글이나 숫자인지 체크한다(한글 or 숫자 or () or - , .)
- * @param objValue 
- * @return  true / false
- * @exception 
- */
-function isSpclAdr(objValue)
-{
-	var bool = true;
-
-    if(objValue != null) objValue = trim(objValue);
-    if(objValue == null || objValue == "")
-        bool = false;
-    else
-    {
-    	
-        for (var i=0; i<objValue.length; i++)
-        {
-            ch = objValue.charCodeAt(i);
-            //20120813 요청으로 스페이스 추가 (0x20)
-            if(!((ch >= 0xAC00 && ch <= 0xD7A3) || (ch >= 0x3131 && ch <= 0x314E) || (ch >= 0x30 && ch <= 0x39) || (ch==0x20) || (ch == 0x28) || (ch == 0x29) || (ch == 0x2D) || (ch == 0x2C) || (ch == 0x2E) ))
-            {
-                bool = false;
-                break;
-            }
-        }
-    }
-    /*
-    var alertMsg  = "한글과 숫자만 입력하실 수 있습니다.\t\t\n\n";
-    	alertMsg += "입력범위 : ㄱ ~ ㅎ, 가 ~ 힣, 0 ~ 9\n";
-    	alertMsg += "입력예시 : 대법원, 가족관계등록2006, 1201, etc.";
-     
-	if(!bool) alert(alertMsg);
-	*/
-    return bool;
-}
-/* ========================= 
+/* 
  *                           
  *     String 관련 함수     
  *                           
@@ -775,137 +707,6 @@ function trim(str) {
 	return rtrim(tmpstr);
 }
 
-/***
- * 바이트 수를 계산한다(한글은 자당 2bytes로 계산한다)
- * @param 	string
- * @return 	length
- * @exception 
- */
-function getByteLength(s)
-{
-    var len = 0;
-
-    if(s == null) return 0;
-
-
-
-    for(var i=0; i<s.length; i++)
-
-    {
-
-        var c = escape(s.charAt(i));
-
-        if(c.length == 1) len ++;
-
-        else if (c.indexOf("%u") != -1) len += 2;
-
-        else if (c.indexOf("%")  != -1) len += c.length/3;
-
-    }
-
-    return len;
-}
-
-/***
- * 스트링이 해당 포맷과 일치하는지 체크
- *
- * ex) chkFormat('2012-10-12','####-##-##') return true
- * 
- * @param 	string, format
- * @return 	boolean
- * @exception 
- */
-function chkFormat(string, format)
-{
-    if(string.length != format.length){
-    	
-    	return false;
-    }else{
-    	
-    	for(var i=0; i<format.length; i++){
-    		 
-    		if(format.charAt(i) != "#"){
-    			if(format.charAt(i) != string.charAt(i) ){
-    				
-    				return false;
-    			}
-            }
-    	}
-    }
-    
-    return true;
-}
-
-
-/***
- * 스트링을 원하는 포맷의 문자열로 만들어 준다
- *
- * ex) RecieptNumber = formatter("535000020060000012", "#######-####-#######");
- *     결과 : 5350000-2006-0000012
- * 
- * @param 	string, format
- * @return 	formated string
- * @exception 
- */
-function formatter(string, format)
-{
-    if(string.length < 1){
-    	return string;
-    }else if(chkFormat(string, format)){
-    	
-    	return string;
-    }
-    
-	var returnStr = "";
-
-
-
-    strLen = trim(string).length;
-
-    fmtLen = countChar(trim(format), "#");
-
-    if(strLen == fmtLen)
-
-    {
-
-        var cntChr    = 0;
-
-
-
-        for(var i=0; i<format.length; i++)
-
-        {
-
-            if(format.charAt(i) == "#")
-
-            {
-
-                returnStr += string.charAt(cntChr);
-
-                cntChr++;
-
-            }
-
-            else
-
-                returnStr += format.charAt(i);
-
-        }
-
-    }
-
-    else{
-    	return string;
-    }
-
-        //alert("String과 Format의 크기가 다릅니다.\n"+format+"\n");
-
-
-
-    return returnStr;
-
-
-}
 
 /***
  * 주어진 길이보다 길이가 작은 문자열 앞에 "0"을 붙여 패딩한다

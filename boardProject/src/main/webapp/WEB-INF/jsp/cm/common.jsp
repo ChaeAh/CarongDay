@@ -10,11 +10,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="/resources/js/cm/cm.js"></script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/js/quickpager2.jquery.js"></script>
+
+ <link rel="stylesheet" type="text/css" href="/resources/css/fix.css">
 <script>
-$(function(){
+/* $(function(){
 	
 	//메뉴 차단 여부 확인
-    blckCheck();		
     
     var menu_v = $('#menu_v');
     var menu_v2 = $("#menu_v .snb > li > a");
@@ -37,7 +41,7 @@ $(function(){
     	}
     });
 
-});
+}); */
 
 /* menu Request */
 function leftMnCalled(url, prgId, leftMnCd, mnRnk, blckYn){
@@ -157,4 +161,7 @@ function leftMnCalled(url, prgId, leftMnCd, mnRnk, blckYn){
 	}
 	
 }
+
+
+
 </script>

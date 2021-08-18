@@ -6,7 +6,7 @@ import com.project.boardproject.um.service.UsrAcntVO;
 
 @Service
 public interface UmUsrService {
-	public int loginCheck(UsrAcntVO UsrAcntVO);
+	public int loginProcess(UsrAcntVO UsrAcntVO);
 	
 	public int memberRegister(UsrAcntVO UsrAcntVO);
 	
@@ -18,7 +18,18 @@ public interface UmUsrService {
 
 	public void naverRgtUsr(UsrAcntVO vo);
 
-	public UsrAcntVO usrAcntRgt(UsrAcntVO usrAcntVO);
 
-	public void insertUsrAcnt(UsrAcntVO usrAcntVO);
+	public int insertUsrAcnt(UsrAcntVO usrAcntVO);
+
+	public int umUsrChkId(UsrAcntVO usrAcntVO);
+
+	public void insertUsrEmailSuc(UsrAcntVO usrAcntVO);
+
+	public int umUsrEmailFinAuth(String emailAuthNum, String usrId);
+
+	public void umUpdUsrLoginDtm(UsrAcntVO usrAcntVO);
+
+	public void umUpdUsrPwSalt(UsrAcntVO usrAcntVO);
+
+	public UsrAcntVO umSelUsrInfo(UsrAcntVO usrAcntVO);
 }

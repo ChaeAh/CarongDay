@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.boardproject.um.service.impl.UmUsrDAO">
+ 
+	<select id="selectUsrConfirmPw_001" parameterType="String" resultType="usrAcntVO">
+		SELECT  /*umusrDAO.selectUsrConfirmPw_001*/
+			USR_PW as usrPw , SALT as salt
+		FROM IRUSRACNT 
+		WHERE USR_ID=#{usrId}
+	</select>
+	
+		<select id="selectUsrInfo_001" parameterType="usrAcntVO" resultType="usrAcntVO">
+		SELECT  /*umusrDAO.selectUsrInfo_001*/
+		USR_ID as usrId,
+		 USR_PW as usrPw,
+		 USR_NM as usrNm,
+		 USR_TEL1 as usrTel1,
+		 USR_TEL2 as usrTel2,
+		 USR_TEL3 as usrTel3,
+		 USR_EMAIL1 as usrEmail1,
+		 USR_EMAIL2 as usrEmail2,
+		 USE_YN as useYn,
+		 EMAIL_AUTH_YN as emailAuthYn,
+		 PW_RGT_DTM as pwRgtDtm,
+		 PW_INIT_YN as pwInitYn,
+		 LST_LOGIN_DTM as lstLoginDtm,
+		 SALT as salt
+		FROM IRUSRACNT 
+		WHERE USR_ID=#{usrId}
+	</select>
+	<!-- 
+	<insert id="insertMember" parameterType="memberVO">
+		insert into member ( userid, pw, name, email1, isadminyn, delyn) 
+		values (#{userId}, #{pw}, #{name}, #{email1}, 'N', 'N')
+	</insert>
+	
+	<update id="ModifyMember" parameterType="memberVO">
+		update member set name=#{name}, email1=#{email1} where userid=#{userId}
+	</update>
+	
+	<select id="getMember" parameterType="String" resultType="MemberVO">
+		select * from member where userid=#{userId}
+	</select>
+	
+	<delete id="deleteMember" parameterType="String">
+		delete from member where userid=#{userId}
+	</delete>
+	
+	<insert id="naverRgtUsr_001" parameterType="MemberVO">
+		INSERT INTO /*naverRgtUsr_001*/
+		member ( 
+		userid,
+		name,
+		email1,
+		email2,
+		isadminyn,
+		delyn,
+		rgtDtm
+		) VALUES(
+		#{userId}
+		,#{name}
+		,#{email1}
+		,#{email2}
+		,'N'
+		,'N'
+		,DATE_FORMAT(now(), '%Y%m%d%H%i%s')
+		)
+		
+		
+	</insert> -->
+
+<insert id="insertUsrAcnt_001" parameterType="usrAcntVO" >
+	 INSERT INTO /*umusrDAO.insertUsrAcnt_001*/
+	 IRUSRACNT ( 
+		 USR_ID,
+		 USR_PW,
+		 USR_NM,
+		 USR_TEL1,
+		 USR_TEL2,
+		 USR_TEL3,
+		 USR_EMAIL1,
+		 USR_EMAIL2,
+		 USE_YN,
+		 EMAIL_AUTH_YN,
+		 RGTR_ID,
+		 RGT_DTM,
+		 PW_RGT_DTM,
+		 PW_INIT_YN,
+		 SALT
+	 ) VALUES (
+	 	 #{usrId},
+	 	 #{usrPw},
+	 	 #{usrNm},
+	 	 #{usrTel1},
+	 	 #{usrTel2},
+	 	 #{usrTel3},
+	 	 #{usrEmail1},
+	 	 #{usrEmail2},
+	 	 'Y',
+	 	 'Y',
+	 	 'SYSTEM',
+	 	 TO_CHAR(SYSDATE,'yyyymmddhh24miss'),
+	 	 TO_CHAR(SYSDATE,'yyyymmddhh24miss'),
+	 	 'N',
+	 	 #{salt})
+	</insert>
+	
+	<!-- 사용자의 이메일 확인여부 INSERT -->
+	<insert id="insertUsrEmailSuc_001" parameterType="usrAcntVO">
+	 INSERT INTO /*umusrDAO.insertUsrEmailSuc_001*/
+	 IRUSREMAILHIS ( 
+		 USR_ID,
+		 AUTH_NUM,
+		 EMAIL_AUTH_YN,
+		 RGTR_ID,
+		 RGT_DTM
+	 ) VALUES (
+	 	 #{usrId},
+	 	 #{authNum},
+	 	 #{emailAuthYn},
+	 	 'SYSTEM',
+	 	 TO_CHAR(SYSDATE,'yyyymmddhh24miss')
+	 	)
+	</insert>
+	
+	<select id="umSelEmailFinAuth_001" parameterType="String" resultType="HashMap">
+		SELECT /*umusrDAO.umSelEmailFinAuth_001*/ AUTH_NUM as emailAuthNum , USR_ID as usrId
+		FROM IRUSREMAILHIS
+		WHERE USR_ID = #{usrId}
+	</select>
+	
+	<update id="umUpdUsrEmailFinAuth_001" parameterType="String">
+	UPDATE /*umusrDAO.umUpdUsrEmailFinAuth_001*/
+	 IRUSREMAILHIS
+	SET EMAIL_AUTH_YN = 'Y'
+	WHERE USR_ID = #{usrId}
+	</update>
+
+	<insert id="insertUsrLDVSRN_001" parameterType="usrAcntVO">
+	INSERT INTO /*umUsrDAO.insertUsrLDVSRN_001*/
+	IRUSRLDVSRN (
+	USR_ID,
+	POSTCODE,
+	BD_MGT_SN,
+	ADR_TYPE,
+	USR_SEL_TYPE,
+	SEL_YN,
+	 JIBUN_ADR   ,
+	 ROAD_ADR    ,
+	 SIDO        ,
+	 SIGUNGU     ,
+	 SIGUNGU_SN  ,
+	 ROAD_SN     ,
+	 BD_SN       ,
+	 ROAD_NM     ,
+	 BD_NM       ,
+	 BD_NM1      ,
+	 BD_NM2      ,
+	 H_NM        ,
+	 DTL_ADR,
+	 EXTRA_ADR   ,
+	 BD_MGT_NM    
+	) VALUES(
+	#{usrId},
+	#{postCode},
+	#{bdMgtSn}	,
+	#{adrType},
+	#{usrSelType},
+	#{selYn},
+	#{jibunAdr}   ,
+	#{roadAdr}    ,
+	#{sido}       ,
+	#{sigungu}    ,
+	#{sigunguSn}  ,
+	#{roadSn}     ,
+	#{bdSn}       ,
+	#{roadNm}     ,
+	#{bdNm}       ,
+	#{bdNm1}      ,
+	#{bdNm2}      ,
+	#{hNm}        ,
+	#{dtlAdr}	,
+	#{extraAdr}   ,
+	#{bdMgtNm}   
+	)
+	</insert>
+	
+	<select id="selectUsrChkId_001" parameterType="usrAcntVO" resultType="Integer">
+		SELECT /*umUsrDAO.selectUsrChkId_001*/ 
+			DECODE(COUNT(1),0,'1','2') as cnt
+		FROM IRUSRACNT
+		WHERE  USR_ID=#{usrId}
+	</select>
+	
+ <update id="umUpdUsrLoginDtm_001" parameterType="usrAcntVO">
+	UPDATE /*umusrDAO.umUpdUsrLoginDtm_001*/
+		 IRUSRACNT
+	SET LST_LOGIN_DTM = TO_CHAR(SYSDATE,'yyyymmddhh24miss')
+	WHERE USR_ID = #{usrId}
+ </update>
+	
+  <update id="umUpdUsrPwSalt_001" parameterType="usrAcntVO">
+	UPDATE /*umusrDAO.umUpdUsrPwSalt_001*/
+		 IRUSRACNT
+	SET USR_PW = #{usrPw}, 
+	SALT = #{salt}
+	WHERE USR_ID = #{usrId}
+ </update>	
+ 
+ 
+ <select id="umSelUsrInfo_001" parameterType="usrAcntVO" resultType="usrAcntVO">
+	SELECT /*umUsrDAO.umSelUsrInfo_001*/ 
+		 USR_ID,
+		 USR_PW,
+		 USR_NM,
+		 USR_TEL1,
+		 USR_TEL2,
+		 USR_TEL3,
+		 USR_EMAIL1,
+		 USR_EMAIL2,
+		 USE_YN,
+		 EMAIL_AUTH_YN,
+		 RGTR_ID,
+		 RGT_DTM,
+		 PW_RGT_DTM,
+		 PW_INIT_YN,
+		 SALT
+		FROM IRUSRACNT
+		WHERE  USR_ID=#{usrId}
+	</select>
+ 
+ 
+</mapper>

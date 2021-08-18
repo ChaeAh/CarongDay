@@ -1,9 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/jsp/cm/common.jsp" %>
+  <link href="/resources/css/style.css" rel="stylesheet"/>
 
+<title>글 상세 보기</title>
 <style>
 
+form {
+    margin-left : 130px;
+    margin-top : 80px;
+}
+  table {
+    width: 80%;
+    border-top: 1px solid #808080;
+    border-collapse: collapse;
+   display: table;
+   clear:both; 
+  }
+  th, td {
+    border-bottom: 1px solid #737373;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+  background: #d3d3d3;
+  }
+  
+  button {
+  text-align:  right;
+  }
+/* 
 .Container {
 	width : 1400px;
 height : 200px; 
@@ -21,7 +48,7 @@ border: 1px solid #aaa;
 
 }
 
-.button {
+/* .button {
     background-color: white;
     border:  none;
     font-family: a타이틀고딕3;
@@ -38,7 +65,7 @@ border: 1px solid #aaa;
 .button:hover {
    background: #93A9D1;
    color : white;
-}
+} */ 
 </style>
 </head>
 <style>
@@ -47,51 +74,53 @@ border: 1px solid #aaa;
 </style>
 <body>
 <!-- wrapper -->
-<jsp:include page="../header.jsp"></jsp:include>
+<jsp:include page="../header.jsp"/>
 	<!-- Container -->
-	<div class="Container">
+	<div class="container">
+	<div class="row">
+ 		<jsp:include page="/WEB-INF/jsp/leftMenu.jsp"/>
 	<!-- contents -->
+	 <div class="rightcolumn">
+	    <div class="card">
+	     <div class="container managergrounp" id="container" name="container" >
+            <h3>글 상세조회 <span class="txt_small">(이메일 뉴스레터를 발송할 대상 수신자 목록을 선택하세요.)</span> </h3>
+            <hr>
+
 	<form:form commandName="BoardVO" id="frm" name="frm" >
 	<input type="hidden" id="title" name="title" value="${vo.title}"/>
 	<input type="hidden" id="rgtId" name="rgtId" value="${vo.rgtId}"/>
 	<input type="hidden" id="rgtDtm" name="rgtDtm" value="${vo.rgtDtm}"/>
-	<input type="hidden" id="contents" name="contents" value="${vo.contents}"/>
+<%--  	<input type="hidden" id="contents" name="contents" value="${vo.contents}"/> --%>
 	<input type="hidden" id="boardId" name="boardId" value="${vo.boardId}"/>
 	<input type="hidden" id="scrYn" name="scrYn" value="${vo.scrYn}"/>
 	<input type="hidden" id="scrPw" name="scrPw" value="${vo.scrPw}"/>
 	<input type="hidden" id="idx" name="idx" value="${vo.idx}"/>
-	<input type="hidden" id="readCnt" name="readCnt" value="${vo.readCnt}"/><%-- 
-	<input type="text" id="srchKeyword" name="srchKeyword" value="${vo.srchKeyword }"/>
-	<input type="text" id="srchtrg" name="srchtrg" value="${vo.srchtrg }"/> --%>
-	<table width="700px;" id="listtable" name="listtable"  summary="게시물입니다" border="1" cellspacing="0" cellpadding="5" align="center">
-		<thead>
-		<colgroup>
-			<col width="20%">
-			<col width="30%">
-			<col width="30%">
-			<col width="20%">
-		</colgroup>
-		</thead>
+	<input type="hidden" id="readCnt" name="readCnt" value="${vo.readCnt}"/>
+	<table>
+			<col width="15%">
+			<col width="75%">
 		<tbody>
 		<tr>
 			<th scope="col" >제목</th>
 			<td>${vo.title }</td>
+		</tr>
+		<tr>
 			<th scope="col">작성자</th>
 			<td>${vo.rgtId }</td>
 		</tr>
 		<tr>
 			<th scope="col">내용</th>
-			<td colspan="3">${vo.contents }</td>
+			<td >${vo.contents }</td>
 		</tr>
 		<tr>
 			<th scope="col">첨부파일</th>
-			<td colspan="3"></td>
+			<td ></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="left">
+			<td  align="left">
 				<input type="button"class="button"  id="" name="" value="목록으로"  onclick="fn_movePage('boardList.do')"/>
 			</td>
-			<td colspan="2" align= "right">
+			<td align= "right">
 				<input type="button" class="button" id="" name="" value="수정"  onclick="fn_movePage('boardUpdList.do','Y');"/>
 			</td>
 		</tr>
@@ -100,9 +129,12 @@ border: 1px solid #aaa;
 	</table>
 	</form:form>
 	<!-- //contents -->
+	  </div>
+	</div>
 	</div>
 	<!-- //Container -->
-	
+	</div>
+	</div>
 	<!-- // header -->
 	
 	<jsp:include page="../footer.jsp"/>

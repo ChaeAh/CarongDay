@@ -33,7 +33,7 @@
       <typeAliases>
             <typeAlias alias="BoardVO" type="com.project.boardproject.cm.service.BoardVO"></typeAlias>
             <typeAlias alias="CmVO" type="com.project.boardproject.cm.service.CmVO"></typeAlias>
-            <typeAlias alias="UsrAcntVO" type="com.project.boardproject.um.service.UsrAcntVO"></typeAlias>
+            <typeAlias alias="usrAcntVO" type="com.project.boardproject.um.service.UsrAcntVO"></typeAlias>
             <typeAlias alias="HashMap" type="java.util.HashMap"></typeAlias>
             <typeAlias alias="String" type="java.lang.String"/>
       </typeAliases>
