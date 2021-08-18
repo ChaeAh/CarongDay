@@ -19,9 +19,8 @@ background-color:#D8D8D8;
     height: 180px;
     bottom: 0;
      border-top: 1px solid #e7e8ea;
-	height:150px;
     display: block;
-    width: 1500px;;
+
     font-size: 14px;
     line-height: 18px;
       text-align: left;
@@ -95,45 +94,19 @@ width:100%;
 
 
 <body>
-<!-- <div class="footer_zone" >
-	<div class="footer_menu">
-		 Copyright © CSB 2019 All Rights Reserved.
-		<div class="footer_m">
-			<ul>
-			<li>
-			 -CONNECT WITH US
-			</li>
-			</ul>
-		</div>
-	
-	</div>
- </div> -->
  <div class="footer">
   <div class="ft-wrapper">
-        <div class="ft-p">
-            <p style="padding: 15px 0;">경기도 성남시 분당구 야탑/서현
+        <div class="ft-p" style="text-align:center;" >
+            <p style="padding: 15px 0; ">
             <br>
-            Copyright © CSB 2019 All Rights Reserved. / Design by Chae</p>
+            Copyright © <strong>CHAE</strong> 2021 All Rights Reserved. </p>
         </div>
         <div class="ft-img">
             <ul class="footer_ul">
-            	<li><a href= "" >About US</a></li>
+            	<li><a href= "" ></a></li>
             </ul>
         </div>
     </div>
      </div>
-<!-- <div id="bottombar" class="bottombar">
-	<div id="locationbar">
-		<span style="padding-bottom: 50px;"> Copyright © CSB 2019 All Rights Reserved.</span>
-	</div>
-	-CONNECT WITH US
-	<div id="infotab">
-		<ul class="groupinfo">
-			<li>방장명: 영차</li>
-			<li>스터디 장소: 경기도 성남시 분당구 야탑/서현</li>
-			<li>이메일: [임시]test@test.test</li>
-		</ul>
-	</div>
-</div> -->
 </body>
 </html>

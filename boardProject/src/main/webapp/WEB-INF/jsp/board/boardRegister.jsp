@@ -3,7 +3,28 @@
 <%@include file="/WEB-INF/jsp/cm/common.jsp" %>
 
 <style>
-.wrapper {
+
+form {
+    margin-left : 130px;
+    margin-top : 80px;
+}
+  table {
+    width: 80%;
+    border-top: 1px solid #808080;
+    border-collapse: collapse;
+   display: table;
+   clear:both; 
+  }
+  th, td {
+    border-bottom: 1px solid #737373;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+  background: #d3d3d3;
+  }
+/* .wrapper {
 	 width: 1400px;
   margin: 0 auto;
   
@@ -40,20 +61,20 @@ padding : 30px;
 }
 #msgContent {
 text-align: center;
-}
+} */
 </style>
 <body>
 <script type="text/javascript">
 
 $(document).ready(function() {
 
-	$('#scrYn').click(function() {
- 	if($('#scrYn').prop("checked")) {
- 		$('#scrPw').attr("disabled", false);
-	}else {
-		$('#scrPw').attr("disabled", true);
-		$('#scrPw').val("");
-	} 
+ 	$('#scrYn').change(function() {
+	  	if($('#scrYn').is(":checked")) {
+	 		$('#scrPw').attr("disabled", false);
+		}else {
+			$('#scrPw').attr("disabled", true);
+			$('#scrPw').val("");
+		} 
 	});
 	
 	$('#scrPw').keypress(function (event) { 
@@ -91,19 +112,15 @@ function fn_Register() {
 <!-- wrapper -->
 <jsp:include page="../header.jsp"/>
 	<!-- Container -->
-	<div class="wrapper">
-	<!-- contents -->
-	<div id="msgContent" >
-	<c:choose>
-	    <c:when test="${flag == '등록'}">
-	    <h1>등록 페이지</h1>
-		</c:when>
-		<c:otherwise>
-	    <h1>수정 페이지</h1>
-		</c:otherwise>
-	</c:choose>
-	</div>
-	<div class="Container">
+	<div class="container">
+	<div class="row">
+		<jsp:include page="/WEB-INF/jsp/leftMenu.jsp"/>
+			<!-- contents -->
+	 <div class="rightcolumn">
+	    <div class="card">
+	     <div class="container managergrounp" id="container" name="container" >
+            <h3>글<c:choose><c:when test="${flag == '등록'}"> 등록 페이지</c:when><c:otherwise> 수정 페이지</c:otherwise></c:choose>  <span class="txt_small">(이메일 뉴스레터를 발송할 대상 수신자 목록을 선택하세요.)</span> </h3>
+            <hr>
 	<form:form commandName="BoardVO" id="frm" name="frm" method="post" >
 	<c:choose>
 		<c:when test="${not empty BoardVO.idx }">
@@ -111,34 +128,37 @@ function fn_Register() {
 		</c:when>
 	</c:choose>
 	<input type="hidden" id="boardId" name="boardId" value="free"/>
+	<input type="hidden" id="rgtId" name="rgtId" value="${usrId}"/>
 	<input type="hidden" id="currentPage" name="currentPage" value=""/>
 	<!-- form:input path= "" id랑 name을 맞춰준다 -->
-	<table width="700px;" id="insertTable" name="insertTable"  summary="게시물입니다" border="1" cellspacing="0" align="center">
+	<table >
 		<thead>
 		<colgroup>
-			<col width="40%">
-			<col width="20%">
 			<col width="30%">
-			<col width="20%">
+			<col width="70%">
 		</colgroup>
 		</thead>
 		<tbody>
 		<tr>
 			<th scope="col" >제목</th>
 			<td><input type="text" id="title" name="title" maxlength="100" size="50" value="${BoardVO.title }"/></td>
+		</tr>
+		<tr>	
 		<%-- 	<td><form:input path="title" maxlength="100" size="50"/></td> --%>
 			<th scope="col">작성자</th>
-				<td><input type="text" id="rgtId" name="rgtId"  value="${userid }" readonly="readonly"/></td>
+				<td><span>${usrId}</span></td>
 	<%-- 		<td><form:input path="rgtId"   /></td> --%>
 		</tr>
 		<tr>
-			<td colspan="4">
-				<span style="padding: 10px; padding-left: 20px;"><strong>비밀글</strong>	<span>
+			<th>
+				<strong>비밀글	</strong>
+				</th>
+				<td >
 			<c:choose>
 				<c:when test="${BoardVO.scrYn eq 'N' || BoardVO.scrYn eq '' || BoardVO.scrYn == null }">
 					<input type="checkBox" id="scrYn" name="scrYn" value="Y" />
 					<span style="padding: 10px;">비밀번호</span>
-					<input type="password" id="scrPw" name="scrPw"maxlength="4" disabled="disabled" />
+					<input type="password" id="scrPw" name="scrPw"maxlength="4" disabled />
 				</c:when>
 				<c:otherwise>
 					<input name="scrYn" id="scrYn"  type="checkbox"  value="Y" checked="checked" >
@@ -146,20 +166,20 @@ function fn_Register() {
 					<input type="password" id="scrPw" name="scrPw" value="${BoardVO.scrPw }" maxlength="4"  />
 				</c:otherwise>
 			</c:choose>
-			
+			</td>
 		
 			</td>
 		</tr>
 		<tr>
 			<th scope="col">내용</th>
-			<td colspan="3"><textarea  cols="74" rows="20" id="contents" name="contents" style="overflow-y:scroll">${BoardVO.contents } </textarea></td>
+			<td ><textarea  cols="80" rows="20" id="contents" name="contents" style="overflow-y:scroll">${BoardVO.contents } </textarea></td>
 		</tr>
 		<tr>
 			<th scope="col">첨부파일</th>
-			<td colspan="3"><input type="file" id="attachFile" name="attachFile"  value="" /></td>
+			<td ><input type="file" id="attachFile" name="attachFile"  value="" /></td>
 		</tr>
 		<tr>
-			<td colspan="4" style="text-align: right">
+			<td colspan="2" style="text-align: right">
 			 <c:if test="${flag == '등록'}">
 				<input type="button" class="button" id="" name="" value="등록"  onclick="fn_movePage('boardInsert.do','Y')"/>
 			</c:if>
@@ -173,8 +193,11 @@ function fn_Register() {
 	</tbody>
 	</table>
 	</form:form>
+  </div>
+	</div>
 	</div>
 	<!-- //Container -->
+	</div>
 	</div>
 	<!-- // header -->
 	

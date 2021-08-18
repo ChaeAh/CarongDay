@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.boardproject.cm.service.impl.CmDAO">
+ 
+	<!-- property : vo에서 변수명.  column : DB상 컬럼명  -->
+	 <resultMap id="BoardVOarr" type="BoardVO">
+	 	<result property="idx" column="idx"/>
+	 	<result property="boardId" column="BOARD_ID"/>
+	 	<result property="title" column="TITLE"/>
+	 	<result property="contents" column="CONTENTS"/> 	
+	 	<result property="delYn" column="DEL_YN"/>
+	 	<result property="atchYn" column="ATCH_YN"/>
+	 	<result property="readCnt" column="READ_CNT"/> 	
+	 	<result property="rgtId" column="RGTR_ID"/>
+	 	<result property="rgtDtm" column="RGT_DTM"/>
+	 	<result property="updId" column="UPDR_ID"/>
+	 	<result property="updDtm" column="UPD_DTM"/>
+	 	<result property="scrYn" column="SCR_YN"/>
+	 	<result property="scrPw" column="SCR_PW"/>
+	 </resultMap>
+	 
+	 <!--  
+	 	private String gnrCd;				//일반코드
+	private String cdId;				//코드ID
+	private String gnrCdNm;		//일반코드명
+	private String cdCts;				//코드명
+	private String cdPrps;			//코드용도
+	private String useYn;
+	private String rgtrId;
+	private String rgtDtm;
+	private String updrId;
+	private String updDtm;-->
+	  <resultMap id="CmCodearr" type="CmVO">
+	 	<result property="cdId" column="cd_id"/>
+	 	<result property="gnrCd" column="gnr_cd"/>
+	 	<result property="gnrCdNm" column="gnr_cd_nm"/>
+	 	<result property="cdCts" column="cd_cts"/>
+	 	<result property="cdPrps" column="cd_prps"/> 	
+	 	<result property="useYn" column="use_yn"/>
+	 	<result property="rgtrId" column="rgtr_id"/> 	
+	 	<result property="rgtDtm" column="rgt_dtm"/>
+	 	<result property="updrId" column="updr_Id"/>
+	 	<result property="updDtm" column="upd_Dtm"/>
+	 </resultMap>
+	 
+
+	<!-- <select id="boardInq_001" resultMap="BoardVOarr" parameterType="BoardVO">
+		SELECT 
+			idx
+			,boardId
+			,title
+			,contents
+			,delYn
+			,atchYn
+			,readCnt
+			,rgtId
+			,rgtDtm
+			,updId
+			,updDtm
+		FROM board
+		WHERE 1=1 
+		<if test="srchKeyword != null">
+			AND title LIKE CONCAT('%',#{srchKeyword},'%')
+		</if>
+		ORDER BY rgtDtm DESC
+		LIMIT #{startIndex},#{pageSize}
+	</select>
+
+	<select id="boardInqCnt_001" resultType="Integer" parameterType="BoardVO">
+		SELECT count(*)
+		FROM board
+		WHERE 1=1 
+		<if test="srchKeyword != null">
+			AND title LIKE CONCAT('%',#{srchKeyword},'%')
+		</if>
+	</select>
+		
+	
+	<insert id="boardWrite_001" parameterType="boardVO">
+		INSERT INTO board (
+		boardId
+		,title
+		,contents
+		,delYn
+		,atchYn
+		,readCnt
+		,rgtId
+		,rgtDtm)
+		VALUES (
+		'1'
+		,#{title}
+		,#{contents}
+		,'N'
+		,'N'
+		,0
+		,#{rgtId}
+		,DATE_FORMAT(now(), '%Y%m%d%H%i%s')
+		)
+	</insert>
+	
+	<delete id="boardDelete_001" parameterType="boardVO">
+		DELETE FROM board 
+		WHERE idx = #{idx}		
+	</delete>	
+	
+	<select id="boardDetail_001" resultMap="BoardVOarr" parameterType="BoardVO">
+		SELECT 
+			idx
+			,boardId
+			,title
+			,contents
+			,delYn
+			,atchYn
+			,readCnt
+			,rgtId
+			,rgtDtm
+			,updId
+			,updDtm
+		FROM board
+		WHERE idx = #{idx}	
+	</select>
+	
+	<update id="boardModify_001" parameterType="boardVO">
+		UPDATE board 
+		SET	title = #{title}
+		,contents = #{contents}
+		,rgtId = #{rgtId}
+		WHERE idx = #{idx}
+	</update>	
+	끝
+	
+	<update id="boardUpdateReadCnt_001" parameterType="int">
+		UPDATE /*boardUpdateReadCnt_001 */
+		board
+		SET READCNT = READCNT+1
+		WHERE IDX=#{idx}
+	</update> -->
+	
+	<insert id="boardInsert_001" parameterType="BoardVO">
+		INSERT INTO /* boardInsert_001*/
+		IRCMBOARD (
+		IDX
+		,BOARD_ID
+		, TITLE
+		, CONTENTS
+		, DEL_YN
+		, ATCH_YN
+		, READ_CNT
+		, RGTR_ID
+		, RGT_DTM
+		<if test="scrYn !=null">
+		, SCR_YN
+		, SCR_PW
+		</if>
+		) 
+		values (
+		#{idx}
+		, #{boardId}
+		, #{title}
+		, #{contents}
+		, 'N'
+		, 'N'
+		, 0
+		, #{rgtId}
+		, TO_CHAR(SYSDATE,'yyyymmddhh24miss')
+			<if test="scrYn !=null">
+		, #{scrYn}
+		, #{scrPw}
+		</if>
+		) 
+		</insert>
+
+	<update id="boardUpdBoard_001" parameterType="BoardVO">
+		UPDATE /*boardUpdBoard_001*/
+		IRCMBOARD SET
+		 TITLE = #{title}
+		, CONTENTS = #{contents}
+	<!-- 	, RGTR_ID = #{rgtId} -->
+		, UPDR_ID= #{rgtId}
+		, UPD_DTM = TO_CHAR(SYSDATE,'yyyymmddhh24miss')
+		<if test="scrYn !=null">
+		, scrYn = #{scrYn}
+		, scrPw = #{scrPw}
+		</if>
+		
+		WHERE IDX = #{idx}
+	</update>
+	
+	<select id="selectBoardIdx_001" parameterType="BoardVO" resultType="Integer">
+		SELECT /*selectBoardIdx_001*/
+			NVL(MAX(IDX),0)+1
+		FROM IRCMBOARD
+	</select>
+	
+	
+	<select id="boardGetList_001" parameterType="BoardVO" resultMap="BoardVOarr" >
+		SELECT * FROM 
+		( 
+		SELECT ROWNUM NUM, 
+			IDX,
+			BOARD_ID,
+			TITLE,
+			CONTENTS,
+			DEL_YN,
+			ATCH_YN,
+			READ_CNT,
+			RGTR_ID,
+			CASE WHEN TO_CHAR(SYSDATE, 'YYYYMMDD') = SUBSTR(RGT_DTM,0,8) 
+        			  THEN  SUBSTR(RGT_DTM,-6,2)||':'||SUBSTR(RGT_DTM,-4,2) 
+        			  ELSE SUBSTR(RGT_DTM,0,4)||'-'||SUBSTR(RGT_DTM,5,2)||'-'||SUBSTR(RGT_DTM,7,2)         			   
+        			  END as RGT_DTM,
+			SCR_YN,
+			SCR_PW
+		 FROM IRCMBOARD A
+		<if test="srchKeyword != null">
+			<where>
+			<if test='srchtrg == "title"'>
+		TITLE 
+		</if>
+		<if test='srchtrg == "contents"'>
+		CONTENTS 
+		</if>
+			<![CDATA[
+			  LIKE '%' + #{srchKeyword} +'%'
+			]]>
+	 </where>
+	 </if>
+			 ORDER BY IDX DESC)
+		WHERE NUM BETWEEN #{startIndex} AND #{pageSize} 
+	</select>
+	
+	<select id="boardgetBoardCnt_001" parameterType="BoardVO" resultType="int">
+		SELECT /*boardgetBoardCnt_001*/
+		COUNT(*) 
+		FROM IRCMBOARD
+		<!-- <if test="srchKeyword != null">
+			<where>
+		<if test='srchtrg == "title"'>
+		TITLE 
+		</if>
+		<if test='srchtrg == "contents"'>
+		CONTENTS 
+		</if>
+			<![CDATA[
+			 	  LIKE '%' + #{srchKeyword} +'%'
+			]]>
+			 </where>
+		</if> -->
+	</select>
+	
+	
+	<delete id="boardDelete_001"  parameterType="BoardVO">
+		DELETE   /* boardDelete_001*/
+		FROM IRCMBOARD
+		WHERE IDX=#{idx}
+	
+	</delete>
+	
+	<insert id="boardUpdateReadCnt_001" parameterType="int">
+		UPDATE /*boardUpdateReadCnt_001 */
+		IRCMBOARD
+		SET READ_CNT = READ_CNT+1
+		WHERE IDX=#{idx}
+	
+	</insert>
+	<select id="boardDetail_001" parameterType="BoardVO" resultMap="BoardVOarr">
+			SELECT /* boardDetail_001*/
+			IDX
+			,BOARD_ID
+			,TITLE
+			,CONTENTS
+			,DEL_YN
+			,ATCH_YN
+			,READ_CNT
+			,RGTR_ID
+			,RGT_DTM
+			,UPDR_ID
+			,UPD_DTM
+			,SCR_YN
+			,SCR_PW
+		FROM IRCMBOARD
+		WHERE IDX= #{idx}
+	</select>
+	
+	<select id="boardScrPwChkConfirm_001" parameterType="BoardVO" resultType="int">
+	 SELECT /* boardScrPwChkConfirm_001 */
+	 COUNT(*)
+	 FROM IRCMBOARD
+	 WHERE IDX= #{idx}
+	 and SCR_PW= #{scrPw}
+	
+	</select>
+<!-- 	<select id="boardSboard_001" parameterType="HashMap" resultMap="BoardVOarr">
+			SELECT * /*boardSboard_001*/
+			FROM board 
+			WHERE 
+			<if test="sel.equlas('title')">
+			title like CONCAT('%',#{text},'%')
+			</if>
+			<if test="sel.equals('contents')">
+			contents like CONCAT('%',#{text},'%')
+			</if>
+			ORDER BY IDX DESC
+		
+	
+	</select> -->
+	
+	<select id="selCmCode_001" parameterType="String" resultMap="CmCodearr">
+		SELECT  GNR_CD, GNR_CD_NM
+		FROM IRCMCDDTL
+		WHERE CD_ID = #{cdId}
+		AND USE_YN='Y'
+	</select>
+	
+	<select id="selCmCode_002" parameterType="String" resultMap="CmCodearr">
+		SELECT  GNR_CD, GNR_CD_NM
+		FROM IRCMCDDTL
+		WHERE CD_ID = #{cmId}
+		AND USE_YN='Y'
+	</select>
+</mapper>

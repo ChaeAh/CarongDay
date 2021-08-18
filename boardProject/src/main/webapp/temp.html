@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+#wrap{
+  width:100%; /*bootstrap : container (전체 화면 , width :960px)*/
+  height:100%;
+  margin:0px auto; /*가운데 정렬*/
+  font-size:20px;
+  text-align: center;
+}
+#header{
+  width:100%;
+  height:100px;
+  background-color: cyan;
+  line-height: 100px;/*글자나 이미지 위치 정렬*/
+}
+#nav{
+   width:100%;
+   height:90px;
+   background-color: yellow;
+   line-height: 100px;/*글자나 이미지 위치 정렬*/
+}
+#aside {
+   width:17%;
+   height:600px;
+   background-color: green;
+   line-height: 600px;
+   float: left;
+}
+#section{
+   width:83%;
+   height:600px;
+   background-color: red;
+   line-height: 600px;
+   float: left;
+}
+#footer{
+   width:100%;
+   height:100px;
+   background-color: black;
+   line-height: 100px;/*글자나 이미지 위치 정렬*/
+   color:white;
+   float: left;
+}
+
+#topbar{
+text-align : center;
+width:100%;
+}
+#loginbar{
+width:100%;
+padding-left:15px;
+padding-right:15px;
+margin-left: 5px;
+margin-right: 5px;
+}
+#navibar{
+width:100%;
+height:230px;
+/* padding-left:30px;
+padding-right:30px;
+margin-left:100px;
+margin-right:100px;
+margin-top : 50px;  */
+  overflow: hidden;
+}
+.logintab li{float: right; list-style: none; margin-right:10px; text-decoration: none;}
+.logintab li::after{padding-left:10px;content:"|"}
+.logintab li:first-child::after{content:"" }
+.logintab li a {text-decoration: none;}
+/* .logintab .loginMsg a:hover {
+font-family: bold;
+} */
+
+div#navilogo{
+margin-bottom:-30px;
+margin-left : 17px;
+margin-right:15px;
+float:inherit;
+}
+/* div#navicategory {
+float:right;
+}
+.categorytab li{float:left; list-style:none} */
+.categorytab  {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color:  white;
+  border-top :  2px solid #e7e8ea;
+  border-bottom : 2px solid #e7e8ea;
+   border-top-left-radius:20px;
+ border-top-right-radius:20px;
+ border-bottom-right-radius:20px;
+ border-bottom-left-radius:20px;
+  display: block;
+  text-align: center;
+  
+  
+  
+}
+#navicategory {
+width :100%;
+}
+.categorytab li a {
+	color: black; 
+	-webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+   font-family: Dotum,'돋움',Helvetica,sans-serif;
+padding-right : 20px;
+padding-left :20px;
+margin-right :4px;
+
+    }
+ .header {
+  padding: 30px;
+  text-align: center;
+  background: white;
+}
+ 
+.loginMsg {
+    cursor: pointer;}
+
+.category {
+  float: left;
+}
+
+.category a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.category a:hover {
+font-weight: bold;
+}
+</style>
+
+<body>
+<div id="wrap">
+    <div id="header">
+	<div id="topbar">
+		<div id="loginbar">
+			<ul class="logintab">
+				<c:if test="${not empty sessionScope.userid}">
+					<li class="loginMsg"><a href="logout.do">로그아웃</a></li>
+					<li class="loginMsg"><a href="pjsMember.do">${sessionScope.userid }</a></li>
+				</c:if>
+				<c:if test="${empty sessionScope.userid}">
+					<li class="loginMsg"><a href="login.do">LOGIN</a></li>
+					<li class="loginMsg"><a href="pjsMember.do">JOIN</a></li>
+				</c:if>
+			</ul>
+		</div>
+	</div>
+	<div id="navibar">
+		<div id="navilogo">
+			<a href="/index.jsp">
+				<img id="studylogo" src="/resources/images/CHAE.png"> <!-- style="height:120px;border:2px; margin: 20px;" -->>
+			</a>
+		</div>
+		<div id="navicategory">
+			<ul class="categorytab">
+				<li class="category"><a href="">INDEX</a></li>
+			<!-- 	<li class="category"><a href="./boardInq.do" >기원</a></li> -->
+				<li class="category"><a href="../boardList.do" >게시판</a></li>
+				<li class="category"  style="float:right; "><a href="" >더 보기</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+    <div id="nav">nav(메d뉴)</div>
+    <div id="aside">aside(부가정보,로그인)</div>
+    <div id="section">section(실제 출력f부분)</div>
+    <div id="footer">footer(회사정보,개f인정보방침)</div>
+  </div>
+     <!-- <div id="wrap">
+       <header>dd</header>
+       <nav>ff</nav>
+       <aside>ss</aside>
+       <section>rrr</section>
+       <footer>vvv</footer>
+     </div> -->
+</body>
+</html>

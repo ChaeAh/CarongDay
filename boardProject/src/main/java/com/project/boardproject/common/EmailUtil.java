@@ -22,8 +22,9 @@ public class EmailUtil {
  
 	private static final Logger logger = LoggerFactory.getLogger(EmailUtil.class);
 
- public void SendMail(Email email) throws Exception {
+ public String SendMail(Email email) throws Exception {
 		logger.debug("SendMail Method START==============================");
+		String SuccYn = "N";
 		Map<String,String> map = new HashMap<>();
 		map.put("content", email.getContent());
 		MimeMessage msg = mailSender.createMimeMessage();
@@ -33,13 +34,14 @@ public class EmailUtil {
 		msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(email.getRecipients()));
 		try {
 			mailSender.send(msg);
+			SuccYn = "Y";
 		}catch(NullPointerException e) {
 			e.printStackTrace();
  		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		
+		return SuccYn;
 	}
 	
 	
