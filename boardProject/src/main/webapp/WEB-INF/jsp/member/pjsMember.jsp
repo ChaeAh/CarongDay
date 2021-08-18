@@ -9,8 +9,7 @@
 <!--     <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css"> -->
 <!-- common.css의 경우 추후 디자인 분리 작업이 진행 될 경우 협의 후 참조 여부 결정이 필요합니다. -->
 <link rel="stylesheet" type="text/css" href="/resources/css/common.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/layout.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/ui.css">
+
 <style>
 #htmlText, #htmlIdChkText {
 font-size: 10px;
@@ -202,27 +201,11 @@ function fnEmailAuth_SuccessCallBack(obj) {
         <!-- START : HEADER TOP CONTAINER -->
         <div class="innerContainer">
             <!-- START : 다국어 버튼 영역 -->
-            <ul class="global">
-                <li><a href="#" class="en" title="영어페이지로 이동" onclick="javascript:headerMenu('/sm/ovs/SmTopEnglishInformation.do?guideCd=0000010001&amp;guideYn=Y','080000000002','N');">ENGLISH</a></li>
-				<li><a href="#" class="cn" title="중국어페이지로 이동" onclick="javascript:headerMenu('/sm/ovs/SmTopChineseInformation.do?guideCd=0000010001&amp;guideYn=Y','080000000009','N');">中國語</a></li>
-				<li><a href="#" class="jp" title="일본어페이지로 이동" onclick="javascript:headerMenu ('/sm/ovs/SmTopJapaneseInformation.do?guideCd=0000010001&amp;guideYn=Y','080000000014','N');">日本語</a></li>
-            </ul>
+       
             <!-- END : 다국어 버튼 영역 -->
 
             <!-- START : 사이트 내 전체검색 영역 -->
-            <div class="hdSearchWrap">
-                <fieldset>
-                    <legend>사이트 내 전체검색</legend>
-                    <form id="unifSrch" name="unifSrch" action="/cs/CsBltnWrt.do" method="post" onsubmit="return false;">
-                        <input type="hidden" name="fg" value="Y">
-			            <input type="hidden" name="inqTrgt" value="02">
-			            <input type="hidden" name="inqType" value="03">
-                        <label for="srchWord" class="hidden">검색어 필수</label>
-                        <input type="text" name="srchWord" id="srchWord" class="keyword" placeholder="검색어를 입력하세요." onfocus="javascript:clearSrch(this);">
-                        <button type="submit" name="button" class="btnSearch" onclick="javascript:unifSrchView();"><span class="hidden">검색</span></button>
-                    </form>
-                </fieldset>
-            </div>
+       
             <!-- END : 사이트 내 전체검색 영역 -->
         </div>
         <!-- END : HEADER TOP CONTAINER -->
@@ -265,27 +248,7 @@ function fnEmailAuth_SuccessCallBack(obj) {
 <!-- END : side navigation호출 -->
 <%@include file="../cm/sideNav.jsp" %>
 	<!-- 	
-        <!-- START : CONTENT -->
-        <section id="content" tabindex="-1">
-        	
-        	<!-- START : 이전 파라미터 FORM -->
-			<form id="csBltnWrtVO" name="listForm" action="/cs/CsBltnWrt.do" method="post" onsubmit="return false;">
-				<input id="bltnbordId" name="bltnbordId" type="hidden" value="0000001">
-				<input id="bltnId" name="bltnId" type="hidden" value="000000120210202000001">
-				<input id="inqType" name="inqType" type="hidden" value="">
-				<input id="srchKeywd" name="srchKeywd" type="hidden" value="">
-				<input id="pageIndex" name="pageIndex" type="hidden" value="1">
-				<input id="inqOrder" name="inqOrder" type="hidden" value="">
-			</form>
-			<!-- END : 이전 파라미터 FORM -->
-			
-			<!-- START : 첨부파일 FORM -->
-			<form id="csAtchfileVO" name="atchfileForm" action="/cs/CsBltnWrt.do" method="post">
-				<input id="bltnbordId" name="bltnbordId" type="hidden" value="0000001">
-				<input id="bltnId" name="bltnId" type="hidden" value="000000120210202000001">
-				<input id="atchfileId" name="atchfileId" type="hidden" value="">
-				<input id="atchfileNm" name="atchfileNm" type="hidden" value="">
-			</form>
+     
 			<!-- END : 첨부파일 FORM -->
         	
             <!-- START : 네비게이션 호출 -->
@@ -404,39 +367,7 @@ function fn_popUp(url, height, width) {
     windowOpen(url, 'bottomCmP', height, width, 'yes');
 }
 </script>
-<!-- START : FOOTER -->
-<!-- <footer id="ft">
-    <h2 class="hidden">푸터영역</h2>
-	<div class="innerContainer">
-		 START : 지원센터 안내
-            <div class="csWrap">
-                <h3 class="csTitle"><strong>사용자지원센터</strong>
-					일반 통화요금 부과 (별도 정보이용료 없음)</h3>
-				<p class="csCall mo-hidden">1899-2732, 031-776-7878</p>
-                <p class="csCall mo-visible"><a href="tel:1899-2732">1899-2732</a>, <a href="tel:031-776-7878">031-776-7878</a></p>
-                
-                <span class="csInfo">월~금요일 (09:00~18:00) / 토 · 일요일 및 공휴일은 휴무</span>
-            </div>
-            END : 지원센터 안내
 
-        <div class="copyWrap">
-            <div class="ftLink">
-            	<h3 class="hidden">하단 링크</h3>
-                <ul>
-                    <li><a href="javascript:fn_popUp('/sm/SmBottomAgreement.do','900','600');" class="nw" title="새창">이용약관</a></li>
-                    <li><a href="javascript:fn_popUp('/sm/SmBottomIndiInfoProcPolic.do','900','600');" class="nw tBlack" title="새창">개인정보 처리방침</a></li>
-                    <li><a href="javascript:fn_popUp('/sm/SmBottomCopyProtecPolic.do','900','600');" class="nw" title="새창">저작권 보호 정책</a></li>
-                    <li><a href="javascript:fn_popUp('/sm/SmBottomLinkMatterAttend.do','900','600');" class="nw" title="새창">링크 시 유의사항</a></li>
-                    <li class="mo-hidden"><a href="http://efamilyrs.scourt.go.kr" title="새창" target="_blank">원격지원</a></li>
-                </ul>
-            </div>
-            <div class="copy">
-                <p>Copyright©Supreme Court of Korea. All Rights reserved.</p>
-            </div>
-        </div>
-    </div>
-</footer> -->
-<%@include file="../cm/footer.jsp" %>
 <!-- END : FOOTER -->
 	<!-- END : footer호출 -->
 </div>

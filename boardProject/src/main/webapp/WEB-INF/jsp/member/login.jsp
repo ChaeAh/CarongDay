@@ -54,19 +54,15 @@ $(document).ready(function () {
 						}else if(obj == 1) {
 							$('#error_next_box').css("display","block");
 							$('#error_next_box').html("비밀번호가 일치하지 않습니다.");
-						//	return;
 						}else if(obj == 2) {
 							$('#error_next_box').css("display","block");
 							$('#error_next_box').html("아이디 또는 비밀번호가 일치하지 않습니다.");
-					//		return;
 						}else if(obj == 3) {
 							$('#error_next_box').css("display","block");
 							$('#error_next_box').html("휴면 계정입니다.");
-					//		return;
 						}else if(obj == 4) {
 							$('#error_next_box').css("display","block");
 							$('#error_next_box').html("이메일이 인증되지 않았습니다.");
-					//		return;
 						}
 						
 					//	memberLogin_Callback(data);
@@ -101,8 +97,8 @@ $(document).ready(function () {
  0 : 로그인 성공
  1:  비밀번호 불일치
  2: 정보 없음
- 3 : 사용여부가 N임
- 4 : 이메일 인증 N임
+ 3 : 사용여부 N
+ 4 : 이메일 인증 N
  5, 6 : 비밀번호가 3개월이상 만료 또는 빔리번호 초기화 (이페이지로 들어오지 않음)
  
 */
