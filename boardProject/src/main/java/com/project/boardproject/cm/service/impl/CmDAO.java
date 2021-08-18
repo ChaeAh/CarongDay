@@ -69,5 +69,8 @@ public interface CmDAO  {
 	
 	
 	public List<ArrayList> selCmCode_001(String string);
-	public List<CmVO> selCmCode_002(String string);	
+	
+	public List<CmVO> selCmCode_002(String string);
+	
+	public int selectBoardIdx_001(BoardVO boardVO);	
 }

@@ -6,20 +6,20 @@
     <!-- 공통으로 사용되는 taglib 선언 -->
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <title>멤버 상세조회</title>
-    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css">
+<!--     <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css"> -->
 <!-- common.css의 경우 추후 디자인 분리 작업이 진행 될 경우 협의 후 참조 여부 결정이 필요합니다. -->
 <link rel="stylesheet" type="text/css" href="/resources/css/common.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/layout.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/ui.css">
 <style>
-#htmlText {
+#htmlText, #htmlIdChkText {
 font-size: 10px;
 color: red;
 }
+
 </style>
 <link rel="shortcut icon" href="/images/favicon.png">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
 <script type="text/javascript">
 
 function fnDaumPostCode() {
@@ -110,7 +110,6 @@ new daum.Postcode({
 }
 
 function fnEmailAuth() {
-	var form = document.usrAcntForm;
 	var id=$('#usrId').val();
 	
 	if(id == "" || id == null) {
@@ -131,8 +130,6 @@ function fnEmailAuth() {
 				fnEmailAuth_SuccessCallBack(data);
 				}
 			}
-			
-			
 		});
 		
 	
@@ -146,35 +143,56 @@ function fnEmailAuth_SuccessCallBack(obj) {
 	
 }
 
-
-function memberModify(){
-	var log = document.member;
-	log.action="memberModify.do";
-	var pw=document.member.pw.value;
-	var name = document.member.name.value;
-	var email1 = document.member.email1.value;
-	if(name=="") alert("아이디를 입력해주세요");
-	else if(email1=="") alert("이메일을 입력해주세요");
-	else if(pw=="") alert("비밀번호를 입력해주세요");
-	else log.submit();
-}
-function memberDelete(){
-	var log=document.member;
-	log.action="";
-	log.submit();
-}
- 
-	/* function fnChkId() {
-		alert("ddd");
-		var form = document.usrAcntForm;
-		alert(form.usrId.value);
-		alert($('#usrId').val());
-	} */
+	 function fnChkId() {
+		var form = $('#usrAcntVO').serialize();
+		
+	   	if(!isAlphaNum($('#usrId').val())) {
+	  		alert("영문과 숫자를 조합하셔야 합니다.");
+	  		$('#usrId').focus();
+	  		return;
+	  	} 
+	   	
+	   	if($('#usrId').val().length <4 || $('#usrId').val().length > 16) {
+	   		alert("아이디는 4자 이상 16자 이하로 작성하셔야 합니다.");
+	   		$('#usrId').focus();
+	   		return;
+	   	}
+	   	
+	   	
+		if( $('#usrId').val() != null && $('#usrId').val() !="") {
+		$.ajax({
+			url : "/um/umUsrChkId.do",
+			type : "post",
+			datatype : "json",
+			data : form,
+			success : function(data) {
+				if(data =="1") {
+					$('#htmlIdChkText').html("사용가능한 아이디입니다.");
+					$('#idUseChk').val("OK");
+					$('#usrPw').focus();
+				}else if(data == "2") {
+					$('#htmlIdChkText').html("중복된 아이디입니다.");
+					$('#usrId').focus();
+					return;
+				}
+			}
+		});
+		}else {
+			alert("아이디를 입력해주세요.");
+			  $('#usrId').focus();
+			  return;
+		}
+		
+	} 
 
 	function fnRgt() {
 		var form= document.usrAcntForm;
+		
+		form.action ="/um/usrAcntRgt.do";
 		form.submit();
+		form.action= "";
 	}
+	
 </script>
 <body>
 <!-- START : HEADER -->
@@ -218,94 +236,25 @@ function memberDelete(){
 			<h1 id="logo"><a href="#" onclick="javascript:goToMain();"><img src="/images/logo.png" alt=""></a></h1>
             <!-- START : GNB -->
             <nav id="gnb">
-				<h2 id="topmenuNm" class="hidden">주메뉴</h2>
+				<h2 id="topmenuNm" class="hidden"></h2>
 				
-
+</nav>
 
 <!-- 메뉴3단계 E3.ul 체크 변수--> 
 
 <ul>
 	<!-- for start : 1단계 메뉴  -->
-	 
 		<!-- S1.li -->
 		<li>
-
 			<!-- 1단계 메뉴 현출 -->
-		 	<a id="top1m01" href="#_">증명서발급</a> 
+		 	<a id="top1m01" href="#_"></a> 
 			<!-- S2.div -->
 			<div class="gnbSubWrap gnbSub1">
-				<!-- S2.ul -->
-				<ul>
-					<!-- for start : 메뉴2단계 -->
-							<!-- S2.li -->
-							<li> 
-								<a href="#" onclick="javascript:headerMenu('/pt/PtFrrpApplrInfoInqW.do?menuFg=01','010000000002','N');">가족관계등록부</a>
-												<!-- S3.ul -->
-									<ul>
-											<li><a href="#_" onclick="javascript:headerMenu('/pt/PtFrrpApplrInfoInqW.do?menuFg=02','010000000003','N');">가족관계증명서</a></li>
-											<li><a href="#_" onclick="javascript:headerMenu('/pt/PtFrrpApplrInfoInqW.do?menuFg=03','010000000004','N');">기본증명서</a></li>
-											<li><a href="#_" onclick="javascript:headerMenu('/pt/PtFrrpApplrInfoInqW.do?menuFg=04','010000000005','N');">혼인관계증명서</a></li>
-											<li><a href="#_" onclick="javascript:headerMenu('/pt/PtFrrpApplrInfoInqW.do?menuFg=05','010000000006','N');">입양관계증명서</a></li>
-											<li><a href="#_" onclick="javascript:headerMenu('/pt/PtFrrpApplrInfoInqW.do?menuFg=06','010000000007','N');">친양자입양관계증명서</a></li>
-									</ul>
-											<!-- E3.ul -->
-							</li>
-							<!-- E2.li -->
-								<script type="text/javascript">
-								<!-- 1단계로 올리기 위한 강제 스크립트 실행 -->
-								if(firstMenuChk){
-									var trgtId = "top1m01";
-									$("#"+trgtId).click(function(){
-										var prgUrl = '/pt/PtFrrpApplrInfoInqW.do?menuFg=01';
-										prgUrl = prgUrl.replace(/&amp;/g, "&"); 
-									    headerMenu(prgUrl,'010000000002','N');
-									});
-								}
-								</script>
-							<!-- S2.li -->
-							<li> 
-								<a href="#" onclick="javascript:headerMenu('/pt/PtEngFrrpApplrInfoInqW.do?menuFg=08','010000000009','N');">영문증명서</a>
-							</li>
-							<!-- E2.li -->
-								<!-- S2.li -->
-							<li> 
-								<a href="#" onclick="javascript:headerMenu('/pt/PtJjkpApplrInfoInqW.do?menuFg=09','010000000010','N');">제적부</a>
-								
-										<!-- S3.ul -->
-												<ul>
-											
-											<li><a href="#_" onclick="javascript:headerMenu('/pt/PtJjkpApplrInfoInqW.do?menuFg=10','010000000011','N');">제적등본</a></li>
-												
-											<li><a href="#_" onclick="javascript:headerMenu('/pt/PtJjkpApplrInfoInqW.do?menuFg=11','010000000012','N');">제적초본</a></li>
-										
-									  </ul>
-	</header>								  
-									  
-			</ul>
-				<!-- E2.ul -->
 			</div>
-			<!-- E2.div -->
-			<!-- 2단계 메뉴 건수 초기화 -->
-
-			<!-- 2단계 all block 시 -->
-            
-		</li>
-		<!-- E1.li -->
-	
-	<!-- for end : 1단계 메뉴  -->
-	<!-- START : 외국인 안내 페이지 메뉴 -->
-	
-	<!-- END : 외국인 안내 페이지 메뉴 -->
-</ul>
-<!-- E1.ul -->  
-
-            </nav>            
-        </div>
-        <!-- END : HEADER WRAP CONTAINER -->
-    </div>
+			</li></ul>
+	</header>								  
     <!-- END : HEADER WRAP -->
 	<form id="headerMn" name="headerMn" action="/cs/CsBltnWrt.do" method="post" onsubmit="return false;"></form>      
-</header>
 <!-- END : HEADER -->
 	<!-- END : top호출 -->
 
@@ -365,6 +314,7 @@ function memberDelete(){
             <input type="hidden" id="bdNm1" name="bdNm1" value=""/>
             <input type="hidden" id="bdNm2" name="bdNm2" value=""/>
             <input type="hidden" id="hNm" name="hNm" value=""/>
+            <input type="hidden" id="idUseChk" name="idUseChk" />
             <div class="pageContent">
                 <h2 class="pgTitle">기본정보</h2>
 				<!-- START : 공지사항 상세조회 -->
@@ -379,8 +329,8 @@ function memberDelete(){
                             <tr>
                                 <th scope="row"><label>아이디</label></th>
                                 <td class="fwB"><input type="text" name="usrId" id="usrId" value=""/>
-                                <a href="#none" title="아이디중복확인(새창으로 열기)" onclick="javascript:fnChkId();" class="cssbtn btn_gray btn_idcheck">아이디중복확인</a>
-                                 (영문소문자/숫자, 4~16자)</td>
+                                <a href="#none" title="아이디중복확인(새창으로 열기)" onclick="fnChkId();" ><input type="button"  value="아이디중복확인"></a>
+                                <span id="htmlIdChkText"></span><br> (영문+숫자, 4~16자)	</td>
                             </tr>
                             <tr>
                                 <th><label>비밀번호</label></th>
@@ -409,33 +359,26 @@ function memberDelete(){
                               <tr>
                                 <th><label>휴대전화</label></th>
 					             <td class="fwB"><div class="frmDiv">
-                                <!--     <select name="usrTel1" id="usrTel1" class="frmInput">
-                                        <option value="" selected="">010</option>
-                                        <option value="Y">사용</option>
-                                        <option value="N">불가</option>
-                                    </select> -->
                                     <select name="usrTel1" id ="usrTel1" >
 												<c:forEach var="vo" items="${telList}">
 										 				<option value="${vo.gnrCdNm}"> <c:out value="${vo.gnrCdNm}"/> 
 										 				</option> 
  											   </c:forEach> 
- 											   </select>           -
-                                     							<input type="text" name="usrTel2" id="usrTel2"/> - 
-                                     							<input type="text" name="usrTel3" id="usrTel3"/>
+ 									 </select>
+ 									 -<input type="text" name="usrTel2" id="usrTel2"/> - 	<input type="text" name="usrTel3" id="usrTel3"/>
                                 </div> 
                                  </tr>
                           <tr>
                                 <th><label>이메일</label></th>
                                 <td class="fwB"><input type="text" name="usrEmail1" id="usrEmail1"/> @ 
-                                                                    <select name="usrEmail2" id ="usrEmail2" >
+                                     <select name="usrEmail2" id ="usrEmail2" >
 											 	<c:forEach var="vo" items="${emailList}">
 														<option value="<c:out value='${vo.gnrCdNm}'/>"><c:out value='${vo.gnrCdNm}'/></option>
  											   </c:forEach>  
- 											   </select>   
-                                     						<!-- <input type="text" name="usrEmail2" id="usrEmail2"/>  -->
-                                     						<input type="button" name="EmailAuth" id="EmailAuth" onclick="fnEmailAuth()" value="이메일 인증">
-                                     						<span id="htmlText"></span>
-                                     						<p id="inputEmailNum"></p>
+ 									 </select>   
+                                     <input type="button" name="EmailAuth" id="EmailAuth" onclick="fnEmailAuth()" value="이메일 인증">
+								 	 <span id="htmlText"></span>
+                                     <p id="inputEmailNum"></p>
                                  </tr>
                         </tbody>
                     </table>
@@ -444,8 +387,7 @@ function memberDelete(){
                 </form>
                 <!-- START : 메인버튼 -->
                 <div class="formBtn">
-                    <button type="button" name="button" onclick="javacript:fnRgt();">확인</button>
-                    <button type="button" name="button" title="새창" class="nw2" onclick="javacript:fnOpenDtlInqPrint();">출력</button>
+                    <input type="button" name="button" onclick="javacript:fnRgt();" value="확인"/>
                 </div>
                 <!-- END : 메인버튼 -->
             </div>

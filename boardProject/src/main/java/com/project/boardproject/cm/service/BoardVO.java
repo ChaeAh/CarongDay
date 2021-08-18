@@ -39,6 +39,8 @@ public class BoardVO implements Serializable{
 	private String scrYn;						//비밀글여부
 	private String scrPw;						//비밀글패스워드
 	
+	private int curPage =1;	
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -151,6 +153,14 @@ public class BoardVO implements Serializable{
 	}
 	public void setScrPw(String scrPw) {
 		this.scrPw = scrPw;
+	}
+	
+	
+	public int getCurPage() {
+		return curPage;
+	}
+	public void setCurPage(int curPage) {
+		this.curPage = curPage;
 	}
 	@Override
 	public String toString() {

@@ -505,7 +505,7 @@ textarea.view7 {height: 228px;}
 .tblForm label + label {margin-left: 10px;}
 .tblForm label input[type=radio],
 .tblForm label input[type=checkbox] {margin-top: -4px;}
-.tblForm .issNum {padding: 0 5px 2px; font-size: 18px; font-weight: bold; letter-spacing: normal;}
+.tblForm .issNum {padding: 0 5px 2px; font-size: 15px; font-weight: bold; letter-spacing: normal;}
 
 /* 증명서 발급 신청인 정보 조회 입력 */
 .tblForm.ptApplrInq table tbody th {padding-left: 35px;}

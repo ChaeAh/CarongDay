@@ -14,7 +14,7 @@ public class UsrAcntVO {
 	private String usrEmail2;
 	
 	private String useYn;
-	private String emailAuthYn;
+	private String emailAuthYn = "N";
 	private String authNum;
 	
 	
@@ -27,6 +27,8 @@ public class UsrAcntVO {
 	private String pwInitYn;
 	
 	private String lstLogimDtm;
+	
+	private String salt;
 	
 	/* ===================우편번호 관련 변수=========================*/
 	private String postCode;		// 우편번호
@@ -279,11 +281,13 @@ public class UsrAcntVO {
 	public void setExtraAdr(String extraAdr) {
 		this.extraAdr = extraAdr;
 	}
+	public String getSalt() {
+		return salt;
+	}
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
 	
-
-	
-	
-
 	
 	
 }

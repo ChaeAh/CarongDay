@@ -1,3 +1,5 @@
+<%@page import="java.math.BigInteger"%>
+<%@page import="java.security.SecureRandom"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -21,18 +23,91 @@
 	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
 	charset="utf-8"></script>
 <script type="text/javascript">
-	function memberLogin() {
-		var log = document.loginform;
-		log.action = "loginCheck.do";
-		var userId = document.getElementById("userId").value;
-		var pw = document.getElementById("pw").value;
-		if (userId == "") {
-			alert("아이디를 입력하세요");
-		} else if (pw == "") {
-			alert("비밀번호를 입력하세요");
-		} else {
-			log.submit();
+
+$(document).ready(function () {
+	$('#usrId').focus();
+	
+/* 	$('#password').keydown(function(key){
+		if(key.keyCode == 13) {
+			memberLogin();
 		}
+	}); */
+	
+});
+	function memberLogin() {
+		var form = $('#usrAcntVO').serialize();
+		
+		var usrId = $('#usrId').val();
+		var usrPw = $('#usrPw').val();
+		
+		if(usrId != null && usrId != "") {
+			if(  usrPw != null && usrPw != "") {
+				$.ajax({
+					url : "loginCheck.do",
+					type : "post",
+					datatype : "json",
+					data : form,
+					async : true,
+					success : function(obj) {
+						if(obj ==0){
+							location.href = "boardList.do";
+						}else if(obj == 1) {
+							$('#error_next_box').css("display","block");
+							$('#error_next_box').html("비밀번호가 일치하지 않습니다.");
+						//	return;
+						}else if(obj == 2) {
+							$('#error_next_box').css("display","block");
+							$('#error_next_box').html("아이디 또는 비밀번호가 일치하지 않습니다.");
+					//		return;
+						}else if(obj == 3) {
+							$('#error_next_box').css("display","block");
+							$('#error_next_box').html("휴면 계정입니다.");
+					//		return;
+						}else if(obj == 4) {
+							$('#error_next_box').css("display","block");
+							$('#error_next_box').html("이메일이 인증되지 않았습니다.");
+					//		return;
+						}
+						
+					//	memberLogin_Callback(data);
+					},
+					error:function(request,status,error){
+					 // alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					 }
+
+				});
+				
+			}else {
+				alert("비밀번호를 입력해주세요.");
+				$('#usrPw').focus();
+				return;
+			}
+			
+		}else {
+			alert("아이디를 입력해주세요.");
+			$('#usrId').focus();
+			return;
+		}
+	}
+	
+	function enterKey() {
+		if(window.event.keyCode == 13) {
+			memberLogin();
+		}
+	}
+	
+	function memberLogin_Callback(obj) {
+/*
+ 0 : 로그인 성공
+ 1:  비밀번호 불일치
+ 2: 정보 없음
+ 3 : 사용여부가 N임
+ 4 : 이메일 인증 N임
+ 5, 6 : 비밀번호가 3개월이상 만료 또는 빔리번호 초기화 (이페이지로 들어오지 않음)
+ 
+*/
+
+	
 	}
 </script>
 </head>
@@ -101,46 +176,6 @@
 	display: none;
 }
 
-.container {
-	position: relative;
-	z-index: 1;
-	max-width: 300px;
-	margin: 0 auto;
-}
-
-.container:before, .container:after {
-	content: "";
-	display: block;
-	clear: both;
-}
-
-.container .info {
-	margin: 50px auto;
-	text-align: center;
-}
-
-.container .info h1 {
-	margin: 0 0 15px;
-	padding: 0;
-	font-size: 36px;
-	font-weight: 300;
-	color: #1a1a1a;
-}
-
-.container .info span {
-	color: #4d4d4d;
-	font-size: 12px;
-}
-
-.container .info span a {
-	color: #000000;
-	text-decoration: none;
-}
-
-.container .info span .fa {
-	color: #EF3B3A;
-}
-
 body {
 	/*   background: #76b852; /* fallback for old browsers */
 	/* background: -webkit-linear-gradient(right, #76b852, #8DC26F);
@@ -152,36 +187,46 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 </style>
+ <%
+    String clientId = "9iK41XPuMNKiA_HdjHl_";//애플리케이션 클라이언트 아이디값";
+    String redirectURI = URLEncoder.encode("http://localhost:8808/member/naverCallback.do", "UTF-8");
+    SecureRandom random = new SecureRandom();
+    String state = new BigInteger(130, random).toString();
+    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+    apiURL += "&client_id=" + clientId;
+    apiURL += "&redirect_uri=" + redirectURI;
+    apiURL += "&state=" + state;
+    apiURL += "&auth_type=reprompt";
+    session.setAttribute("state", state);
+ %>
 <body>
-	<jsp:include page="../header.jsp"></jsp:include>
+	<jsp:include page="../header.jsp"/>
 
-	<br />
-	<br />
-	<div></div>
+	
 	<div class="login-page">
 		<div class="form">
-			<form:form name="loginform" method="post"
-				onKeyPress="if(event.keyCode==13){memberLogin();}"
-				class="login-form">
-				<input type="text" placeholder="ID" name="userId" id="userId" />
-				<input type="password" placeholder="password" name="pw" id="pw" />
-				<button onClick="memberLogin()"
-					onKeyPress="if(event.keyCode==13){memberLogin();}">login</button>
+			<form:form id="usrAcntVO" name="usrAcntform" class="login-form" action = "">
+				<input type="text" placeholder="ID" name="usrId" id="usrId" />
+				<input type="password" placeholder="password" name="usrPw" id="usrPw"  onkeyup="enterKey();"/>
+				<button type="button" onClick="memberLogin()" id="loginBtn" >login</button>
 				<br />
+				<span  id="error_next_box"   class="error_next_box" style="display:none; text-align: left;"></span>
 				<br />
-				<div id="naverIdLogin" align="center"></div>
+				<div id="naverIdLogin" align="center">
+				  <a href="<%=apiURL%>"><img height="42"  width="270" src="/resources/images/main/loginBtn.png"/></a>
+					<br />
+				</div>
 				<a id="custom-login-btn" href="javascript:loginWithKakao()"> <img
 					src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg"
-					width="300" />
+					width="270" />
 				</a>
 				<p class="message">
 					Not registered? <a href="/pjsMemberRegister.do">Create an
 						account</a>
 				</p>
 			</form:form>
-			<input type="button" onclick="fn_NLogin();" value="로그인">
+	<!-- 		<input type="button" onclick="fn_NLogin();" value="로그인"> -->
 			<c:if test="${not empty resultMessage}">
-				<font color=red>${resultMessage }</font>
 			</c:if>
 		</div>
 	</div>

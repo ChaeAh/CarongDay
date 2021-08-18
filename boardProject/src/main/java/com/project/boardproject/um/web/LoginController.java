@@ -6,12 +6,15 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +22,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.boardproject.common.LoginSessionManager;
 import com.project.boardproject.um.service.UmUsrService;
 import com.project.boardproject.um.service.UsrAcntVO;
+import com.project.boardproject.um.service.impl.UmUsrServiceImpl;
 import com.project.boardproject.um.service.UsrAcntVO;
 
 @Controller
@@ -30,24 +36,39 @@ public class LoginController {
 	@Autowired
 	private UmUsrService umusrService;
 
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	
+	@ResponseBody 
 	@RequestMapping("loginCheck")
-	public String loginCheck(UsrAcntVO usrAcntVO, HttpSession session, Model model) {
-		int pwCheck = umusrService.loginCheck(usrAcntVO);
-
-		if (pwCheck == 0) {
-			session.setAttribute("userid", usrAcntVO.getUsrId());
-			System.out.println("로그인 성공");
-			return "index";
-		} else {
-			model.addAttribute("resultMessage", "아이디/비밀번호를 확인해주세요");
-			if (pwCheck == 1) {
-				System.out.println("비밀번호 불일치");
-				return "member/login";
-			} else {
-				System.out.println("존재하지 않는 아이디");
-				return "member/login";
+	public String loginCheck(@ModelAttribute UsrAcntVO usrAcntVO, HttpSession session, Model model) throws Exception{
+		logger.debug("=================loginCheck START================= ");
+		int result = umusrService.loginProcess(usrAcntVO);
+		String moveUrl = "";
+		logger.info("Login Process result : " + result);
+		LoginSessionManager loginSessionManager = LoginSessionManager.getInstance();
+		String resultMsg = String.valueOf(result);
+		
+		if (result == 0) {
+			
+			boolean isLoginComplete = loginSessionManager.loginManaging(usrAcntVO, session, umusrService);	//세션 설정
+			
+			if(isLoginComplete) {
+				UsrAcntVO sessionVO = new UsrAcntVO();
+				sessionVO = umusrService.umSelUsrInfo(usrAcntVO);
+				session.setAttribute("sessionVO", sessionVO);
+				session.setAttribute("usrId", usrAcntVO.getUsrId());
+				umusrService.umUpdUsrLoginDtm(usrAcntVO);	//사용자 마지막 로그인 시각 업데이트
+				umusrService.umUpdUsrPwSalt(usrAcntVO);	//사용자의 솔트값 업데이트
 			}
+			logger.info("Login Process is Complete");
+			moveUrl ="board/boardList";
+		} else if(result == 5 || result == 6){
+			moveUrl = "member/pwUpd";
+		}else {
+			moveUrl = "member/login";
 		}
+		model.addAttribute("result", resultMsg);
+		return resultMsg;
 	}
 
 	@RequestMapping("login")
@@ -56,8 +77,10 @@ public class LoginController {
 		return "member/login";
 	}
 	
+	
 	@RequestMapping("logout")
-	public String logout(HttpSession session) {
+	public String logout(UsrAcntVO usrAcntVO, HttpSession session) {
+		logger.debug("LogOut User : " + usrAcntVO.getUsrId());
 		session.invalidate();
 		return "index";
 	}
@@ -78,7 +101,7 @@ public class LoginController {
 		vo.setName(name);*/
 //		umusrService.naverRgtUsr(vo);
 		
-		session.setAttribute("userid", email1);
+		session.setAttribute("usrId", vo.getUsrId());
 		return "index";
 	}
 
