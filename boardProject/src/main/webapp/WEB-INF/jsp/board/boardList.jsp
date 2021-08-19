@@ -418,7 +418,6 @@ function fn_search() {
                 <thead class="head">
                     <tr>
                         <th><a class="checkbox" href="" ></a></th> 
-       <!--                  <th>번호</th> -->
                         <th style="width:60%">제목</th>   
                         <th>작성자</th>   
                         <th>작성일</th>
@@ -451,7 +450,6 @@ function fn_search() {
             <div class="btn_wrap">
             	<input type="button" class="button" value="등록" onclick="fn_movePage('boardRegister.do');">
 				<input type="button" class="button" value="엑셀출력" onclick="fn_excel();"/>
-              <!--   <a class="btn_org" href="javascript:;"><span class="txt_white">수신자 그룹 등록</span></a> -->
             </div>
         </div>
         </div>
