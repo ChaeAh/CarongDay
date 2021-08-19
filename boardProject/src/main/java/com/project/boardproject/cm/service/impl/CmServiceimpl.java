@@ -94,8 +94,10 @@ public class CmServiceimpl implements CmService {
 	}
 
 	@Override
-	public void boardDelete(BoardVO vo) {
-		 cmDAO.boardDelete_001(vo);
+	public int boardDelete(BoardVO vo) {
+		int result;
+		result =cmDAO.boardDelete_001(vo);
+		return result;
 	}
 
 	@Override

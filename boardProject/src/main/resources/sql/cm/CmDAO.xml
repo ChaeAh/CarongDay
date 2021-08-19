@@ -19,17 +19,6 @@
 	 	<result property="scrPw" column="SCR_PW"/>
 	 </resultMap>
 	 
-	 <!--  
-	 	private String gnrCd;				//일반코드
-	private String cdId;				//코드ID
-	private String gnrCdNm;		//일반코드명
-	private String cdCts;				//코드명
-	private String cdPrps;			//코드용도
-	private String useYn;
-	private String rgtrId;
-	private String rgtDtm;
-	private String updrId;
-	private String updDtm;-->
 	  <resultMap id="CmCodearr" type="CmVO">
 	 	<result property="cdId" column="cd_id"/>
 	 	<result property="gnrCd" column="gnr_cd"/>
@@ -43,99 +32,6 @@
 	 	<result property="updDtm" column="upd_Dtm"/>
 	 </resultMap>
 	 
-
-	<!-- <select id="boardInq_001" resultMap="BoardVOarr" parameterType="BoardVO">
-		SELECT 
-			idx
-			,boardId
-			,title
-			,contents
-			,delYn
-			,atchYn
-			,readCnt
-			,rgtId
-			,rgtDtm
-			,updId
-			,updDtm
-		FROM board
-		WHERE 1=1 
-		<if test="srchKeyword != null">
-			AND title LIKE CONCAT('%',#{srchKeyword},'%')
-		</if>
-		ORDER BY rgtDtm DESC
-		LIMIT #{startIndex},#{pageSize}
-	</select>
-
-	<select id="boardInqCnt_001" resultType="Integer" parameterType="BoardVO">
-		SELECT count(*)
-		FROM board
-		WHERE 1=1 
-		<if test="srchKeyword != null">
-			AND title LIKE CONCAT('%',#{srchKeyword},'%')
-		</if>
-	</select>
-		
-	
-	<insert id="boardWrite_001" parameterType="boardVO">
-		INSERT INTO board (
-		boardId
-		,title
-		,contents
-		,delYn
-		,atchYn
-		,readCnt
-		,rgtId
-		,rgtDtm)
-		VALUES (
-		'1'
-		,#{title}
-		,#{contents}
-		,'N'
-		,'N'
-		,0
-		,#{rgtId}
-		,DATE_FORMAT(now(), '%Y%m%d%H%i%s')
-		)
-	</insert>
-	
-	<delete id="boardDelete_001" parameterType="boardVO">
-		DELETE FROM board 
-		WHERE idx = #{idx}		
-	</delete>	
-	
-	<select id="boardDetail_001" resultMap="BoardVOarr" parameterType="BoardVO">
-		SELECT 
-			idx
-			,boardId
-			,title
-			,contents
-			,delYn
-			,atchYn
-			,readCnt
-			,rgtId
-			,rgtDtm
-			,updId
-			,updDtm
-		FROM board
-		WHERE idx = #{idx}	
-	</select>
-	
-	<update id="boardModify_001" parameterType="boardVO">
-		UPDATE board 
-		SET	title = #{title}
-		,contents = #{contents}
-		,rgtId = #{rgtId}
-		WHERE idx = #{idx}
-	</update>	
-	끝
-	
-	<update id="boardUpdateReadCnt_001" parameterType="int">
-		UPDATE /*boardUpdateReadCnt_001 */
-		board
-		SET READCNT = READCNT+1
-		WHERE IDX=#{idx}
-	</update> -->
-	
 	<insert id="boardInsert_001" parameterType="BoardVO">
 		INSERT INTO /* boardInsert_001*/
 		IRCMBOARD (
@@ -249,12 +145,11 @@
 	</select>
 	
 	
-	<delete id="boardDelete_001"  parameterType="BoardVO">
+	<select id="boardDelete_001"  parameterType="BoardVO" resultType="int">
 		DELETE   /* boardDelete_001*/
 		FROM IRCMBOARD
 		WHERE IDX=#{idx}
-	
-	</delete>
+	</select>
 	
 	<insert id="boardUpdateReadCnt_001" parameterType="int">
 		UPDATE /*boardUpdateReadCnt_001 */

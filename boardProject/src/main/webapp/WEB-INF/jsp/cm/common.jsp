@@ -16,152 +16,26 @@
 
  <link rel="stylesheet" type="text/css" href="/resources/css/fix.css">
 <script>
-/* $(function(){
-	
-	//메뉴 차단 여부 확인
-    
-    var menu_v = $('#menu_v');
-    var menu_v2 = $("#menu_v .snb > li > a");
-    var menu_v3 = $("#menu_v .snb > li > ul");
-    var menu_v3_1 = $("#menu_v .snb > li > ul > li > a");
-    
-    menu_v3.parents('li').addClass('plus');
-    
-    menu_v2.on("click", function(){
-    	if(!menuBlckYn){
-	        $(this).parent().toggleClass('on');
-    	}else{
-			$(this).removeClass('ov').mouseleave().focusout();
-    	}
-    });	    
-    
-    menu_v3_1.on("click", function(){
-    	if(menuBlckYn){
-	        $(this).removeClass('ov').mouseleave().focusout();
-    	}
-    });
+$(document).ready(function() {
+	fn_FindUsrNm();
+});
 
-}); */
-
-/* menu Request */
-function leftMnCalled(url, prgId, leftMnCd, mnRnk, blckYn){
-	
-	$("#leftMnCall #prgId").val(prgId);
-	$("#leftMnCall #leftMnCd").val(leftMnCd);
-
-	var splitUrl = url.split("=");
-	var comUrl = null;
-	if(splitUrl[1] != null)
-		comUrl = splitUrl[1]; 
-	
-	
-	document.leftMnCall.action = url;
-	
-	if(mnRnk.length == 4){	// 2단계 메뉴
-		var forResult = 0;
-		var menuRank = "";
-		
-			menuRank = "01";
-			if(menuRank.length > 5 ){
-				if(menuRank.substring(0,menuRank.length-2) == mnRnk)
-					forResult++;
-			}
-		
-			menuRank = "0101";
-			if(menuRank.length > 5 ){
-				if(menuRank.substring(0,menuRank.length-2) == mnRnk)
-					forResult++;
-			}
-		
-			menuRank = "0102";
-			if(menuRank.length > 5 ){
-				if(menuRank.substring(0,menuRank.length-2) == mnRnk)
-					forResult++;
-			}
-		
-			menuRank = "0103";
-			if(menuRank.length > 5 ){
-				if(menuRank.substring(0,menuRank.length-2) == mnRnk)
-					forResult++;
-			}
-		
-			menuRank = "010301";
-			if(menuRank.length > 5 ){
-				if(menuRank.substring(0,menuRank.length-2) == mnRnk)
-					forResult++;
-			}
-		
-			menuRank = "010302";
-			if(menuRank.length > 5 ){
-				if(menuRank.substring(0,menuRank.length-2) == mnRnk)
-					forResult++;
-			}
-		
-			menuRank = "010303";
-			if(menuRank.length > 5 ){
-				if(menuRank.substring(0,menuRank.length-2) == mnRnk)
-					forResult++;
-			}
-		
-			menuRank = "010304";
-			if(menuRank.length > 5 ){
-				if(menuRank.substring(0,menuRank.length-2) == mnRnk)
-					forResult++;
-			}
-		
-			menuRank = "0104";
-			if(menuRank.length > 5 ){
-				if(menuRank.substring(0,menuRank.length-2) == mnRnk)
-					forResult++;
-			}
-		
-			menuRank = "0105";
-			if(menuRank.length > 5 ){
-				if(menuRank.substring(0,menuRank.length-2) == mnRnk)
-					forResult++;
-			}
-		
-			menuRank = "0106";
-			if(menuRank.length > 5 ){
-				if(menuRank.substring(0,menuRank.length-2) == mnRnk)
-					forResult++;
-			}
-		
-			menuRank = "0107";
-			if(menuRank.length > 5 ){
-				if(menuRank.substring(0,menuRank.length-2) == mnRnk)
-					forResult++;
-			}
-		
-			menuRank = "0108";
-			if(menuRank.length > 5 ){
-				if(menuRank.substring(0,menuRank.length-2) == mnRnk)
-					forResult++;
-			}
-		
-			menuRank = "0109";
-			if(menuRank.length > 5 ){
-				if(menuRank.substring(0,menuRank.length-2) == mnRnk)
-					forResult++;
-			}
-		
-			menuRank = "0110";
-			if(menuRank.length > 5 ){
-				if(menuRank.substring(0,menuRank.length-2) == mnRnk)
-					forResult++;
-			}
-		
-			menuRank = "0116";
-			if(menuRank.length > 5 ){
-				if(menuRank.substring(0,menuRank.length-2) == mnRnk)
-					forResult++;
-			}
-		
-		
-	}
-	
+function fn_FindUsrNm() {
+	var usrId = $('#usrId').val();
+	$.ajax({
+		type : 'post',
+		data  : { usrId : usrId },
+		dataType : 'json',
+		url : 'umUsrNmInqAjax.do',
+		success : function(data, status) {
+			fnOnSuccessFindUsrNm(data);
+		},
+		error : function(request, status) {
+			alert(request + "," +status );
+			alert("조회하는데 실패하였습니다.");
+		}
+	});
 }
-
 
 
 </script>

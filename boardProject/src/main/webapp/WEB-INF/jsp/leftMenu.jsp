@@ -8,13 +8,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>left Menu</title>
 </head>
+<script>
 
+function fnOnSuccessFindUsrNm(data) {
+	$(".htmlUsrNm").html(data.usrNm);
+}
+</script>
 <body>
+		<input type="hidden" id="usrId" value="${usrId}"/>
  	 <div class="leftcolumn">
  		 <div class="card">
-		  	<b>채카롱</b><br><br>
-		  	<p>
-		  	 <a href="../boardRegister.do" ><img src="/resources/images/etc/clipboard_write.png" style="height:17px" > 글쓰기</a> / 관리</p>
+		  	<b><span class="htmlUsrNm"></span></b><br><br>
+		  	<p class="firstMenu">
+		  	<img src="/resources/images/etc/clipboard_write.png" style="height:13px" >  <a href="../boardRegister.do" >글쓰기</a> / 관리</p>
  		 </div>
 	    <div class="card">
 	      <h2><img src="/resources/images/etc/clipboard_setting.png" style="height:20px" > Setting</h2>

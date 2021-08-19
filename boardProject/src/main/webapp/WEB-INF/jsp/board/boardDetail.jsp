@@ -30,48 +30,42 @@ form {
   button {
   text-align:  right;
   }
-/* 
-.Container {
-	width : 1400px;
-height : 200px; 
-padding : 30px;
-	
-}
-
-.listTable {
-text-align: center;
-}
-.wrapper {
- width: 800px;
-margin: 0 auto;
-border: 1px solid #aaa;
-
-}
-
-/* .button {
-    background-color: white;
-    border:  none;
-    font-family: a타이틀고딕3;
-    text-decoration: none;
-    padding: 10px 10px;
-    margin: 1px;
-     border-top-left-radius:20px;
- border-top-right-radius:20px;
- border-bottom-right-radius:20px;
- border-bottom-left-radius:20px;
- background: #b7c7e5;
- }
- 
-.button:hover {
-   background: #93A9D1;
-   color : white;
-} */ 
 </style>
 </head>
-<style>
+<script>
 
-
-</style>
+/* 		var checkArr =new Array();
+		$("input[type='checkBox']:checked").each(function() {
+			checkArr.push($(this).attr("data-cartNum"));
+		});
+		alert(checkArr);		 
+ */
+ function fn_Delete() {
+	var form = $('#frm').serialize();
+	
+	var msg = confirm("삭제를 누르시면 복구할수 없습니다. 삭제하시겠습니까?");
+	if(msg ==true) {
+		$.ajax({
+			url : "boardDelete.do",
+			type : "post",
+			datatype:"json",
+			data :  form,
+			success : function(data) {
+				if(data ==1) {
+				  location.href = "boardList.do";
+				}
+			},
+			error : function() {
+				alert("삭제하는데 오류가 발생하였습니다.");
+			}
+			
+		});
+	}else {
+		return;
+	}
+	
+}
+</script>
 <body>
 <!-- wrapper -->
 <jsp:include page="../header.jsp"/>
@@ -117,11 +111,12 @@ border: 1px solid #aaa;
 			<td ></td>
 		</tr>
 		<tr>
-			<td  align="left">
+			<td colspan="2" style="text-align: right;">
 				<input type="button"class="button"  id="" name="" value="목록으로"  onclick="fn_movePage('boardList.do')"/>
-			</td>
-			<td align= "right">
-				<input type="button" class="button" id="" name="" value="수정"  onclick="fn_movePage('boardUpdList.do','Y');"/>
+				<c:if test="${vo.rgtId eq usrId}">
+					<input type="button" class="button" id="" name="" value="수정"  onclick="fn_movePage('boardUpdList.do','Y');"/>
+					<input type="button" class="button" value="삭제" onclick="fn_Delete();">
+				</c:if>
 			</td>
 		</tr>
 		<!-- Paging -->

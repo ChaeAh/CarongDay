@@ -32,4 +32,6 @@ public interface UmUsrService {
 	public void umUpdUsrPwSalt(UsrAcntVO usrAcntVO);
 
 	public UsrAcntVO umSelUsrInfo(UsrAcntVO usrAcntVO);
+
+	public UsrAcntVO umSelUsrInfoString(String usrId);
 }

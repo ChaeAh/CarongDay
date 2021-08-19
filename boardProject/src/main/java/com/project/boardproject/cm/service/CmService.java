@@ -43,7 +43,7 @@ public interface CmService {
 
 	public int boardgetBoardCnt(BoardVO boardVO);
 
-	public void boardDelete(BoardVO vo);
+	public int boardDelete(BoardVO vo);
 
 	public int boardUpdateReadCnt(int idx);
 

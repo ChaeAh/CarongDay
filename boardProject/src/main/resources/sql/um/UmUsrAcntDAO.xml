@@ -2,6 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.boardproject.um.service.impl.UmUsrDAO">
  
+ 	<!-- property : vo에서 변수명.  column : DB상 컬럼명  -->
+	<!--  <resultMap id="usrAcntVOArr" type="UsrAcntVO">
+	 	<result property="usrId" column="USR_ID"/>
+	 	<result property="usrPw" column="USR_PW"/>
+	 	<result property="usrNm" column="USR_NM"/>
+	 	<result property="usrTel1" column="USR_TEL1"/> 	
+	 	<result property="usrTel2" column="USR_TEL2"/>
+	 	<result property="usrTel3" column="USR_TEL3"/>
+	 	<result property="usrEmail1" column="USR_EMAIL1"/> 	
+	 	<result property="usrEmail2" column="USR_EMAIL2"/>
+	 	<result property="useYn" column="USE_YN"/>
+	 	<result property="emailAuthYn" column="EMAIL_AUTH_YN"/>
+	 	<result property="pwRgtDtm" column="PW_RGT_DTM"/>
+	 	<result property="pwInitYn" column="PW_INIT_YN"/>
+	 	<result property="lstLogimDtm" column="LST_LOGIN_DTM"/>
+	 	<result property="salt" column="SALT"/>
+	 </resultMap> -->
+	 
 	<select id="selectUsrConfirmPw_001" parameterType="String" resultType="usrAcntVO">
 		SELECT  /*umusrDAO.selectUsrConfirmPw_001*/
 			USR_PW as usrPw , SALT as salt
@@ -229,5 +247,25 @@
 		WHERE  USR_ID=#{usrId}
 	</select>
  
+ 	 <select id="umSelUsrInfo_002"  parameterType="String" resultType="usrAcntVO">
+	SELECT /*umUsrDAO.umSelUsrInfo_002*/ 
+		 USR_ID as usrId,
+		 USR_PW as usrPw,
+		 USR_NM as usrNm,
+		 USR_TEL1 as usrTel1,
+		 USR_TEL2 as usrTel2,
+		 USR_TEL3 as usrTel3,
+		 USR_EMAIL1 as usrEmail1,
+		 USR_EMAIL2 as usrEmail2,
+		 USE_YN as useYn,
+		 EMAIL_AUTH_YN as emailAuthYn,
+		 RGTR_ID as rgtrId,
+		 RGT_DTM as rgtDtm,
+		 PW_RGT_DTM as PwRgtDtm,
+		 PW_INIT_YN as PwInitYn,
+		 SALT as Salt
+		FROM IRUSRACNT
+		WHERE  USR_ID= #{usrId}
+	</select>
  
 </mapper>

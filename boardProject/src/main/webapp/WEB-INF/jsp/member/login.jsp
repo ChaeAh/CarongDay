@@ -259,9 +259,9 @@ body {
 		};
 	</script>
 
-	<form id="frm" name="frm">
+<%-- 	<form id="frm" name="frm">
 		<input type="hidden" id="userId" name="userId" value="${email}" />
-	</form>
+	</form> --%>
 </body>
 </html>
 

@@ -55,7 +55,7 @@ public interface CmDAO  {
 
 	public int boardgetBoardCnt_001(BoardVO boardVO);
 
-	public void boardDelete_001(BoardVO boardVO);
+	public int boardDelete_001(BoardVO boardVO);
 
 	public int boardUpdateReadCnt_001(int idx);
 

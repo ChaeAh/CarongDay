@@ -5,7 +5,7 @@
   <title>글 목록</title>
 <!-- <link rel="stylesheet" type="text/css" href="/resources/css/common.css"/> -->
 <style>
-
+/* 
 #container {
 width : 100%;
 height : 800px; 
@@ -67,7 +67,7 @@ body {
     padding: 0;
   }
 }
-
+ 
 /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
 @media screen and (max-width: 400px) {
   .topnav a {
@@ -123,7 +123,7 @@ ol.mylist li:hover {
     a:focus { text-decoration: none; }
     a:hover, a:active { text-decoration: none; }
 
-
+ */
 </style>
 
 <script>
@@ -242,37 +242,7 @@ function fn_Register() {
 	f.submit(); */
 }
 
-function fn_Delete() {
-	var f=document.frm;
-	var data = $('#frm').serialize();
-	var msg = confirm("정말 삭제하시겠습니까?");
-	if(msg ==true) {
-		var checkArr =new Array();
-		$("input[type='checkBox']:checked").each(function() {
-			checkArr.push($(this).attr("data-cartNum"));
-		});
-		alert(checkArr);		 
-		$.ajax({
-			url : "boardDelete.do",
-			type : "post",
-			datatype:"text",
-			data : {chbox : checkArr },
-			success : function(data) {
-				if(data ==1) {
-				alert("댓글 삭제완료!");
-				  location.href = "boardList.do";
-				}
-			},
-			error : function() {
-				alert("삭제 실패");
-			}
-			
-		});
-	}else {
-		return;
-	}
-	
-}
+
 
 function fn_excel() {
 	var form = document.frm;
@@ -480,7 +450,6 @@ function fn_search() {
         	
             <div class="btn_wrap">
             	<input type="button" class="button" value="등록" onclick="fn_movePage('boardRegister.do');">
-				<input type="button" class="button" value="삭제" onclick="fn_Delete();">
 				<input type="button" class="button" value="엑셀출력" onclick="fn_excel();"/>
               <!--   <a class="btn_org" href="javascript:;"><span class="txt_white">수신자 그룹 등록</span></a> -->
             </div>

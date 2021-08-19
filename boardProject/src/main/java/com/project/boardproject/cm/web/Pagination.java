@@ -350,14 +350,4 @@ public int getPageSize() {
 	}
 
 
-
-	@Override
-	public String toString() {
-		 // 페이지 네이게이션 설정
-	
-		return "Pagination [pageSize=" + pageSize + ", rangeSize=" + rangeSize + ", curPage=" + curPage + ", curRange="
-				+ curRange + ", listCnt=" + listCnt + ", pageCnt=" + pageCnt + ", rangeCnt=" + rangeCnt + ", startPage="
-				+ startPage + ", endPage=" + endPage + ", startIndex=" + startIndex + ", endIndex=" + endIndex
-				+ ", prevPage=" + prevPage + ", nextPage=" + nextPage + "]";
-	}
 }

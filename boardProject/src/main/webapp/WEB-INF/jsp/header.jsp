@@ -18,11 +18,12 @@
 	color:#000;
 	/* //font-family: 'ZCOOL QingKe HuangYou', cursive; */
 	box-sizing: border-box;
+	font-family: "Nanum Gothic", sans-serif;
 }
 
-.fn-font {
-	font-family: 'Noto Sans KR', sans-serif;
-}
+/* .fn-font {
+font-family: "Nanum Gothic", sans-serif;
+} */
 
 ul {
 	list-style: none;
@@ -55,6 +56,7 @@ header > h2 {
 header > nav {
 	width:600px;
 	height:100%;
+
 }
 
 header ul {
@@ -62,6 +64,7 @@ header ul {
 	height: 100%;
 	display: flex;
 	justify-content: space-between;
+
 }
 
 header ul > li {
@@ -69,39 +72,9 @@ header ul > li {
 	height: 100%;
 	display: flex;
 	align-items: center;
+    font-size : 15px;
 }
 
-
-/* * {
-/*    font-family: "Roboto", sans-serif;
- }
-#topbar{
-text-align : center;
-width:100%;
-}
-#loginbar{
-width:100%;
-padding-left:15px;
-padding-right:15px;
-margin-left: 5px;
-margin-right: 5px;
-}
-#navibar{
-width:100%;
-height : 150px;
-/* padding-left:30px;
-padding-right:30px;
-margin-left:100px;
-margin-right:100px;
-margin-top : 50px;  */
-/*  overflow: hidden;
-
-}
-
-#logo {
-width:100%;
-/* float : left; */
-}
 .logintab li{float: right; list-style: none; margin-right:10px; text-decoration: none;}
 .logintab li::after{padding-left:10px;content:"|"}
 .logintab li:first-child::after{content:"" }
@@ -120,6 +93,7 @@ float:right;
 .join_login, .join_join {
 padding-right :15px;
 padding-left : 5px;
+font-size: 12px;
 }
 /* div#navicategory {
 float:right;
@@ -183,21 +157,30 @@ font-weight: bold;
  
 </style>
 </head>
+<script>
+
+
+
+</script>
 <body>
 <div class="container">
 		<div class="joinjoin">
-					<span class="join_join"><a href="pjsMember.do">JOIN</a></span>
-					<c:if test="${not empty sessionScope.userid}">
+					<c:if test="${not empty sessionScope.usrId}">
+						<span class="join_login"><span class="htmlUsrNm"></span>님 환영합니다.
+						<a><span onClick="fn_logOut()">LOGOUT</span></a>
+						</span>
 					</c:if>
-				
+					<c:if test="${empty sessionScope.usrId }">
+					<span class="join_join"><a href="pjsMember.do">JOIN</a></span>
 					<span class="join_login"><a href="login.do">	${usrId} LOGIN</a></span>
+					</c:if>
 				</div>
+		 <form id="loginForm" >
+		 
+		 </form>
 		<header>
-		
-			
 			<a href="/index.jsp">
 				<img id="studylogo" src="/resources/images/CHAE.png" style="width:100px; height : 100px;"> 
-				<!-- style="height:120px;border:2px; margin: 20px;" -->
 			</a>
 			<nav>
 				<ul>
@@ -207,46 +190,7 @@ font-weight: bold;
 					<li><a href="">Support</a></li>
 				</ul>
 			</nav>
-		</header>
+ 	 </header>
 	</div>
-<%-- <div class="header" >
-	
-	<div id="topbar">
-		<div id="loginbar">
-			<div id="logo">
-			<a href="/index.jsp">
-				<img id="studylogo" src="/resources/images/CHAE.png" style="width:100px; height : 80px;"> 
-				<!-- style="height:120px;border:2px; margin: 20px;" -->
-			</a>
-			</div>
-			<ul class="logintab">
-				<c:if test="${not empty sessionScope.userid}">
-					<li class="loginMsg"><a href="logout.do">로그아웃</a></li>
-					<li class="loginMsg"><a href="pjsMember.do">${sessionScope.userid }</a></li>
-				</c:if>
-				<c:if test="${empty sessionScope.userid}">
-					<li class="loginMsg"><a href="login.do">LOGIN</a></li>
-					<li class="loginMsg"><a href="pjsMember.do">JOIN</a></li>
-				</c:if>
-			</ul>
-		</div>
-	</div>
-	<!-- <div id="navibar">
-		<div id="navilogo">
-			<a href="/index.jsp">
-				<img id="studylogo" src="/resources/images/CHAE.png" style="width:100px; height : 100px;"> 
-				
-				style="height:120px;border:2px; margin: 20px;"
-			</a>
-		</div> -->
-		<div id="navicategory">
-			<ul class="categorytab">
-				<!-- <li class="category"><a href="">INDEX</a></li>
-				<li class="category"><a href="./boardInq.do" >기원</a></li>
-				<li class="category"><a href="../boardList.do" >게시판</a></li>
-				<li class="category"  style="float:right; "><a href="" >더 보기</a></li> -->
-			</ul>
-		</div>
-	</div> --%>
 </body>
 </html>

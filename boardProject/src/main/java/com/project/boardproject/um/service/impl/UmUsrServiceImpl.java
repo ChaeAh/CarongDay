@@ -207,6 +207,11 @@ public class UmUsrServiceImpl implements UmUsrService{
 	public UsrAcntVO umSelUsrInfo(UsrAcntVO usrAcntVO) {
 		return 	umUsrDAO.umSelUsrInfo_001(usrAcntVO);
 	}
+
+	@Override
+	public UsrAcntVO umSelUsrInfoString(String usrId) {
+		return 	umUsrDAO.umSelUsrInfo_002(usrId);
+	}
 	
 	
 }

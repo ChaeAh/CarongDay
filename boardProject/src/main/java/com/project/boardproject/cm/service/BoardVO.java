@@ -162,21 +162,7 @@ public class BoardVO implements Serializable{
 	public void setCurPage(int curPage) {
 		this.curPage = curPage;
 	}
-	@Override
-	public String toString() {
-		return "BoardVO [idx=" + idx + ", boardId=" + boardId + ", title=" + title + ", contents=" + contents
-				+ ", delYn=" + delYn + ", atchYn=" + atchYn + ", readCnt=" + readCnt + ", rgtId=" + rgtId + ", rgtDtm="
-				+ rgtDtm + ", updId=" + updId + ", updDtm=" + updDtm + ", startIndex=" + startIndex + ", pageSize="
-				+ pageSize + ", name=" + name + ", srchKeyword=" + srchKeyword + ", srchtrg=" + srchtrg + ", scrYn="
-				+ scrYn + ", scrPw=" + scrPw + "]";
-	}
 
-	
-	
-	
-	
-
-	
 	
 	
 }

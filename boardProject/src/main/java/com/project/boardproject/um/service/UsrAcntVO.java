@@ -287,6 +287,19 @@ public class UsrAcntVO {
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
+	@Override
+	public String toString() {
+		return "UsrAcntVO [usrId=" + usrId + ", usrPw=" + usrPw + ", usrNm=" + usrNm + ", usrTel1=" + usrTel1
+				+ ", usrTel2=" + usrTel2 + ", usrTel3=" + usrTel3 + ", usrEmail1=" + usrEmail1 + ", usrEmail2="
+				+ usrEmail2 + ", useYn=" + useYn + ", emailAuthYn=" + emailAuthYn + ", authNum=" + authNum + ", rgtrId="
+				+ rgtrId + ", rgtDtm=" + rgtDtm + ", updId=" + updId + ", updrDtm=" + updrDtm + ", pwRgtDtm=" + pwRgtDtm
+				+ ", pwInitYn=" + pwInitYn + ", lstLogimDtm=" + lstLogimDtm + ", salt=" + salt + ", postCode="
+				+ postCode + ", bdMgtSn=" + bdMgtSn + ", bdMgtNm=" + bdMgtNm + ", adrType=" + adrType + ", usrSelType="
+				+ usrSelType + ", selYn=" + selYn + ", jibunAdr=" + jibunAdr + ", roadAdr=" + roadAdr + ", sido=" + sido
+				+ ", sigungu=" + sigungu + ", sigunguSn=" + sigunguSn + ", roadSn=" + roadSn + ", bdSn=" + bdSn
+				+ ", roadNm=" + roadNm + ", bdNm=" + bdNm + ", bdNm1=" + bdNm1 + ", bdNm2=" + bdNm2 + ", hNm=" + hNm
+				+ ", dtlAdr=" + dtlAdr + ", extraAdr=" + extraAdr + "]";
+	}
 	
 	
 	

@@ -79,7 +79,7 @@ body {
     padding: 0;
   }
 }
-
+ 
 /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
 @media screen and (max-width: 400px) {
   .topnav a {
@@ -88,6 +88,9 @@ body {
   }
 }
 
+.firstMenu {
+    font-size: 14px;
+}
 ul.mylist, ol.mylist {
     list-style: none;
     margin: 0px;

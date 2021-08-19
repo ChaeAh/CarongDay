@@ -4,15 +4,12 @@ package com.project.boardproject.cm.web;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -31,7 +28,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.boardproject.cm.service.BoardVO;
 import com.project.boardproject.cm.service.CmService;
-import com.project.boardproject.cm.web.Pagination;
 import com.project.boardproject.um.service.UsrAcntVO;
 
 
@@ -66,15 +62,14 @@ public class CmController {
 			@RequestParam(defaultValue = "1") int curPage) throws Exception {
 		logger.info("boardList START!!!");
 		int listCnt = cmservice.boardgetBoardCnt(boardVO);
-			Pagination pagination = new Pagination(listCnt, curPage);
+		Pagination pagination = new Pagination(listCnt, curPage);
+
+		List<BoardVO> boardList = new ArrayList<>();
 
 		boardVO.setPageSize(pagination.getPageSize());
 		boardVO.setStartIndex(pagination.getStartIndex());
 
-		List<BoardVO> boardList = new ArrayList<>();
-
 		boardList = cmservice.boardGetList(boardVO);
-
 
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("pagination", pagination);
@@ -88,30 +83,24 @@ public class CmController {
 	@RequestMapping(value = "boardListInqAjax.do")
 	public Map<String, Object> boardList2(@ModelAttribute("BoardVO") BoardVO boardVO, Model model,
 			@RequestParam(defaultValue = "1") int curPage) throws Exception {
-
 		logger.info("boardListInqAjax START!!!");
-		logger.debug("curPage ::" + curPage) ;
 
 		int listCnt = cmservice.boardgetBoardCnt(boardVO);
 		Pagination pagination = new Pagination(listCnt, curPage);
+		
+		Map<String, Object> map = new HashMap<>();
+		List<BoardVO> boardList = new ArrayList<>();
 
 		boardVO.setStartIndex(pagination.getStartIndex());
 		boardVO.setPageSize(pagination.getEndIndex());
-		System.out.println(pagination.toString());
-		System.out.println("boardListInqAjax페이징========================");
-		System.out.println(pagination.getStartIndex());
-		System.out.println(pagination.getEndIndex());
-		System.out.println("boardListInqAjax 페이징========================");
-		List<BoardVO> boardList = new ArrayList<>();
 
 		boardList = cmservice.boardGetList(boardVO);
-
 	
 		model.addAttribute("resultList", boardList);
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("srchKeyword", boardVO.getSrchKeyword());
 		model.addAttribute("srchtrg", boardVO.getSrchtrg());
-		Map<String, Object> map = new HashMap<>();
+		
 		map.put("resultList", boardList);
 		map.put("pagination", pagination);
 		logger.info("boardListInqAjax END!!!");
@@ -177,37 +166,50 @@ public class CmController {
 	@RequestMapping(value = "boardUpdList", method = RequestMethod.POST)
 	public String boardUpdList(@ModelAttribute("BoardVO") BoardVO boardVO, Model model) throws Exception {
 		String flag = "수정";
-		boardVO.setContents(boardVO.getContents().replace("</br>", "\r\n"));
+		BoardVO vo = new BoardVO();
+		
+		vo = cmservice.boardDetail(boardVO);
+		vo.setContents(vo.getContents().replace("</br>", "\r\n"));
+		
 		model.addAttribute("flag", flag);
-		model.addAttribute("BoardVO", boardVO);
+		model.addAttribute("BoardVO", vo);
 		return "board/boardRegister";
 	}
 
 	@RequestMapping(value = "boardInsert", method = RequestMethod.POST)
-	public String boardInsert(Model model, @ModelAttribute("BoardVO") BoardVO boardVO, HttpServletRequest request)
-			throws Exception {
-
-		System.out.println(boardVO.toString());
+	public String boardInsert(Model model, @ModelAttribute("BoardVO") BoardVO boardVO, HttpServletRequest request) throws Exception {
 		cmservice.boardInsert(boardVO);
 		model.addAttribute("BoardVO", boardVO);
 		return "redirect:boardList.do";
 	}
 
+//	@ResponseBody
+//	@RequestMapping(value = "boardDelete", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+//	public int boardDelete(@RequestParam(value = "chbox[]") List<String> chArr, HttpServletRequest request)
+//			throws Exception {
+//		int idx = 0;
+//		int result = 0;
+//		BoardVO vo = new BoardVO();
+//		for (String delete : chArr) {
+//			idx = Integer.parseInt(delete);
+//			vo.setIdx(idx);
+//
+//			cmservice.boardDelete(vo);
+//			result = 1;
+//			System.out.println(vo.getIdx());
+//		}
+//		return result;
+//	}
+	
 	@ResponseBody
 	@RequestMapping(value = "boardDelete", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public int boardDelete(@RequestParam(value = "chbox[]") List<String> chArr, HttpServletRequest request)
-			throws Exception {
-		int idx = 0;
-		int result = 0;
-		BoardVO vo = new BoardVO();
-		for (String delete : chArr) {
-			idx = Integer.parseInt(delete);
-			vo.setIdx(idx);
+	public int boardDelete(@ModelAttribute("BoardVO") BoardVO boardVO , HttpServletRequest request) throws Exception {
 
-			cmservice.boardDelete(vo);
-			result = 1;
-			System.out.println(vo.getIdx());
-		}
+		int result = 0;
+		result = cmservice.boardDelete(boardVO);
+
+		result = 1;
+
 		return result;
 	}
 

@@ -78,12 +78,23 @@ public class LoginController {
 	}
 	
 	
-	@RequestMapping("logout")
-	public String logout(UsrAcntVO usrAcntVO, HttpSession session) {
-		logger.debug("LogOut User : " + usrAcntVO.getUsrId());
+	@RequestMapping("umUsrLogOut.do")
+	public String logout(	@RequestParam(defaultValue = "1") String usrId, HttpSession session) {
+		logger.debug("LogOut User : " +usrId);
 		session.invalidate();
 		return "index";
 	}
+	
+	@ResponseBody
+	@RequestMapping("umUsrNmInqAjax.do")
+	public UsrAcntVO umUsrNmInqAjax(@RequestParam String usrId) throws Exception {
+		System.out.println("umUsrNmInqAjax.do :" + usrId) ;
+		UsrAcntVO targetVO=  new UsrAcntVO();
+		targetVO =	umusrService.umSelUsrInfoString(usrId);
+		System.out.println("사용자의 이름은 : "  +targetVO.getUsrNm());
+		return targetVO;
+	}
+	
 	@RequestMapping(value="member/callback", method =RequestMethod.GET)
 	public String Callback(HttpSession session) {
 		return "member/callback";

@@ -52,4 +52,6 @@ public interface UmUsrDAO {
 	public void umUpdUsrPwSalt_001(UsrAcntVO usrAcntVO);
 
 	public UsrAcntVO umSelUsrInfo_001(UsrAcntVO usrAcntVO);
+
+	public UsrAcntVO umSelUsrInfo_002(String usrId);
 }
