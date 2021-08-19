@@ -14,6 +14,22 @@ import org.springframework.stereotype.Component;
 
 import com.project.boardproject.cm.web.CmController;
 
+/***
+ * @ClassName : EmailUtil.java
+ * @Description :  이메일 관련 유틸 클래스
+ * @Modification Information
+ * @
+ * @  수정일       수정자       수정내용
+ * @ ---------   ---------   ------------------------------------------------------------------------
+* @ 2021.07.14   김채아      최초생성
+*   
+ * @author 김채아
+ * @since 2021.08.18
+ * @version 1.0
+ * 
+ */
+
+
 @Component
 public class EmailUtil {
 

@@ -9,6 +9,7 @@ public class AttachVO implements Serializable {
 	private int idx;
 	private int boardIdx;
 	private String attachName;
+	
 	public int getIdx() {
 		return idx;
 	}

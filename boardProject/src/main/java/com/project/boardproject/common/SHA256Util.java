@@ -3,6 +3,21 @@ package com.project.boardproject.common;
 import java.security.MessageDigest;
 import java.util.Random;
 
+/***
+ * @ClassName : SHA256Util.java
+ * @Description :  SHA256 관련 유틸 클래스
+ * @Modification Information
+ * @
+ * @  수정일       수정자       수정내용
+ * @ ---------   ---------   ------------------------------------------------------------------------
+* @ 2021.07.14   김채아      최초생성
+*   
+ * @author 김채아
+ * @since 2021.08.18
+ * @version 1.0
+ * 
+ */
+
 public class SHA256Util {
 
 	//솔트값을 생성한다.

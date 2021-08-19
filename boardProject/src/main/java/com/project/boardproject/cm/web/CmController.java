@@ -30,6 +30,21 @@ import com.project.boardproject.cm.service.BoardVO;
 import com.project.boardproject.cm.service.CmService;
 import com.project.boardproject.um.service.UsrAcntVO;
 
+/***
+ * @ClassName : CmController.java
+ * @Description : 공통 Controller
+ * @Modification Information
+ * @
+ * @  수정일       수정자       수정내용
+ * @ ---------   ---------   ------------------------------------------------------------------------
+* @ 2021.07.XX   김채아      최초생성
+*   
+ * @author 김채아
+ * @since 2021.08.18
+ * @version 1.0
+ * 
+ */
+
 
 @Controller
 public class CmController {
